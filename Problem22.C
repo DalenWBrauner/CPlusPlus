@@ -3,8 +3,8 @@
 #include<cstdio>	// C standard input/output ?
 #include<cstdlib>	// C standard library ?
 
-// main(void) runs automagically
-int main(void) {
+// main() runs automagically
+int main() {
 
 	// Instantiate file structures
 	FILE *infile, *outfile;
@@ -23,5 +23,5 @@ int main(void) {
 		exit(1);
 	}
 
-	printf("(Psst, I finished running.)\n\t\tLove, Problem22.C\n");
+	std::cout << "(Psst, I finished running.)\n\t\tLove, Problem22.C\n";
 }
