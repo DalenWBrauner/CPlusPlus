@@ -4,26 +4,41 @@ using namespace std;
 class Vector {
 
 public:
-	Vector(int s) :elem{new double[s]}, sz{s}
-	{
-		for (int i=0; i!=s; ++i) elem[i]=0;
-	}												// How to Construct: a Vector
+	Vector(int s)
+	:elem{new double[s]}, sz{s}
+	{ for (int i=0; i!=s; ++i) elem[i]=0; }			// How to Construct: a Vector
 
-	~Vector() { delete[] elem; }					// How to DECONSTRUCT RAWR
+/*
+	Vector(initialized_list<double> lyst)
+	:elem{new double[ lyst.size() ]}, sz{lyst.size()}
+	{ copy(lyst.begin(), lyst.end(), elem); }
+*/
+
+
+//	~Vector() { delete[] elem; }					// How to DECONSTRUCT RAWR
 
 	double& operator[](int i)
 	{  return elem[i]; }							// How to Handle: the operator "[]"
 
-/*
+
 	double operator*(Vector other)
 	{
+		cout<<"\n~~~WE HAVE BEGUN VECTOR MULTIPLICATION~~~\n";
 		//if (sz != other.size()) throw some_error;
 		double product = 0;
+		cout<<"\n~~~Okay, so we set 'double product = 0'~~~\n";
 		for (int i=0; i!=sz; ++i)
+		{
+			cout<<"\n~~~Loop time, this is element #" << i <<"~~~";
+			cout<<"\nelem[" << i << "] =" << elem[i];
+			cout<<"\nothr[" << i << "] =" << other[i];
 			product += elem[i] * other[i];
+			cout<<"\nCurrent product = " << product <<"\n";
+		}
+		cout<<"\n~~~Okay, wow! We got through the whole loop!~~~\n";
 		return product;
 	}
-*/
+
 
 	int size()
 	{ return sz; }									// Define: Function "size()"
@@ -63,14 +78,15 @@ int main()
 	cin >> size;
 	product = Dot_Product(size);
 	cout << "Their Dot Product is " << product << ".\n";
-/*
+
 	Vector v1(4), v2(4);
-	for (int i=1; i!=5; ++i) {
-		v1[i-1] = i;
-		v2[i-1] = i;
+	for (int i=0; i!=5; ++i) {
+		v1[i] = i;
+		v2[i] = i;
 	}
-	cout << "So far so good.\n";
-	double value = v1*v2;
-	cout << value;
-*/
+	double value;
+	cout << "So far so good.\nYou ready for this?\n";
+	value = v1*v2;
+	cout << "Your dot product is: ";
+	cout << value << "\n";
 }
