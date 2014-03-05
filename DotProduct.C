@@ -30,26 +30,6 @@ private:
 	int sz;			// the number of elements
 };
 
-double Dot_Product(int s)
-{
-	Vector v1(s), v2(s);
-	for (int i=0; i!=v1.size(); ++i) {
-		cout<<"Please enter in value #" << i << " for the 1st vector: ";
-		cin >>v1[i];
-		}
-
-	for (int i=0; i!=v2.size(); ++i) {
-		cout<<"Please enter in value #" << i << " for the 2nd vector: ";
-		cin >>v2[i];
-		}
-
-	double product = 0;
-	for (int i=0; i!=s; ++i)
-		product += v1[i] * v2[i];
-
-	return product;
-}
-
 Vector Input_Vector()
 {
 	int s;
@@ -64,10 +44,10 @@ Vector Input_Vector()
 	return v;
 }
 
-int main()
+void Dot_Product()
 {
 	/*
-	Wa-hey! This brings up an interesting error.
+	Wa-hey! This brings up an interesting error;
 	I think I understand the need for pointers.
 	Vector *v1, *v2;
 	v1 = Input_Vector();
@@ -78,4 +58,9 @@ int main()
 	double product;
 	product = Input_Vector()*Input_Vector();
 	cout << "Your dot product is " << product << ".\n";
+}
+
+int main()
+{
+	Dot_Product();
 }
