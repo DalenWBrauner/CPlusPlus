@@ -13,9 +13,6 @@ public:
 
 	double operator*(Vector other)
 	{
-		/* I want to throw in
-		if (sz != other.size()) throw some_error;
-		at some point, but what few error types I've tried ended poorly. */
 		double product = 0;
 		for (int i=0; i!=sz; ++i)
 		{ product += elem[i] * other[i]; }
@@ -46,15 +43,6 @@ Vector Input_Vector()
 
 void Dot_Product()
 {
-	/*
-	Wa-hey! This brings up an interesting error;
-	I think I understand the need for pointers.
-	Vector *v1, *v2;
-	v1 = Input_Vector();
-	v2 = Input_Vector();
-	double product;
-	product = v1*v2;
-	*/
 	double product;
 	product = Input_Vector()*Input_Vector();
 	cout << "Your dot product is " << product << ".\n";
