@@ -8,46 +8,26 @@ public:
 	:elem{new double[s]}, sz{s}
 	{ for (int i=0; i!=s; ++i) elem[i]=0; }			// How to Construct: a Vector
 
-/*
-	Vector(initialized_list<double> lyst)
-	:elem{new double[ lyst.size() ]}, sz{lyst.size()}
-	{ copy(lyst.begin(), lyst.end(), elem); }
-*/
-
-
-//	~Vector() { delete[] elem; }					// How to DECONSTRUCT RAWR
-
 	double& operator[](int i)
 	{  return elem[i]; }							// How to Handle: the operator "[]"
 
-
 	double operator*(Vector other)
 	{
-		cout<<"\n~~~WE HAVE BEGUN VECTOR MULTIPLICATION~~~\n";
-		//if (sz != other.size()) throw some_error;
+		/* I want to throw in
+		if (sz != other.size()) throw some_error;
+		at some point, but what few error types I've tried ended poorly. */
 		double product = 0;
-		cout<<"\n~~~Okay, so we set 'double product = 0'~~~\n";
 		for (int i=0; i!=sz; ++i)
-		{
-			cout<<"\n~~~Loop time, this is element #" << i <<"~~~";
-			cout<<"\nelem[" << i << "] =" << elem[i];
-			cout<<"\nothr[" << i << "] =" << other[i];
-			product += elem[i] * other[i];
-			cout<<"\nCurrent product = " << product <<"\n";
-		}
-		cout<<"\n~~~Okay, wow! We got through the whole loop!~~~\n";
+		{ product += elem[i] * other[i]; }
 		return product;
 	}
-
 
 	int size()
 	{ return sz; }									// Define: Function "size()"
 
 private:
-
 	double* elem;	// pointer to the elements
 	int sz;			// the number of elements
-
 };
 
 double Dot_Product(int s)
