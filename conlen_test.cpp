@@ -75,106 +75,119 @@ void test6()
 	cout << "end test6" << endl;
 }
 
-void testD_1()
+void testD_01()
 {
 	std::vector<double> v1 = {1.0, 2.3, 4.0};
 	std::vector<double> v2 = {1.3, 3.7, 4.5};
 	vektor<double>	x(v1), y(v2), z1, z2;
-	cout << "testD_1" << endl;
+	cout << "testD_01" << endl;
 	z1 = x - y;
 	z2 = y - x;
 	cout << "x - y = " << z1 << endl;
 	cout << "y - x = " << z2 << endl;
-	cout << "end testD_1" << endl;
+	cout << "end testD_01" << endl;
 }
 
-void testD_2()
+void testD_02()
 {
 	std::vector<double> v1 = {2.2, 1.1, 0.0};
 	std::vector<double> v2 = {8.2, 7.1};
 	vektor<double>	x(v1), y(v2), z1, z2;
-	cout << "testD_2" << endl;
+	cout << "testD_02" << endl;
 	z1 = x - y;
 	z2 = y - x;
 	cout << "x - y = " << z1 << endl;
 	cout << "y - x = " << z2 << endl;
-	cout << "end testD_2" << endl;
+	cout << "end testD_02" << endl;
 }
 
-void testD_3()
+void testD_03()
 {
 	std::vector<double> v1 = {1.0, 2.3, 4.0};
 	std::vector<double> v2 = {1.3, 3.7, 4.5};
 	vektor<double>	x(v1), y(v2);
 	double z1, z2;
-	cout << "testD_3" << endl;
+	cout << "testD_03" << endl;
 	z1 = x * y;
 	z2 = y * x;
 	cout << "x * y = " << z1 << endl;
 	cout << "y * x = " << z2 << endl;
-	cout << "end testD_3" << endl;
+	cout << "end testD_03" << endl;
 }
 
-void testD_4()
+void testD_04()
 {
 	std::vector<double> v1 = {0.0, 0.0, 1.0};
 	std::vector<double> v2 = {7.0, 8.0};
 	vektor<double>	x(v1), y(v2);
 	double z1, z2;
-	cout << "testD_4" << endl;
+	cout << "testD_04" << endl;
 	z1 = x * y;
 	z2 = y * x;
 	cout << "x * y = " << z1 << endl;
 	cout << "y * x = " << z2 << endl;
-	cout << "end testD_4" << endl;
+	cout << "end testD_04" << endl;
 }
 
-void testD_5()
+void testD_05()
 {
 	std::vector<double> v1 = {777.0, 9.0, 0.1};
 	std::vector<double> v2;
 	vektor<double>	x(v1), y(v2);
-	cout << "testD_5" << endl;
+	cout << "testD_05" << endl;
 	cout << "x.isValid() " << x.isValid() << endl;
 	cout << "y.isValid() " << y.isValid() << endl;
-	cout << "end testD_5" << endl;
+	cout << "end testD_05" << endl;
 }
 
-void testD_6()
+void testD_06()
 {
 	std::vector<double> v1 = {777.0, 9.0, 0.1};
 	std::vector<double> v2;
 	vektor<double>	x(v1), y(v2);
-	cout << "testD_6" << endl;
+	cout << "testD_06" << endl;
 	cout << "x.dimension() " << x.dimension() << endl;
 	cout << "y.dimension() " << y.dimension() << endl;
-	cout << "end testD_6" << endl;
+	cout << "end testD_06" << endl;
 }
 
-void testD_7()
+void testD_07()
 {
 	std::vector<short> v1 = {4368, 4112, 4097};
 	std::vector<short> v2 = {1, 257, 272};
 	vektor<short>	x(v1), y(v2), z1, z2;
-	cout << "testD_7" << endl;
+	cout << "testD_07" << endl;
 	z1 = x & y;
 	z2 = y & x;
 	cout << "x & y = " << z1 << endl;
 	cout << "y & x = " << z2 << endl;
-	cout << "end testD_7" << endl;
+	cout << "end testD_07" << endl;
 }
 
-void testD_8()
+void testD_08()
 {
 	std::vector<short> v1 = {1, 257, 272};
 	std::vector<short> v2 = {4368, 4112};
 	vektor<short>	x(v1), y(v2), z1, z2;
-	cout << "testD_8" << endl;
+	cout << "testD_08" << endl;
 	z1 = x & y;
 	z2 = y & x;
 	cout << "x & y = " << z1 << endl;
 	cout << "y & x = " << z2 << endl;
-	cout << "end testD_8" << endl;
+	cout << "end testD_08" << endl;
+}
+
+void testD_09()
+{
+	std::vector<short> v1 = {1, 257, 272};
+	std::vector<double> v2 = {43.8, 41.2};
+	vektor<short>	x(v1);
+	vektor<double>	y(v2);
+	cout << "testD_09" << endl;
+	x = y;
+	cout << "x = " << x << endl;
+	cout << "y = " << y << endl;
+	cout << "end testD_09" << endl;
 }
 
 int main(int argc, char *argv[])
@@ -210,25 +223,24 @@ int main(int argc, char *argv[])
 
 	Any ideas why are posted on the next line.
 	*/
-
 	cout << endl;
-	testD_1();
+	testD_01();
 	cout << endl;
-	testD_2();
+	testD_02();
 	cout << endl;
-	testD_3();
+	testD_03();
 	cout << endl;
-	testD_4();
-
+	testD_04();
 	cout << endl;
-	testD_5();
+	testD_05();
 	cout << endl;
-	testD_6();
-
+	testD_06();
 	cout << endl;
-	testD_7();
+	testD_07();
 	cout << endl;
-	testD_8();
+	testD_08();
+	cout << endl;
+	testD_09();
 	
 	return(0);
 }
