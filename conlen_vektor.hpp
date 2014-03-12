@@ -14,6 +14,7 @@ class vektor
 		vektor<T>	operator+(const vektor<T> &o);
 		vektor<T>	operator-(const vektor<T> &o);
 		double		operator*(const vektor<T> &o);
+		vektor<T>	operator&(const vektor<T> &o);
 
 		unsigned int dimension()
 		{ return x.size(); }
@@ -107,4 +108,18 @@ double vektor<T>::operator*(const vektor<T> &o)
 	}
 
 	return dotProduct;
+}
+
+template <typename T>
+vektor<T> vektor<T>::operator&(const vektor<T> &o)
+{
+	vektor<T>		r;
+	std::vector<T>	y;
+
+	y.resize(x.size());
+	for(int i = 0; i< x.size(); i++) {
+		y[i] = x[i] & o.x[i];
+	}
+	r = y;
+	return(r);
 }

@@ -151,6 +151,32 @@ void testD_6()
 	cout << "end testD_6" << endl;
 }
 
+void testD_7()
+{
+	std::vector<short> v1 = {4368, 4112, 4097};
+	std::vector<short> v2 = {1, 257, 272};
+	vektor<short>	x(v1), y(v2), z1, z2;
+	cout << "testD_7" << endl;
+	z1 = x & y;
+	z2 = y & x;
+	cout << "x & y = " << z1 << endl;
+	cout << "y & x = " << z2 << endl;
+	cout << "end testD_7" << endl;
+}
+
+void testD_8()
+{
+	std::vector<short> v1 = {1, 257, 272};
+	std::vector<short> v2 = {4368, 4112};
+	vektor<short>	x(v1), y(v2), z1, z2;
+	cout << "testD_8" << endl;
+	z1 = x & y;
+	z2 = y & x;
+	cout << "x & y = " << z1 << endl;
+	cout << "y & x = " << z2 << endl;
+	cout << "end testD_8" << endl;
+}
+
 int main(int argc, char *argv[])
 {
 	int rc;
@@ -198,6 +224,11 @@ int main(int argc, char *argv[])
 	testD_5();
 	cout << endl;
 	testD_6();
+
+	cout << endl;
+	testD_7();
+	cout << endl;
+	testD_8();
 	
 	return(0);
 }
