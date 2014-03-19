@@ -16,7 +16,7 @@ class vektor
 		vektor<T>	operator+(const vektor<T> &o);
 		vektor<T>	operator-(const vektor<T> &o);
 		double		operator*(const vektor<T> &o);		// Vector Multiplication
-		vektor<T>	operator*(const T &o);			// Scalar Multiplication
+		vektor<T>	operator*(const T &o);				// Scalar Multiplication
 		vektor<T>	operator&(const vektor<T> &o);
 
 		unsigned int dimension()
@@ -40,6 +40,21 @@ class vektor
 			s << "<NO_SIZE>";
 			return(s);
 		}
+	}
+
+	operator std::vector<T>() const
+	{ return x; }
+
+	template<typename Q>
+	vektor<T>& operator=(const vektor<Q> &o)
+	{
+		std::vector<Q> v;
+
+		v = (std::vector<Q>)o;
+		x.resize(v.size());
+		for(auto i=0; i<v.size(); i++)
+			{ x[i] = (T)v[i]; }
+		return(*this);
 	}
 };
 

@@ -176,12 +176,12 @@ void testD_08()
 	cout << "y & x = " << z2 << endl;
 	cout << "end testD_08" << endl;
 }
-/*
+
 void testD_09()
 {
-	std::vector<short> v1 = {1, 257, 272};
+	std::vector<int> v1 = {1, 257, 272};
 	std::vector<double> v2 = {43.8, 41.2};
-	vektor<short>	x(v1);
+	vektor<int>	x(v1);
 	vektor<double>	y(v2);
 	cout << "testD_09" << endl;
 	y = x;
@@ -189,7 +189,6 @@ void testD_09()
 	cout << "y = " << y << endl;
 	cout << "end testD_09" << endl;
 }
-*/
 
 void testD_10()
 {
@@ -211,17 +210,12 @@ int main(int argc, char *argv[])
 	
 	cout << "main start\n" << endl;
 	
-	test1();
-	cout << endl;
-	test2();
-	cout << endl;
-	test3();
-	cout << endl;
-	test4();
-	cout << endl;
-	test5();
-	cout << endl;
-	test6();
+	test1();	cout << endl;
+	test2();	cout << endl;
+	test3();	cout << endl;
+	test4();	cout << endl;
+	test5();	cout << endl;
+	test6();	cout << endl;
 
 	/* Dalen tests!
 
@@ -238,25 +232,14 @@ int main(int argc, char *argv[])
 
 	Any ideas why are posted on the next line.
 	*/
-	cout << endl;
-	testD_01();
-	cout << endl;
-	testD_02();
-	cout << endl;
-	testD_03();
-	cout << endl;
-	testD_04();
-	cout << endl;
-	testD_05();
-	cout << endl;
-	testD_06();
-	cout << endl;
-	testD_07();
-	cout << endl;
-	testD_08();
-	cout << endl;
-//	testD_09();
-
-
+	testD_01();	cout << endl;
+	testD_02();	cout << endl;
+	testD_03();	cout << endl;
+	testD_04();	cout << endl;
+	testD_05();	cout << endl;
+	testD_06();	cout << endl;
+	testD_07();	cout << endl;
+	testD_08();	cout << endl;
+	testD_09();	cout << endl;
 	testD_10();	cout << endl;
 }

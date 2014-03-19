@@ -7,152 +7,156 @@ template<typename K>
 class matriks
 {
 	private:
-		vector<vector<K>>	Mtrx;
-		unsigned int		M;
-		unsigned int		N;
+		vector<vector<K>>		Mtrx;
+		unsigned int			M;		// Column Length	(or # of Rows)
+		unsigned int			N;		// Row Length		(or # of Cols)
 
 	public:
 		// Creation methods
-		matriks();
-		matriks(const vector<K> &v);
-		matriks(const vector<vector<K>> &v);
-		~matriks();
-		// Operation methods
-		matriks<K>&	operator=(const <K> &other);				// Create 1x1 Matrix
-		matriks<K>&	operator=(const vector<K> &other);			// Create Mx1 Matrix 
-		matriks<K>&	operator=(const vector<vector<K>> &other);	// Create MxN Matrix
+		matriks();												// Create 0x0 Matrix
+		matriks(const K &v);									// Create 1x1 Matrix
+		matriks(const vector<K> &v);							// Create Mx1 Matrix
+		matriks(const vector<vector<K>> &v);					// Create MxN Matrix
 
-		matriks<K>&	operator==(const <K> &other);				// Compare as 1x1 Matrix
+		// Operation methods
+		matriks<K>&	operator=(const K &other);					// Assign 1x1 Matrix
+		matriks<K>&	operator=(const vector<K> &other);			// Assign Mx1 Matrix 
+		matriks<K>&	operator=(const vector<vector<K>> &other);	// Assign MxN Matrix
+
+		matriks<K>&	operator==(const K &other);					// Compare as 1x1 Matrix
 		matriks<K>&	operator==(const vector<K> &other);			// Compare as Mx1 Matrix
 		matriks<K>&	operator==(const vector<vector<K>> &other);	// Compare as MxN Matrix
 
 		matriks<K>	operator+(const matriks<K> &other);			// Matrix Addition
 		matriks<K>	operator-(const matriks<K> &other);			// Matrix Subtraction
 
-		matriks<K>	operator*(const <K> &other);				// Scalar Multiplication
+		matriks<K>	operator*(const K &other);					// Scalar Multiplication
 		double		operator*(const vector<K> &other);			// Vector Multiplication
 		matriks<K>	operator*(const matriks<K> &other);			// Matrix Multiplication
+
 		matriks<K>	operator&(const matriks<K> &other);
 
-		unsigned int dimension()
-		{ return x.size(); }
+		// Other methods
+		vector<unsigned int> size()
+		{return {M,N};}
 
-		bool isValid()
-		{ return (x.size() == 0); }
-		
+		bool hasElements()
+		{ return (( M != 0) and (N != 0)); }
 
-	friend std::ostream& operator<<(std::ostream& s, matriks<K> &v) {
-		int i;
+/*
+		void resize(unsigned int m, unsigned int n)
+		{
+		}
+*/
 
-		if(v.x.size() > 0) {
-			s << "(";
-			for(i=0; i<v.x.size() -1; i++) {
-				s << v.x[i] << ", ";
+		friend ostream& operator<<(ostream& s, matriks<K> &MX)
+		{
+			for (auto m=0 ; m<MX.M ; m++) {
+				s << "\n[\t";
+				for (auto n=0 ; n<MX.N ; n++) {
+					s << MX.Mtrx[n][m];
+					s << "\t";
+				}
+			s << "]";
 			}
-			s << v.x[i] << ")";
-			return s;
-		} else {
-			s << "<NO_SIZE>";
 			return(s);
 		}
-	}
 
-	operator std::vector<K>() const
-	{ return x; }
 
-	template<typename Q>
-	matriks<K>& operator=(const matriks<Q> &o)
-	{
-		std::vector<Q> v;
-
-		v = (std::vector<Q>)o;
-		x.resize(v.size());
-		for(auto i=0; i<v.size(); i++)
-			{ x[i] = (K)v[i]; }
-		return(*this);
-	}
 };
 
+//
+////
+////// Creation Methods
 template<typename K>
 matriks<K>::matriks()
+/* Create 0x0 Matrix */
 {
-	std::cout << "Construct matriks" << std::endl;
-	return;
+	M = 0;
+	N = 0;
 }
 
 template<typename K>
-matriks<K>::matriks(const std::vector<K> &o)
+matriks<K>::matriks(const K &v)
+/* Create 1x1 Matrix */
 {
-	std::cout << "Construct matriks from vector<K>" << std::endl;
-	x = o;
-	return;
+	Mtrx = {{v}};
+	M = Mtrx[0].size();
+	N = Mtrx.size();
 }
 
 template<typename K>
-matriks<K>::~matriks()
+matriks<K>::matriks(const vector<K> &v)
+/* Create Mx1 Matrix */
 {
-	std::cout << "Destruct matriks" << std::endl;
-	return;
+	Mtrx = {v};
+	M = Mtrx[0].size();
+	N = Mtrx.size();
 }
 
 template<typename K>
-matriks<K>& matriks<K>::operator=(const std::vector<K> &o)
+matriks<K>::matriks(const vector<vector<K>> &v)
+/* Create MxN Matrix */
 {
-	x = o;
-	std::cout << "assign matriks" << std::endl;
-	return(*this);
+	Mtrx = v;
+	M = Mtrx[0].size();
+	N = Mtrx.size();
 }
 
-template <typename K>
-matriks<K> matriks<K>::operator+(const matriks<K> &o)
-{
-	matriks<K>		r;
-	std::vector<K>	y;
 
-	y.resize(x.size());
-	for(int i = 0; i< x.size(); i++) {
-		y[i] = x[i] + o.x[i];
+//
+////
+////// Operation Methods
+template<typename K>
+matriks<K> matriks<K>::operator+(const matriks<K> &other)
+/* Matrix Addition */
+{
+	/*
+	// First assure they are the same size
+	unsigned int a = Mtrx.size()[0];
+	unsigned int b = other.size()[0];
+	unsigned int c = Mtrx.size()[1];
+	unsigned int d = other.size()[1];
+	if ((a != b) or (c != d))
+	{return 1;}
+	*/
+
+	vector<vector<K>> New;
+
+	for (auto n=0 ; n<N ; n++) {
+		vector<K> v;
+		for (auto m=0 ; m<M ; m++) {
+			K sum = Mtrx[n][m] + other.Mtrx[n][m];
+			v.push_back(sum);
+		}
+		New.push_back(v);
 	}
-	r = y;
-	return(r);
+	return New;
 }
 
-template <typename K>
-matriks<K> matriks<K>::operator-(const matriks<K> &o)
+template<typename K>
+matriks<K> matriks<K>::operator-(const matriks<K> &other)
+/* Matrix Subtraction */
 {
-	matriks<K>		r;
-	std::vector<K>	y;
+	/*
+	// First assure they are the same size
+	unsigned int a = Mtrx.size()[0];
+	unsigned int b = other.size()[0];
+	unsigned int c = Mtrx.size()[1];
+	unsigned int d = other.size()[1];
+	if ((a != b) or (c != d))
+	{return 1;}
+	*/
 
-	y.resize(x.size());
-	for(int i = 0; i< x.size(); i++) {
-		y[i] = x[i] - o.x[i];
+	vector<vector<K>> New;
+
+	for (auto n=0 ; n<N ; n++) {
+		vector<K> v;
+		for (auto m=0 ; m<M ; m++) {
+			K dif = Mtrx[n][m] - other.Mtrx[n][m];
+			v.push_back(dif);
+		}
+		New.push_back(v);
 	}
-	r = y;
-	return(r);
-}
-
-template <typename K>
-double matriks<K>::operator*(const matriks<K> &o)
-{
-	double dotProduct = 0;
-
-	for (int i=0; i< x.size(); i++) {
-		dotProduct += x[i] * o.x[i];
-	}
-
-	return dotProduct;
-}
-
-template <typename K>
-matriks<K> matriks<K>::operator&(const matriks<K> &o)
-{
-	matriks<K>		r;
-	std::vector<K>	y;
-
-	y.resize(x.size());
-	for(int i = 0; i< x.size(); i++) {
-		y[i] = x[i] & o.x[i];
-	}
-	r = y;
-	return(r);
+	return New;
 }
