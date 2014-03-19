@@ -1,20 +1,38 @@
 #include <iostream>
 #include <vector>
+#include "vektor.cpp"
+using namespace std;
 
 template<typename K>
 class matriks
 {
 	private:
-		std::vector<K>	x;
+		vector<vector<K>>	Mtrx;
+		unsigned int		M;
+		unsigned int		N;
+
 	public:
+		// Creation methods
 		matriks();
-		matriks(const std::vector<K> &v);
+		matriks(const vector<K> &v);
+		matriks(const vector<vector<K>> &v);
 		~matriks();
-		matriks<K>&	operator=(const std::vector<K> &o);
-		matriks<K>	operator+(const matriks<K> &o);
-		matriks<K>	operator-(const matriks<K> &o);
-		double		operator*(const matriks<K> &o);
-		matriks<K>	operator&(const matriks<K> &o);
+		// Operation methods
+		matriks<K>&	operator=(const <K> &other);				// Create 1x1 Matrix
+		matriks<K>&	operator=(const vector<K> &other);			// Create Mx1 Matrix 
+		matriks<K>&	operator=(const vector<vector<K>> &other);	// Create MxN Matrix
+
+		matriks<K>&	operator==(const <K> &other);				// Compare as 1x1 Matrix
+		matriks<K>&	operator==(const vector<K> &other);			// Compare as Mx1 Matrix
+		matriks<K>&	operator==(const vector<vector<K>> &other);	// Compare as MxN Matrix
+
+		matriks<K>	operator+(const matriks<K> &other);			// Matrix Addition
+		matriks<K>	operator-(const matriks<K> &other);			// Matrix Subtraction
+
+		matriks<K>	operator*(const <K> &other);				// Scalar Multiplication
+		double		operator*(const vector<K> &other);			// Vector Multiplication
+		matriks<K>	operator*(const matriks<K> &other);			// Matrix Multiplication
+		matriks<K>	operator&(const matriks<K> &other);
 
 		unsigned int dimension()
 		{ return x.size(); }
