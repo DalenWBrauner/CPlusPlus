@@ -190,6 +190,66 @@ void test09()
 	return;
 }
 
+/*
+void test10()
+{
+	cout << "BEGIN:\ttest10()\t";
+	cout << "Testing scalar multiplication;" << endl;
+
+	vector<int> Abby = {1,2,3};
+	vector<int> Bobby = {4,5,6};
+	vector<int> Crabby = {7,8,9};
+	cout << "vector<int> Abby = {1,2,3};" << endl;
+	cout << "vector<int> Bobby = {4,5,6};" << endl;
+	cout << "vector<int> Crabby = {7,8,9};" << endl;
+	vector<vector<int>> Victor = {Abby, Bobby, Crabby};
+	cout << "vector<vector<int>> Victor = {Abby, Bobby, Crabby};" << endl;
+
+	matriks<int> Mx0 = Victor;
+	matriks<int> Mx1 = Victor;
+	matriks<int> Mx2 = Victor;
+	cout << "matriks<int> Mx0 = Victor;" << endl;
+	cout << "matriks<int> Mx1 = Victor;" << endl;
+	cout << "matriks<int> Mx2 = Victor;" << endl;
+
+	Mx0 = Mx0 * 0;
+	Mx1 = Mx1 * 1;
+	Mx2 = Mx2 * 2;
+	cout << "matriks<int> Mx0 = Mx0 * 0;" << endl;
+	cout << "matriks<int> Mx1 = Mx1 * 1;" << endl;
+	cout << "matriks<int> Mx2 = Mx2 * 2;" << endl;
+
+	cout << Mx0 << endl;
+	cout << Mx1 << endl;
+	cout << Mx2 << endl;
+
+	cout << "END:\ttest10()" << endl;
+	return;
+}
+*/
+
+void test11()
+{
+	cout << "BEGIN:\ttest11()\t";
+	cout << "Testing subtraction of different-sized matrikies;" << endl;
+
+	vector<short> Crabby = {7,8,9};
+	cout << "vector<short> Crabby = {7,8,9};" << endl;
+	vector<vector<short>> Kinda_Crabby = {Crabby, Crabby};
+	vector<vector<short>> Super_Crabby = {Crabby, Crabby, Crabby, Crabby};
+	cout << "vector<vector<short>> Kinda_Crabby = {Crabby, Crabby};" << endl;
+	cout << "vector<vector<short>> Super_Crabby = {Crabby, Crabby, Crabby, Crabby};" << endl;
+
+	matriks<short> Kinda_MX = Kinda_Crabby;
+	matriks<short> Super_MX = Super_Crabby;
+	matriks<short> New = Super_MX - Kinda_MX;
+
+	cout << New << endl;
+
+	cout << "END:\ttest11()" << endl;
+	return;
+}
+
 
 int main()
 {
@@ -204,6 +264,8 @@ int main()
 	test07();	cout << endl;
 	test08();	cout << endl;
 	test09();	cout << endl;
+//	test10();	cout << endl;
+	test11();	cout << endl;
 
 	cout << "}" << endl;
 }
