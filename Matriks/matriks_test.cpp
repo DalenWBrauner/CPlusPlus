@@ -190,10 +190,32 @@ void test09()
 	return;
 }
 
-/*
 void test10()
 {
 	cout << "BEGIN:\ttest10()\t";
+	cout << "Testing subtraction of different-sized matrikies;" << endl;
+
+	vector<short> Crabby = {7,8,9};
+	cout << "vector<short> Crabby = {7,8,9};" << endl;
+	vector<vector<short>> Kinda_Crabby = {Crabby, Crabby};
+	vector<vector<short>> Super_Crabby = {Crabby, Crabby, Crabby, Crabby};
+	cout << "vector<vector<short>> Kinda_Crabby = {Crabby, Crabby};" << endl;
+	cout << "vector<vector<short>> Super_Crabby = {Crabby, Crabby, Crabby, Crabby};" << endl;
+
+	matriks<short> Kinda_MX = Kinda_Crabby;
+	matriks<short> Super_MX = Super_Crabby;
+	matriks<short> New = Super_MX - Kinda_MX;
+
+	cout << New << endl;
+
+	cout << "END:\ttest10()" << endl;
+	return;
+}
+
+/*
+void test11()
+{
+	cout << "BEGIN:\ttest11()\t";
 	cout << "Testing scalar multiplication;" << endl;
 
 	vector<int> Abby = {1,2,3};
@@ -223,49 +245,26 @@ void test10()
 	cout << Mx1 << endl;
 	cout << Mx2 << endl;
 
-	cout << "END:\ttest10()" << endl;
+	cout << "END:\ttest11()" << endl;
 	return;
 }
 */
 
-void test11()
-{
-	cout << "BEGIN:\ttest11()\t";
-	cout << "Testing subtraction of different-sized matrikies;" << endl;
-
-	vector<short> Crabby = {7,8,9};
-	cout << "vector<short> Crabby = {7,8,9};" << endl;
-	vector<vector<short>> Kinda_Crabby = {Crabby, Crabby};
-	vector<vector<short>> Super_Crabby = {Crabby, Crabby, Crabby, Crabby};
-	cout << "vector<vector<short>> Kinda_Crabby = {Crabby, Crabby};" << endl;
-	cout << "vector<vector<short>> Super_Crabby = {Crabby, Crabby, Crabby, Crabby};" << endl;
-
-	matriks<short> Kinda_MX = Kinda_Crabby;
-	matriks<short> Super_MX = Super_Crabby;
-	matriks<short> New = Super_MX - Kinda_MX;
-
-	cout << New << endl;
-
-	cout << "END:\ttest11()" << endl;
-	return;
-}
-
-
 int main()
 {
-	cout << "main()\n{" << endl;
+	cout << "main()\n{";
 	
-	test01();	cout << endl;
-	test02();	cout << endl;
-	test03();	cout << endl;
-	test04();	cout << endl;
-	test05();	cout << endl;
-	test06();	cout << endl;
-	test07();	cout << endl;
-	test08();	cout << endl;
-	test09();	cout << endl;
-//	test10();	cout << endl;
-	test11();	cout << endl;
+	cout << endl;	test01();
+	cout << endl;	test02();
+	cout << endl;	test03();
+	cout << endl;	test04();
+	cout << endl;	test05();
+	cout << endl;	test06();
+	cout << endl;	test07();
+	cout << endl;	test08();
+	cout << endl;	test09();
+//	cout << endl;	test10();	Aborts, as it should!
+//	cout << endl;	test11();
 
 	cout << "}" << endl;
 }

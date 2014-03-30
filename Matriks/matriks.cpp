@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "vektor.cpp"
+#include "../TooNice.cpp"
 using namespace std;
 
 template<typename K>
@@ -35,21 +36,9 @@ class matriks
 		double		operator*(vektor<K> &other);			// Vektor Multiplication
 		matriks<K>	operator*(matriks<K> &other);			// Matrix Multiplication
 
-		matriks<K>	operator&(const matriks<K> &other);
+		matriks<K>	operator&(const matriks<K> &other);		// Honestly, I've forgot.
 
-		// Other methods
-		vector<unsigned int> size()
-		{ return {M, N}; }
-
-		bool hasElements()
-		{ return (( M != 0) and (N != 0)); }
-
-/*
-		void resize(unsigned int m, unsigned int n)
-		{
-		}
-*/
-
+		// Allows iostream output via '<<'
 		friend ostream& operator<<(ostream& s, matriks<K> &MX)
 		{
 			for (auto m=0 ; m<MX.M ; m++) {
@@ -63,12 +52,20 @@ class matriks
 			return(s);
 		}
 
+		// Other methods
+		vector<unsigned int> size()
+		{ return {M, N}; }
+
+		bool hasElements()
+		{ return (( M != 0) and (N != 0)); }
+
+//		void resize(unsigned int m, unsigned int n) {}
 
 };
 
-//
-////
-////// Creation Methods
+////////
+// Creation Methods
+///
 template<typename K>
 matriks<K>::matriks()
 /* Create 0x0 Matrix */
@@ -105,16 +102,18 @@ matriks<K>::matriks(const vector<vector<K>> &v)
 }
 
 
-//
-////
-////// Operation Methods
+////////
+// Operation Methods
+///
 template<typename K>
 matriks<K> matriks<K>::operator+(matriks<K> &other)
 /* Matrix Addition */
 {
-	// First assure they are the same size
-	if ((M != other.size()[0]) or (N != other.size()[1]))
-	{return 1;}
+	// First assert they are the same size
+	assertNicely(
+	( (M == other.size()[0]) and (N == other.size()[1]) ),
+	"Matriks must be of equal size before addition."
+	);
 
 	vector<vector<K>> New;
 
@@ -133,9 +132,11 @@ template<typename K>
 matriks<K> matriks<K>::operator-(matriks<K> &other)
 /* Matrix Subtraction */
 {
-	// First assure they are the same size
-	if ((M != other.size()[0]) or (N != other.size()[1]))
-	{return 1;}
+	// First assert they are the same size
+	assertNicely(
+	( (M == other.size()[0]) and (N == other.size()[1]) ),
+	"Matriks must be of equal size before subtraction."
+	);
 
 	vector<vector<K>> New;
 
