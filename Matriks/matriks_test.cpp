@@ -3,6 +3,9 @@
 
 using namespace std;
 
+////////
+// Matrix Tests
+///
 void test01()
 {
 	cout << "BEGIN:\ttest01()\t";
@@ -132,13 +135,54 @@ void test07()
 	cout << "MX is " << MX.size()[0] << " elements tall." << endl;
 	cout << "MX is " << MX.size()[1] << " elements wide." << endl;
 	
-	cout << "END:\ttest06()" << endl;
+	cout << "END:\ttest07()" << endl;
 	return;
 }
 
 void test08()
 {
 	cout << "BEGIN:\ttest08()\t";
+	cout << "Testing .resize();" << endl;
+
+	vector<short> Abby = {1,2,3};
+	vector<short> Bobby = {4,5,6};
+	vector<vector<short>> Victor = {Abby, Bobby};
+	matriks<short> MX = Victor;
+	cout << "matriks<short> MX = Victor;" << endl;
+
+	cout << MX << endl;
+	cout << "MX is " << MX.size()[0] << " elements tall." << endl;
+	cout << "MX is " << MX.size()[1] << " elements wide." << endl;
+
+	MX.resize(7,2);
+	cout << "MX.resize(7,2);" << endl;
+	cout << "MX is " << MX.size()[0] << " elements tall." << endl;
+	cout << "MX is " << MX.size()[1] << " elements wide." << endl;
+	cout << MX << endl;
+
+	MX.resize(2,2);
+	cout << "MX.resize(2,2);" << endl;
+	cout << "MX is " << MX.size()[0] << " elements tall." << endl;
+	cout << "MX is " << MX.size()[1] << " elements wide." << endl;
+	cout << MX << endl;
+
+	MX.resize(2,4);
+	cout << "MX.resize(2,4);" << endl;
+	cout << "MX is " << MX.size()[0] << " elements tall." << endl;
+	cout << "MX is " << MX.size()[1] << " elements wide." << endl;
+	cout << MX << endl;
+
+	cout << "END:\ttest08()" << endl;
+	return;
+}
+
+
+////////
+// Matrix Operation Tests
+///
+void test_op01()
+{
+	cout << "BEGIN:\ttest_op01()\t";
 	cout << "Testing addition of two 3x2 matrikies;" << endl;
 
 	vector<short> Abby = {1,2,3};
@@ -159,13 +203,13 @@ void test08()
 	cout << MXX << endl;
 	cout << "MXX is " << MXX.size()[0] << " elements tall." << endl;
 	cout << "MXX is " << MXX.size()[1] << " elements wide." << endl;
-	cout << "END:\ttest08()" << endl;
+	cout << "END:\ttest_op01()" << endl;
 	return;
 }
 
-void test09()
+void test_op02()
 {
-	cout << "BEGIN:\ttest09()\t";
+	cout << "BEGIN:\ttest_op02()\t";
 	cout << "Testing subtraction of identical matrikies;" << endl;
 
 	vector<short> Abby = {1,2,3};
@@ -186,13 +230,13 @@ void test09()
 	cout << MXX << endl;
 	cout << "MXX is " << MXX.size()[0] << " elements tall." << endl;
 	cout << "MXX is " << MXX.size()[1] << " elements wide." << endl;
-	cout << "END:\ttest09()" << endl;
+	cout << "END:\ttest_op02()" << endl;
 	return;
 }
 
-void test10()
+void test_op03()
 {
-	cout << "BEGIN:\ttest10()\t";
+	cout << "BEGIN:\ttest_op03()\t";
 	cout << "Testing subtraction of different-sized matrikies;" << endl;
 
 	vector<short> Crabby = {7,8,9};
@@ -208,24 +252,20 @@ void test10()
 
 	cout << New << endl;
 
-	cout << "END:\ttest10()" << endl;
+	cout << "END:\ttest_op03()" << endl;
 	return;
 }
 
 /*
-void test11()
+void test_op4()
 {
-	cout << "BEGIN:\ttest11()\t";
+	cout << "BEGIN:\ttest_op4()\t";
 	cout << "Testing scalar multiplication;" << endl;
 
 	vector<int> Abby = {1,2,3};
 	vector<int> Bobby = {4,5,6};
 	vector<int> Crabby = {7,8,9};
-	cout << "vector<int> Abby = {1,2,3};" << endl;
-	cout << "vector<int> Bobby = {4,5,6};" << endl;
-	cout << "vector<int> Crabby = {7,8,9};" << endl;
 	vector<vector<int>> Victor = {Abby, Bobby, Crabby};
-	cout << "vector<vector<int>> Victor = {Abby, Bobby, Crabby};" << endl;
 
 	matriks<int> Mx0 = Victor;
 	matriks<int> Mx1 = Victor;
@@ -245,7 +285,7 @@ void test11()
 	cout << Mx1 << endl;
 	cout << Mx2 << endl;
 
-	cout << "END:\ttest11()" << endl;
+	cout << "END:\ttest_op4()" << endl;
 	return;
 }
 */
@@ -261,10 +301,13 @@ int main()
 	cout << endl;	test05();
 	cout << endl;	test06();
 	cout << endl;	test07();
+	cout << endl;	test07();
 	cout << endl;	test08();
-	cout << endl;	test09();
-//	cout << endl;	test10();	Aborts, as it should!
-//	cout << endl;	test11();
+
+	cout << endl;	test_op01();
+	cout << endl;	test_op02();
+//	cout << endl;	test_op03();	Aborts, as it should!
+//	cout << endl;	test_op04();
 
 	cout << "}" << endl;
 }

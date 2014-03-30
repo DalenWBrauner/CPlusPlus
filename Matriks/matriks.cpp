@@ -8,7 +8,7 @@ template<typename K>
 class matriks
 {
 	private:
-		vector<vector<K>>		Mtrx;
+		vector<vector<K>>		Mtrx;	// Vector containing the Columns of the Matrix
 		unsigned int			M;		// Column Length	(or # of Rows)
 		unsigned int			N;		// Row Length		(or # of Cols)
 
@@ -59,7 +59,16 @@ class matriks
 		bool hasElements()
 		{ return (( M != 0) and (N != 0)); }
 
-//		void resize(unsigned int m, unsigned int n) {}
+		void resize(unsigned int new_m, unsigned int new_n)
+		{
+			Mtrx.resize(new_n);
+			N = new_n;
+			M = new_m;
+			for (auto whichVec=0 ; whichVec<N ; whichVec++)
+			{
+				Mtrx[whichVec].resize(new_m);
+			}
+		}
 
 };
 
@@ -115,15 +124,13 @@ matriks<K> matriks<K>::operator+(matriks<K> &other)
 	"Matriks must be of equal size before addition."
 	);
 
-	vector<vector<K>> New;
+	matriks<K> New;
+	New.resize(M,N);
 
 	for (auto n=0 ; n<N ; n++) {
-		vector<K> v;
 		for (auto m=0 ; m<M ; m++) {
-			K sum = Mtrx[n][m] + other.Mtrx[n][m];
-			v.push_back(sum);
+			New.Mtrx[n][m] = Mtrx[n][m] + other.Mtrx[n][m];
 		}
-		New.push_back(v);
 	}
 	return New;
 }
@@ -138,17 +145,13 @@ matriks<K> matriks<K>::operator-(matriks<K> &other)
 	"Matriks must be of equal size before subtraction."
 	);
 
-	vector<vector<K>> New;
+	matriks<K> New;
+	New.resize(M,N);
 
-	for (auto n=0 ; n<N ; n++)
-	{
-		vector<K> v;
-		for (auto m=0 ; m<M ; m++)
-		{
-			K dif = Mtrx[n][m] - other.Mtrx[n][m];
-			v.push_back(dif);
+	for (auto n=0 ; n<N ; n++) {
+		for (auto m=0 ; m<M ; m++) {
+			New.Mtrx[n][m] = Mtrx[n][m] - other.Mtrx[n][m];
 		}
-		New.push_back(v);
 	}
 	return New;
 }
