@@ -9,17 +9,20 @@ class vektor
 	public:
 		// Creation methods
 		vektor();
-		vektor(const std::vector<T> &v);
+		vektor(std::vector<T> &v);
 		~vektor();
 		// Operation methods
-		vektor<T>&	operator=(const std::vector<T> &o);
-		vektor<T>	operator+(const vektor<T> &o);
-		vektor<T>	operator-(const vektor<T> &o);
-		double		operator*(const vektor<T> &o);		// Vector Multiplication
-		vektor<T>	operator*(const T &o);				// Scalar Multiplication
-		vektor<T>	operator&(const vektor<T> &o);
+		vektor<T>&	operator=(std::vector<T> &o);
+		vektor<T>	operator+(vektor<T> &o);
+		vektor<T>	operator-(vektor<T> &o);
+		double		operator*(vektor<T> &o);		// Vector Multiplication
+		vektor<T>	operator*(T &o);				// Scalar Multiplication
+		vektor<T>	operator&(vektor<T> &o);
 
 		unsigned int dimension()
+		{ return x.size(); }
+
+		unsigned int size()
 		{ return x.size(); }
 
 		bool isValid()
@@ -46,7 +49,7 @@ class vektor
 	{ return x; }
 
 	template<typename Q>
-	vektor<T>& operator=(const vektor<Q> &o)
+	vektor<T>& operator=(vektor<Q> &o)
 	{
 		std::vector<Q> v;
 
@@ -66,7 +69,7 @@ vektor<T>::vektor()
 }
 
 template<typename T>
-vektor<T>::vektor(const std::vector<T> &o)
+vektor<T>::vektor(std::vector<T> &o)
 {
 	std::cout << "Construct vektor from vector<T>" << std::endl;
 	x = o;
@@ -81,7 +84,7 @@ vektor<T>::~vektor()
 }
 
 template<typename T>
-vektor<T>& vektor<T>::operator=(const std::vector<T> &o)
+vektor<T>& vektor<T>::operator=(std::vector<T> &o)
 {
 	x = o;
 	std::cout << "assign vektor" << std::endl;
@@ -89,7 +92,7 @@ vektor<T>& vektor<T>::operator=(const std::vector<T> &o)
 }
 
 template <typename T>
-vektor<T> vektor<T>::operator+(const vektor<T> &o)
+vektor<T> vektor<T>::operator+(vektor<T> &o)
 {
 	vektor<T>		r;
 	std::vector<T>	y;
@@ -103,7 +106,7 @@ vektor<T> vektor<T>::operator+(const vektor<T> &o)
 }
 
 template <typename T>
-vektor<T> vektor<T>::operator-(const vektor<T> &o)
+vektor<T> vektor<T>::operator-(vektor<T> &o)
 {
 	vektor<T>		r;
 	std::vector<T>	y;
@@ -117,7 +120,7 @@ vektor<T> vektor<T>::operator-(const vektor<T> &o)
 }
 
 template <typename T>
-double vektor<T>::operator*(const vektor<T> &o)
+double vektor<T>::operator*(vektor<T> &o)
 /* Vector Multiplication */
 {
 	double dotProduct = 0;
@@ -130,7 +133,7 @@ double vektor<T>::operator*(const vektor<T> &o)
 }
 
 template <typename T>
-vektor<T> vektor<T>::operator*(const T &o)
+vektor<T> vektor<T>::operator*(T &o)
 /* Scalar Multiplication */
 {
 	for (int i=0; i< x.size(); i++) {
@@ -140,7 +143,7 @@ vektor<T> vektor<T>::operator*(const T &o)
 }
 
 template <typename T>
-vektor<T> vektor<T>::operator&(const vektor<T> &o)
+vektor<T> vektor<T>::operator&(vektor<T> &o)
 {
 	vektor<T>		r;
 	std::vector<T>	y;

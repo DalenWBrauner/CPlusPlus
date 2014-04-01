@@ -256,10 +256,9 @@ void test_op03()
 	return;
 }
 
-/*
-void test_op4()
+void test_op04()
 {
-	cout << "BEGIN:\ttest_op4()\t";
+	cout << "BEGIN:\ttest_op04()\t";
 	cout << "Testing scalar multiplication;" << endl;
 
 	vector<int> Abby = {1,2,3};
@@ -285,10 +284,83 @@ void test_op4()
 	cout << Mx1 << endl;
 	cout << Mx2 << endl;
 
-	cout << "END:\ttest_op4()" << endl;
+	cout << "END:\ttest_op04()" << endl;
 	return;
 }
-*/
+
+void test_op05()
+{
+	cout << "BEGIN:\ttest_op05()\t";
+	cout << "Testing vektor multiplication;" << endl;
+
+	vector<int> Abby = {1,2,3};
+	vector<int> Bobby = {4,5,6};
+	vector<int> Crabby = {7,8,9};
+	vector<vector<int>> Victor = {Abby, Bobby, Crabby};
+
+	vektor<int> Abbk = Abby;
+	vektor<int> Bobbk = Bobby;
+	vektor<int> Crabbk = Crabby;
+	cout << "vektor<int> Abbk = Abby;" << endl;
+	cout << "vektor<int> Bobbk = Bobby;" << endl;
+	cout << "vektor<int> Crabbk = Crabby;" << endl;
+
+	matriks<int> Mx0 = Victor;
+	matriks<int> Mx1 = Victor;
+	matriks<int> Mx2 = Victor;
+	cout << "matriks<int> Mx0 = Victor;" << endl;
+	cout << "matriks<int> Mx1 = Victor;" << endl;
+	cout << "matriks<int> Mx2 = Victor;" << endl;
+
+	double Result0 = Mx0 * Abbk;
+	double Result1 = Mx1 * Bobbk;
+	double Result2 = Mx2 * Crabbk;
+	cout << "matriks<int> Result0 = Mx0 * Abbk;" << endl;
+	cout << "matriks<int> Result1 = Mx1 * Bobbk;" << endl;
+	cout << "matriks<int> Result2 = Mx2 * Crabbk;" << endl;
+
+	cout << "1*1 + 2*2 + 3*3 + 4*1 + 5*2 + 6*3 + 7*1 + 8*2 + 9*3 ==  96 =? " << Result0 << endl;
+	if(!(96  == Result0)) { cout << "RESULT0 IS WRONG" << endl; }
+	cout << "1*4 + 2*5 + 3*6 + 4*4 + 5*5 + 6*6 + 7*4 + 8*5 + 9*6 == 231 =? " << Result1 << endl;
+	if(!(231 == Result1)) { cout << "RESULT1 IS WRONG" << endl; }
+	cout << "1*7 + 2*8 + 3*9 + 4*7 + 5*8 + 6*9 + 7*7 + 8*8 + 9*9 == 366 =? " << Result2 << endl;
+	if(!(366 == Result2)) { cout << "RESULT2 IS WRONG" << endl; }
+
+	cout << "END:\ttest_op05()" << endl;
+	return;
+}
+
+void test_op06()
+{
+	cout << "BEGIN:\ttest_op06()\t";
+	cout << "Testing vector multiplication;" << endl;
+
+	vector<int> Abby = {1,2,3};
+	vector<int> Bobby = {4,5,6};
+	vector<int> Crabby = {7,8,9};
+	vector<vector<int>> Victor = {Abby, Bobby, Crabby};
+
+	matriks<int> Mx0 = Victor;
+	matriks<int> Mx1 = Victor;
+	matriks<int> Mx2 = Victor;
+	cout << "matriks<int> Mx0 = Victor;" << endl;
+	cout << "matriks<int> Mx1 = Victor;" << endl;
+	cout << "matriks<int> Mx2 = Victor;" << endl;
+
+	double	Result0 = Mx0 * Abby;
+	double	Result1 = Mx1 * Bobby;
+	double	Result2 = Mx2 * Crabby;
+	cout << "matriks<int> Result0 = Mx0 * Abby;" << endl;
+	cout << "matriks<int> Result1 = Mx1 * Bobby;" << endl;
+	cout << "matriks<int> Result2 = Mx2 * Crabby;" << endl;
+
+	cout << Result0 << endl;
+	cout << Result1 << endl;
+	cout << Result2 << endl;
+
+	cout << "END:\ttest_op06()" << endl;
+	return;
+}
 
 int main()
 {
@@ -307,7 +379,9 @@ int main()
 	cout << endl;	test_op01();
 	cout << endl;	test_op02();
 //	cout << endl;	test_op03();	Aborts, as it should!
-//	cout << endl;	test_op04();
+	cout << endl;	test_op04();
+	cout << endl;	test_op05();
+	cout << endl;	test_op06();
 
 	cout << "}" << endl;
 }

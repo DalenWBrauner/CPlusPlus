@@ -28,10 +28,11 @@ class matriks
 		matriks<K>&	operator==(const vector<K> &other);			// Compare as Mx1 Matrix
 		matriks<K>&	operator==(const vector<vector<K>> &other);	// Compare as MxN Matrix
 
+
 		matriks<K>	operator+(matriks<K> &other);			// Matrix Addition
 		matriks<K>	operator-(matriks<K> &other);			// Matrix Subtraction
 
-		matriks<K>	operator*(K &other);					// Scalar Multiplication
+		matriks<K>	operator*(K other);						// Scalar Multiplication
 		double		operator*(vector<K> &other);			// Vector Multiplication
 		double		operator*(vektor<K> &other);			// Vektor Multiplication
 		matriks<K>	operator*(matriks<K> &other);			// Matrix Multiplication
@@ -124,15 +125,15 @@ matriks<K> matriks<K>::operator+(matriks<K> &other)
 	"Matriks must be of equal size before addition."
 	);
 
-	matriks<K> New;
-	New.resize(M,N);
+	matriks<K> Result;
+	Result.resize(M,N);
 
 	for (auto n=0 ; n<N ; n++) {
 		for (auto m=0 ; m<M ; m++) {
-			New.Mtrx[n][m] = Mtrx[n][m] + other.Mtrx[n][m];
+			Result.Mtrx[n][m] = Mtrx[n][m] + other.Mtrx[n][m];
 		}
 	}
-	return New;
+	return Result;
 }
 
 template<typename K>
@@ -145,31 +146,58 @@ matriks<K> matriks<K>::operator-(matriks<K> &other)
 	"Matriks must be of equal size before subtraction."
 	);
 
-	matriks<K> New;
-	New.resize(M,N);
+	matriks<K> Result;
+	Result.resize(M,N);
 
 	for (auto n=0 ; n<N ; n++) {
 		for (auto m=0 ; m<M ; m++) {
-			New.Mtrx[n][m] = Mtrx[n][m] - other.Mtrx[n][m];
+			Result.Mtrx[n][m] = Mtrx[n][m] - other.Mtrx[n][m];
 		}
 	}
-	return New;
+	return Result;
 }
 
 template<typename K>
-matriks<K> matriks<K>::operator*(K &other)
+matriks<K> matriks<K>::operator*(K other)
 /* Scalar Multiplication */
 {
-	vector<vector<K>> New = Mtrx;
-	for (auto n=0 ; n<N ; n++) 
-	{
+	matriks<K> Result;
+	Result.resize(M,N);
+
+	for (auto n=0 ; n<N ; n++) {
 		for (auto m=0 ; m<M ; m++)
-			{ New[n][m] *= other; }
+			{ Result.Mtrx[n][m] = Mtrx[n][m] * other; }
 	}
-	matriks<K> result = New;
-	return result;
+	return Result;
 }
 
 //		double		operator*(const vector<K> &other);			Vector Multiplication
-//		double		operator*(const vektor<K> &other);			Vektor Multiplication
+template<typename K>
+double matriks<K>::operator*(vector<K> &other)
+/* Vector Multiplication */
+{
+	vektor<K> vikky = other;
+	double jake = matriks<K>::operator*(vikky);
+	return jake;
+}
+
+
+template<typename K>
+double matriks<K>::operator*(vektor<K> &other)
+/* Vektor Multiplication */
+{
+	// First assert they are properly sized
+	assertNicely(
+	(M == other.dimension()),
+	"A Vector must be of equal size to the Matrik's columns before multiplication."
+	);
+
+	double Grand_Sum = 0.0;
+	for (auto col=0 ; col<N; col++)
+		{ 
+			vektor<K> vikky = Mtrx[col];
+			Grand_Sum += vikky * other;
+		}
+	return Grand_Sum;
+}
 //		matriks<K>	operator*(const matriks<K> &other);			Matrix Multiplication
