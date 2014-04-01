@@ -177,8 +177,7 @@ double matriks<K>::operator*(vector<K> &other)
 /* Vector Multiplication */
 {
 	vektor<K> vikky = other;
-	double jake = matriks<K>::operator*(vikky);
-	return jake;
+	return matriks<K>::operator*(vikky);
 }
 
 
