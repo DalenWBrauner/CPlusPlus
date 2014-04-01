@@ -63,31 +63,23 @@ class vektor
 
 template<typename T>
 vektor<T>::vektor()
-{
-	std::cout << "Construct vektor" << std::endl;
-	return;
-}
+{return;}
 
 template<typename T>
 vektor<T>::vektor(std::vector<T> &o)
 {
-	std::cout << "Construct vektor from vector<T>" << std::endl;
 	x = o;
 	return;
 }
 
 template<typename T>
 vektor<T>::~vektor()
-{
-	std::cout << "Destruct vektor" << std::endl;
-	return;
-}
+{return;}
 
 template<typename T>
 vektor<T>& vektor<T>::operator=(std::vector<T> &o)
 {
 	x = o;
-	std::cout << "assign vektor" << std::endl;
 	return(*this);
 }
 
