@@ -206,8 +206,11 @@ matriks<K> matriks<K>::operator*(matriks<K> &other)
 	// First assert 
 	assertNicely(
 		(N == other.M),
-		"A Matrix A must have the same number of rows as a Matrix B has columns before A*B."
+		"A Matrix 'A' must have the same number of rows as a Matrix 'B' has columns before A*B."
 	);
+
+	cout << N << endl;
+	cout << other.M << endl;
 
 	matriks<K> Output;
 	Output.resize(M,other.N);

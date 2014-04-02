@@ -378,7 +378,7 @@ void test_op07()
 	matriks<int> Maria = Victoria;
 	matriks<int> Mario = Victor;
 
-	matriks<int> Mark = Victoria*Victor;
+	matriks<int> Mark = Maria*Mario;
 	cout << Mark << endl;
 	
 	cout << "END:\ttest_op07()" << endl;
@@ -401,9 +401,8 @@ void test_op08()
 	matriks<int> Maria = Victoria;
 	matriks<int> Mario = Victor;
 
-	matriks<int> MarkI = Victor*Victoria;
-	matriks<int> MarkII = Victoria*Victoria;
-	matriks<int> MarkIII = Victoria*Victoria;
+//	matriks<int> MarkI = Mario*Maria;	// Sizes are wrong
+//	matriks<int> MarkII = Mario*Mario;	// Sizes are wrong
 	
 	cout << "END:\ttest_op08()" << endl;
 	return;
@@ -429,8 +428,8 @@ int main()
 	cout << endl;	test_op04();
 	cout << endl;	test_op05();
 	cout << endl;	test_op06();
-//	cout << endl;	test_op07();
-//	cout << endl;	test_op08();
+	cout << endl;	test_op07();
+	cout << endl;	test_op08();
 
 	cout << "}" << endl;
 }
