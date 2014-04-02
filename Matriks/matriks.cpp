@@ -121,8 +121,8 @@ matriks<K> matriks<K>::operator+(matriks<K> &other)
 {
 	// First assert they are the same size
 	assertNicely(
-	( (M == other.size()[0]) and (N == other.size()[1]) ),
-	"Matriks must be of equal size before addition."
+		( (M == other.size()[0]) and (N == other.size()[1]) ),
+		"Matriks must be of equal size before addition."
 	);
 
 	matriks<K> Result;
@@ -142,8 +142,8 @@ matriks<K> matriks<K>::operator-(matriks<K> &other)
 {
 	// First assert they are the same size
 	assertNicely(
-	( (M == other.size()[0]) and (N == other.size()[1]) ),
-	"Matriks must be of equal size before subtraction."
+		( (M == other.size()[0]) and (N == other.size()[1]) ),
+		"Matriks must be of equal size before subtraction."
 	);
 
 	matriks<K> Result;
@@ -171,7 +171,6 @@ matriks<K> matriks<K>::operator*(K other)
 	return Result;
 }
 
-//		double		operator*(const vector<K> &other);			Vector Multiplication
 template<typename K>
 double matriks<K>::operator*(vector<K> &other)
 /* Vector Multiplication */
@@ -180,23 +179,46 @@ double matriks<K>::operator*(vector<K> &other)
 	return matriks<K>::operator*(vikky);
 }
 
-
 template<typename K>
 double matriks<K>::operator*(vektor<K> &other)
 /* Vektor Multiplication */
 {
 	// First assert they are properly sized
 	assertNicely(
-	(M == other.dimension()),
-	"A Vector must be of equal size to the Matrik's columns before multiplication."
+		(M == other.dimension()),
+		"A Vector must be of equal size to the Matrik's columns before multiplication."
 	);
 
 	double Grand_Sum = 0.0;
-	for (auto col=0 ; col<N; col++)
-		{ 
+	for (auto col=0 ; col<N ; col++)
+		{
 			vektor<K> vikky = Mtrx[col];
 			Grand_Sum += vikky * other;
 		}
 	return Grand_Sum;
 }
-//		matriks<K>	operator*(const matriks<K> &other);			Matrix Multiplication
+
+template<typename K>
+matriks<K> matriks<K>::operator*(matriks<K> &other)
+/* Matrix Multiplication*/
+{
+	cout << "MATRIX MULTIPLICATION" << endl;
+	// First assert 
+	assertNicely(
+		(N == other.M),
+		"A Matrix A must have the same number of rows as a Matrix B has columns before A*B."
+	);
+
+	matriks<K> Output;
+	Output.resize(M,other.N);
+/*
+	for (auto n=0 ; n<Output.N; n++)
+		{
+		for (auto m=0 ; m<Output.M; m++)
+			{
+				//Output[m][n] = //Row of A at n, *+ Col of B at m
+			}
+		}
+*/
+	return Output;
+}

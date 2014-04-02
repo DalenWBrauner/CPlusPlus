@@ -362,6 +362,53 @@ void test_op06()
 	return;
 }
 
+void test_op07()
+{
+	cout << "BEGIN:\ttest_op07()\t";
+	cout << "Testing matrix multiplication;" << endl;
+
+	vector<int> Abby = {2,1};
+	vector<int> Bobby = {3,-5,};
+	vector<int> Crabby = {4,1};
+	vector<int> Debby = {3,-2};
+	vector<int> Ebby = {6,3};
+	vector<vector<int>> Victoria = {Abby, Bobby};
+	vector<vector<int>> Victor = {Crabby, Debby, Ebby};
+	
+	matriks<int> Maria = Victoria;
+	matriks<int> Mario = Victor;
+
+	matriks<int> Mark = Victoria*Victor;
+	cout << Mark << endl;
+	
+	cout << "END:\ttest_op07()" << endl;
+	return;
+}
+
+void test_op08()
+{
+	cout << "BEGIN:\ttest_op08()\t";
+	cout << "Testing invalid matrix multiplications;" << endl;
+
+	vector<int> Abby = {2,1};
+	vector<int> Bobby = {3,-5,};
+	vector<int> Crabby = {4,1};
+	vector<int> Debby = {3,-2};
+	vector<int> Ebby = {6,3};
+	vector<vector<int>> Victoria = {Abby, Bobby};
+	vector<vector<int>> Victor = {Crabby, Debby, Ebby};
+	
+	matriks<int> Maria = Victoria;
+	matriks<int> Mario = Victor;
+
+	matriks<int> MarkI = Victor*Victoria;
+	matriks<int> MarkII = Victoria*Victoria;
+	matriks<int> MarkIII = Victoria*Victoria;
+	
+	cout << "END:\ttest_op08()" << endl;
+	return;
+}
+
 int main()
 {
 	cout << "main()\n{";
@@ -382,6 +429,8 @@ int main()
 	cout << endl;	test_op04();
 	cout << endl;	test_op05();
 	cout << endl;	test_op06();
+//	cout << endl;	test_op07();
+//	cout << endl;	test_op08();
 
 	cout << "}" << endl;
 }
