@@ -71,6 +71,16 @@ class matriks
 			}
 		}
 
+		vector<K> row(unsigned int index)
+		{
+			vector<K> r;
+			for (auto n=0 ; n<N ; n++)
+			{
+				r.push_back(Mtrx[n][index]);
+			}
+			return r;
+		}
+
 };
 
 ////////
@@ -217,7 +227,16 @@ matriks<K> matriks<K>::operator*(matriks<K> &other)
 
 	/*
 	I AM TRYING SO HARD TO OPTIMIZE THESE LOOPS
-	*/
+	//multiply each vector in other by each row in mtrx
+	for (auto n=0 ; n<other.N ; ++n)
+	{
+		for (auto m=0 ; m<M ; ++m)
+		{		
+			
+			Output[n][m] += other.Mtrx[n] * this.row(m); //ajshdflksd
+		}	
+	}
+ */
 
 	return Output;
 }

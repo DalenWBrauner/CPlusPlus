@@ -176,6 +176,28 @@ void test08()
 	return;
 }
 
+void test09()
+{
+	cout << "BEGIN:\ttest09()\t";
+	cout << "Testing .row();" << endl;
+
+	vector<short> Abby = {1,2,3};
+	vector<short> Bobby = {4,5,6};
+	vector<vector<short>> Victor = {Abby, Bobby};
+	matriks<short> MX = Victor;
+	
+	vector<short> row0 = MX.row(0);
+	vector<short> row1 = MX.row(1);
+	vector<short> row2 = MX.row(2);
+
+	cout << MX << endl;
+	cout << "Row 0: [" << row0[0] << ", " << row0[1] << "]" << endl;
+	cout << "Row 1: [" << row1[0] << ", " << row1[1] << "]" << endl;
+	cout << "Row 2: [" << row2[0] << ", " << row2[1] << "]" << endl;
+
+	cout << "END:\ttest09()" << endl;
+	return;
+}
 
 ////////
 // Matrix Operation Tests
@@ -419,8 +441,8 @@ int main()
 	cout << endl;	test05();
 	cout << endl;	test06();
 	cout << endl;	test07();
-	cout << endl;	test07();
 	cout << endl;	test08();
+	cout << endl;	test09();
 
 	cout << endl;	test_op01();
 	cout << endl;	test_op02();
