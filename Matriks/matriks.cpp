@@ -214,14 +214,10 @@ matriks<K> matriks<K>::operator*(matriks<K> &other)
 
 	matriks<K> Output;
 	Output.resize(M,other.N);
-/*
-	for (auto n=0 ; n<Output.N; n++)
-		{
-		for (auto m=0 ; m<Output.M; m++)
-			{
-				//Output[m][n] = //Row of A at n, *+ Col of B at m
-			}
-		}
-*/
+
+	/*
+	I AM TRYING SO HARD TO OPTIMIZE THESE LOOPS
+	*/
+
 	return Output;
 }
