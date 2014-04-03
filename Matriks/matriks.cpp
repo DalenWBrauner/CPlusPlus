@@ -226,17 +226,15 @@ matriks<K> matriks<K>::operator*(matriks<K> &other)
 	Output.resize(M,other.N);
 
 	/*
-	I AM TRYING SO HARD TO OPTIMIZE THESE LOOPS
 	//multiply each vector in other by each row in mtrx
 	for (auto n=0 ; n<other.N ; ++n)
 	{
 		for (auto m=0 ; m<M ; ++m)
 		{		
-			
-			Output[n][m] += other.Mtrx[n] * this.row(m); //ajshdflksd
-		}	
+			Output[n][m] += other.Mtrx[n] * this->row(m);
+		}
 	}
- */
+ 	*/
 
 	return Output;
 }
