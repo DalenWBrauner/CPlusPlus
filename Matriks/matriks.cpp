@@ -28,6 +28,7 @@ class matriks
 		matriks<K>&	operator==(const vector<K> &other);			// Compare as Mx1 Matrix
 		matriks<K>&	operator==(const vector<vector<K>> &other);	// Compare as MxN Matrix
 
+		vector<K>& operator[](unsigned int index);				// Get the vector at position index
 
 		matriks<K>	operator+(matriks<K> &other);			// Matrix Addition
 		matriks<K>	operator-(matriks<K> &other);			// Matrix Subtraction
@@ -115,6 +116,7 @@ matriks<K>::matriks(const vector<K> &v)
 template<typename K>
 matriks<K>::matriks(const vector<vector<K>> &v)
 /* Create MxN Matrix */
+// WARNING: ALLOWS CREATION OF MATIKS WITH VECTORS OF INEQUAL SIZES
 {
 	Mtrx = v;
 	M = Mtrx[0].size();
@@ -123,7 +125,17 @@ matriks<K>::matriks(const vector<vector<K>> &v)
 
 
 ////////
-// Operation Methods
+// Standard Operation Methods
+///
+template<typename K>
+vector<K>& matriks<K>::operator[](unsigned int index)
+/* Get the vector at position index */
+{
+	return Mtrx[index];
+}
+
+////////
+// Mathematical Operation Methods
 ///
 template<typename K>
 matriks<K> matriks<K>::operator+(matriks<K> &other)
@@ -140,7 +152,7 @@ matriks<K> matriks<K>::operator+(matriks<K> &other)
 
 	for (auto n=0 ; n<N ; n++) {
 		for (auto m=0 ; m<M ; m++) {
-			Result.Mtrx[n][m] = Mtrx[n][m] + other.Mtrx[n][m];
+			Result[n][m] = Mtrx[n][m] + other[n][m];
 		}
 	}
 	return Result;
@@ -161,7 +173,7 @@ matriks<K> matriks<K>::operator-(matriks<K> &other)
 
 	for (auto n=0 ; n<N ; n++) {
 		for (auto m=0 ; m<M ; m++) {
-			Result.Mtrx[n][m] = Mtrx[n][m] - other.Mtrx[n][m];
+			Result[n][m] = Mtrx[n][m] - other[n][m];
 		}
 	}
 	return Result;
@@ -176,7 +188,7 @@ matriks<K> matriks<K>::operator*(K other)
 
 	for (auto n=0 ; n<N ; n++) {
 		for (auto m=0 ; m<M ; m++)
-			{ Result.Mtrx[n][m] = Mtrx[n][m] * other; }
+			{ Result[n][m] = Mtrx[n][m] * other; }
 	}
 	return Result;
 }
@@ -225,16 +237,17 @@ matriks<K> matriks<K>::operator*(matriks<K> &other)
 	matriks<K> Output;
 	Output.resize(M,other.N);
 
-	/*
-	//multiply each vector in other by each row in mtrx
+
+	/*multiply each vector in other by each row in mtrx
 	for (auto n=0 ; n<other.N ; ++n)
 	{
 		for (auto m=0 ; m<M ; ++m)
-		{		
-			Output[n][m] += other.Mtrx[n] * this->row(m);
+		{
+			vector<K> A = other.Mtrx[n];
+			vector<K> B = this->row(m);
+			Output.Mtrx[n][m] += A * B;
 		}
-	}
- 	*/
+	}*/
 
 	return Output;
 }

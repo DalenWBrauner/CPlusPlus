@@ -430,6 +430,31 @@ void test_op08()
 	return;
 }
 
+void test_op09()
+{
+	cout << "BEGIN:\ttest_op09()\t";
+	cout << "Testing [] operator;" << endl;
+
+	matriks<int> Mark;
+	Mark.resize(3,3);
+	cout << "matriks<int> Mark;" << endl;
+	cout << "Mark.resize(3,3);" << endl;
+	cout << Mark << endl;
+
+	Mark[1][2] = 3;
+	cout << "Mark[1][2] = 3" << endl;
+	Mark[1][0] = 7;
+	cout << "Mark[1][0] = 7" << endl;
+	cout << Mark << endl;
+
+	vector<int> Vic = Mark[1];
+	cout << "vector<int> Vic = Mark[1];" << endl;
+	cout << "( " << Vic[0] << " " << Vic[1] << " " << Vic[2] << " )" << endl;
+
+	cout << "END:\ttest_op09()" << endl;
+	return;
+}
+
 int main()
 {
 	cout << "main()\n{";
@@ -452,6 +477,7 @@ int main()
 	cout << endl;	test_op06();
 	cout << endl;	test_op07();
 	cout << endl;	test_op08();
+	cout << endl;	test_op09();
 
 	cout << "}" << endl;
 }
