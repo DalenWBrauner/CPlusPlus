@@ -14,31 +14,32 @@ class matriks
 
 	public:
 		// Creation methods
-		matriks();												// Create 0x0 Matrix
-		matriks(const K &v);									// Create 1x1 Matrix
-		matriks(const vector<K> &v);							// Create Mx1 Matrix
-		matriks(const vector<vector<K>> &v);					// Create MxN Matrix
+		matriks();									// Create 0x0 Matrix
+		matriks(const K &v);						// Create 1x1 Matrix
+		matriks(const vector<K> &v);				// Create Mx1 Matrix
+		matriks(const vector<vector<K>> &v);		// Create MxN Matrix
 
 		// Operation methods
 		matriks<K>&	operator=(const K &other);					// Assign 1x1 Matrix
 		matriks<K>&	operator=(const vector<K> &other);			// Assign Mx1 Matrix 
 		matriks<K>&	operator=(const vector<vector<K>> &other);	// Assign MxN Matrix
 
-		matriks<K>&	operator==(const K &other);					// Compare as 1x1 Matrix
-		matriks<K>&	operator==(const vector<K> &other);			// Compare as Mx1 Matrix
-		matriks<K>&	operator==(const vector<vector<K>> &other);	// Compare as MxN Matrix
+		bool operator==(K other);					// Compare as 1x1 Matrix
+		bool operator==(vector<K> other);			// Compare as Mx1 Matrix
+		bool operator==(vector<vector<K>> other);	// Compare as MxN Matrix
+		bool operator==(matriks<K> other);			// Compare as expected
 
-		vector<K>& operator[](unsigned int index);				// Get the vector at position index
+		vector<K>& operator[](unsigned int index);	// Get the vector at position index
 
-		matriks<K>	operator+(matriks<K> &other);			// Matrix Addition
-		matriks<K>	operator-(matriks<K> &other);			// Matrix Subtraction
+		matriks<K>	operator+(matriks<K> &other);	// Matrix Addition
+		matriks<K>	operator-(matriks<K> &other);	// Matrix Subtraction
 
-		matriks<K>	operator*(K other);						// Scalar Multiplication
-		double		operator*(vector<K> &other);			// Vector Multiplication
-		double		operator*(vektor<K> &other);			// Vektor Multiplication
-		matriks<K>	operator*(matriks<K> &other);			// Matrix Multiplication
+		matriks<K>	operator*(K other);				// Scalar Multiplication
+		double		operator*(vector<K> &other);	// Vector Multiplication
+		double		operator*(vektor<K> &other);	// Vektor Multiplication
+		matriks<K>	operator*(matriks<K> &other);	// Matrix Multiplication
 
-		matriks<K>	operator&(const matriks<K> &other);		// Honestly, I've forgot.
+		matriks<K>	operator&(const matriks<K> &other);			// Honestly, I've forgot.
 
 		// Allows iostream output via '<<'
 		friend ostream& operator<<(ostream& s, matriks<K> &MX)
@@ -83,7 +84,6 @@ class matriks
 		}
 
 		// Inverse Methods
-		
 		bool isSquare()
 		{ return (hasElements() and ( M == N ) ); }
 
@@ -95,9 +95,47 @@ class matriks
 				);
 			return (Mtrx[0][0] * Mtrx[1][1]) - (Mtrx[0][1] * Mtrx[1][0]);
 		}
-		
 
+		void becomeIdentity(unsigned int v)
+		{
+			this->resize(v,v);
+			for (auto i=0 ; i<v ; i++)
+			{
+				for (auto j=0 ; j<v ; j++)
+				{
+					if (i==j)	{ Mtrx[i][j] = 1; }
+					else		{ Mtrx[i][j] = 0; }
+				}
+			}
+		}
+
+		unsigned int isIdentity()
+		{
+			if (!isSquare()) { return false; }
+			for (auto i=0 ; i<M ; i++)
+			{
+				for (auto j=0 ; j<N ; j++)
+				{
+					if (i==j)	{ if(Mtrx[i][j] != 1) { return false; } }
+					else		{ if(Mtrx[i][j] != 0) { return false; } }
+				}
+			}
+			return M;
+		}
+
+		bool isInverseOf(matriks<K> other)
+		/* Unfinished */
+		{
+			if (!determinant())			{ return false; }
+			if (!other.determinant())	{ return false; }
+			if (N != other.N)			{ return false; }
+
+			matriks<K> I;
+			I.becomeIdentity(N);
+			return (this * other == I);
+		}
 };
+		
 
 ////////
 // Creation Methods
@@ -131,17 +169,63 @@ matriks<K>::matriks(const vector<K> &v)
 template<typename K>
 matriks<K>::matriks(const vector<vector<K>> &v)
 /* Create MxN Matrix */
-// WARNING: ALLOWS CREATION OF MATIKS WITH VECTORS OF INEQUAL SIZES
 {
-	Mtrx = v;
-	M = Mtrx[0].size();
+	Mtrx = v;		// For some reason, executing this line AFTER the next two causes a segfault
 	N = Mtrx.size();
+	M = Mtrx[0].size();
+	for (auto i=1 ; i<N ; i++)
+	{
+		assertNicely(
+			(Mtrx[i].size() == M),
+			"The vectors in a matrix must all be of equal length."
+			);
+	}
 }
-
 
 ////////
 // Standard Operation Methods
 ///
+
+//		bool operator==(K &other);					// Compare as 1x1 Matrix
+//		bool operator==(vector<K> &other);			// Compare as Mx1 Matrix
+//		bool operator==(vector<vector<K>> &other);	// Compare as MxN Matrix
+//		bool operator==(matriks<K> &other);			
+
+template<typename K>
+bool matriks<K>::operator==(K other)
+/* Compares 'other' as a 1x1 Matrix */
+{
+	matriks<K> dummy = other;
+	return matriks<K>::operator==(other);
+}
+
+template<typename K>
+bool matriks<K>::operator==(vector<K> other)
+/* Compares 'other' as an Mx1 Matrix */
+{
+	matriks<K> dummy = other;
+	return matriks<K>::operator==(other);
+}
+
+template<typename K>
+bool matriks<K>::operator==(vector<vector<K>> other)
+/* Compares 'other' as an MxN Matrix */
+{
+	matriks<K> dummy = other;
+	return matriks<K>::operator==(other);
+}
+
+template<typename K>
+bool matriks<K>::operator==(matriks<K> other)
+/* Assures both matrikies are the same size and contain the same elements */
+{
+	if (other.N != N) { return false; }
+	if (other.M != M) { return false; }
+	for (auto i=0 ; i<N ; i++)
+	{ if (Mtrx[i] != other[i]) { return false; } }
+	return true;
+}
+
 template<typename K>
 vector<K>& matriks<K>::operator[](unsigned int index)
 /* Get the vector at position index */

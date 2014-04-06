@@ -123,8 +123,8 @@ void test06()
 	vector<vector<short>> Victor = {Abby, Bobby, Crabby, Debby};
 	cout << "vector<vector<short>> Victor = {Abby, Bobby, Crabby, Debby};\n";
 
-	matriks<short> MX = Victor;
 	cout << "matriks<int> MX = Victor;\n";
+	matriks<short> MX = Victor;
 
 	cout << "MX is " << MX.size()[0] << " elements tall.\n";
 	cout << "MX is " << MX.size()[1] << " elements wide.\n";
@@ -136,6 +136,27 @@ void test06()
 	
 	cout << "\n\tEND:\ttest06()\n";
 }
+
+void test06point5()
+{
+	cout << "\n\n\tBEGIN:\ttest06.5()\t";
+	cout << "\tTesting matriks creation with composed vectors of inequal sizes;\n";
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tProgram terminates.\n\n";
+
+	vector<short> Abby = {1,2,3};
+	vector<short> Bobby = {4,5};
+	vector<short> Crabby = {7,8,9};
+	cout << "vector<short> Abby = {1,2,3};\n";
+	cout << "vector<short> Bobby = {4,5};\n";
+	cout << "vector<short> Crabby = {7,8,9};\n";
+	vector<vector<short>> Victor = {Abby, Bobby, Crabby};
+	cout << "vector<vector<short>> Victor = {Abby, Bobby, Crabby};\n";
+	matriks<short> MX = Victor;
+
+	cout << "\n\tEND:\ttest06.5()\n";
+}
+
 
 void test07()
 {
@@ -493,6 +514,85 @@ void test_op09()
 	cout << "\n\tEND:\ttest_op09()\n";
 }
 
+void test_op10()
+{
+	cout << "\n\n\tBEGIN:\ttest_op10()\t";
+	cout << "\tTesting == operator for matrikies of various sizes;\n";
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tMatrikies are accurately compared.\n\n";
+
+	matriks<int> Abby;
+	matriks<int> Bobby;
+	matriks<int> Crabby;
+	matriks<int> Debby;
+	matriks<int> Ebby;
+	Abby.becomeIdentity(3);
+	Bobby.becomeIdentity(3);
+	Crabby.becomeIdentity(3);
+	Debby.becomeIdentity(3);
+	Ebby.becomeIdentity(7);
+
+	cout << Abby << ": Abby\n";
+	cout << Bobby << ": Bobby\n";
+	cout << Crabby << ": Crabby\n";
+	cout << Debby << ": Debby\n";
+	cout << Ebby << ": Ebby\n";
+	cout << "Abby == Abby : " << (Abby == Abby) << "\n";
+	cout << "Abby == Bobby : " << (Abby == Bobby) << "\n";
+	cout << "Abby == Crabby : " << (Abby == Crabby) << "\n";
+	cout << "Abby == Debby : " << (Abby == Debby) << "\n";
+	cout << "Ebby == Abby: " << (Ebby == Abby) << "\n";
+	cout << "Ebby == Bobby: " << (Ebby == Bobby) << "\n";
+	cout << "Ebby == Crabby: " << (Ebby == Crabby) << "\n";
+	cout << "Ebby == Debby: " << (Ebby == Debby) << "\n";
+
+	Abby[0][0] = 7;
+	Debby[0][0] = 7;
+	Ebby.becomeIdentity(3);
+	Ebby[2][0] = 3;
+	cout << Abby << ": Abby\n";
+	cout << Bobby << ": Bobby\n";
+	cout << Crabby << ": Crabby\n";
+	cout << Debby << ": Debby\n";
+	cout << Ebby << ": Ebby\n";
+	cout << "Abby == Abby : " << (Abby == Abby) << "\n";
+	cout << "Abby == Bobby : " << (Abby == Bobby) << "\n";
+	cout << "Abby == Crabby : " << (Abby == Crabby) << "\n";
+	cout << "Abby == Debby : " << (Abby == Debby) << "\n";
+	cout << "Ebby == Abby: " << (Ebby == Abby) << "\n";
+	cout << "Ebby == Bobby: " << (Ebby == Bobby) << "\n";
+	cout << "Ebby == Crabby: " << (Ebby == Crabby) << "\n";
+	cout << "Ebby == Debby: " << (Ebby == Debby) << "\n";
+	
+	cout << "\n\tEND:\ttest_op10()\n";
+}
+
+void test_op11()
+{
+	cout << "\n\n\tBEGIN:\ttest_op11()\t";
+	cout << "\tTesting == operator for matrikies against non-matrikies;\n";
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tMatrikies are accurately compared.\n\n";
+
+	matriks<int> Maria = 7;
+
+	cout << (Maria == 7) << "\n";
+/*
+	vector<short> Maddie = {1,2,3};
+	matriks<short> Maggie = Maddie;
+	cout << (Maddie == Maddie) << ",";
+	cout << (Maggie == Maggie) << ",";
+	cout << (Maggie == Maddie) << "\n";
+
+	vector<vector<short>> Marple = {Maddie,Maddie};
+	matriks<short> Maaarrrrrrple = Marple;
+	cout << (Marple == Marple) << ",";
+	cout << (Maaarrrrrrple == Maaarrrrrrple) << ",";
+	cout << (Maaarrrrrrple == Marple) << "\n";
+	*/
+	cout << "\n\tEND:\ttest_op11()\n";
+}
+
 void test_inv01()
 {
 	cout << "\n\n\tBEGIN:\ttest_inv01()\t";
@@ -535,10 +635,139 @@ void test_inv02()
 	cout << "\n\n\tBEGIN:\ttest_inv02()\t";
 	cout << "\tTesting determinant();\n";
 	cout << "\tSuccess is defined as:\n";
-	cout << "\t*\tAccurate values are fetched, input and output.\n\n";
+	cout << "\t*\tThe determinant is successfully calculated.\n\n";
 	
+	matriks<int> Maria;
+	Maria.resize(2,2);
+	Maria[0][0] = 1;
+	Maria[1][1] = 1;
+	Maria[1][0] = 2;
+	Maria[0][1] = 3;
+	cout << "\n(1*1) - (2*3) = ";
+	cout << Maria.determinant();
+	Maria[0][0] = 3;
+	Maria[1][1] = 4;
+	Maria[1][0] = 2;
+	Maria[0][1] = 6;
+	cout << "\n(3*4) - (2*6) = ";
+	cout << Maria.determinant();
+
 	cout << "\n\tEND:\ttest_inv02()\n";
 }
+
+void test_inv03()
+{
+	cout << "\n\n\tBEGIN:\ttest_inv03()\t";
+	cout << "\tTesting determinant();\n";
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tThe program terminates.\n\n";
+
+	matriks<int> Maria;
+	cout << ";\n";
+	cout << Maria.determinant();
+	Maria.resize(1,1);
+	cout << ";\n";
+	cout << Maria.determinant();
+	Maria.resize(1,2);
+	cout << ";\n";
+	cout << Maria.determinant();
+	Maria.resize(3,2);
+	cout << ";\n";
+	cout << Maria.determinant();
+	Maria.resize(3,4);
+	cout << ";\n";
+	cout << Maria.determinant();
+	Maria.resize(5,1);
+	cout << ";\n";
+	cout << Maria.determinant();
+	cout << ";\n";
+
+	cout << "\n\tEND:\ttest_inv03()\n";
+}
+
+void test_inv04()
+{
+	cout << "\n\n\tBEGIN:\ttest_inv04()\t";
+	cout << "\tTesting becomeIdentity();\n";
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tAbility to generate identities of various sizes.\n\n";
+
+	matriks<int> Maria;
+	Maria.becomeIdentity(2);
+	cout << Maria << "\n";
+	Maria.becomeIdentity(3);
+	cout << Maria << "\n";
+	Maria.becomeIdentity(4);
+	cout << Maria << "\n";
+	Maria.becomeIdentity(7);
+	cout << Maria << "\n";
+	Maria.becomeIdentity(1);
+	cout << Maria << "\n";
+	Maria.becomeIdentity(0);
+	cout << Maria << "\n";
+
+	cout << "\n\tEND:\ttest_inv04()\n";
+}
+
+void test_inv05()
+{
+	cout << "\n\n\tBEGIN:\ttest_inv05()\t";
+	cout << "\tTesting isIdentity();\n";
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tAbility to test for identities of various sizes.\n\n";
+
+	matriks<int> Maria;
+	Maria.becomeIdentity(2);
+	cout << Maria.isIdentity() << "\n";
+	Maria.becomeIdentity(3);
+	cout << Maria.isIdentity() << "\n";
+	Maria.becomeIdentity(4);
+	cout << Maria.isIdentity() << "\n";
+	Maria.becomeIdentity(7);
+	cout << Maria.isIdentity() << "\n";
+	Maria.becomeIdentity(1);
+	cout << Maria.isIdentity() << "\n";
+	Maria.becomeIdentity(0);
+	cout << Maria.isIdentity() << "\n\n";
+
+	Maria.becomeIdentity(2);
+	Maria.resize(1,2);
+	cout << Maria.isIdentity() << "\n";
+	Maria.becomeIdentity(6);
+	Maria.resize(6,2);
+	cout << Maria.isIdentity() << "\n";
+	Maria.becomeIdentity(7);
+	Maria.resize(3,7);
+	cout << Maria.isIdentity() << "\n\n";
+
+	Maria.resize(2,2);
+	Maria[0][0] = 0;
+	Maria[0][1] = 0;
+	Maria[1][0] = 0;
+	Maria[1][1] = 0;
+	cout << Maria.isIdentity() << "\n";
+	Maria[0][0] = 1;
+	cout << Maria.isIdentity() << "\n";
+	Maria[1][1] = 1;
+	cout << Maria.isIdentity() << "\n\n";
+
+	Maria.resize(3,3);
+	Maria[2][2] = 0;
+	cout << Maria.isIdentity() << "\n";
+	Maria[0][2] = 0;
+	Maria[1][2] = 0;
+	Maria[2][0] = 0;
+	Maria[2][1] = 0;
+	cout << Maria.isIdentity() << "\n";
+	Maria[2][2] = 1;
+	cout << Maria.isIdentity() << "\n";
+	Maria[2][1] = 7;
+	cout << Maria.isIdentity() << "\n";
+
+	cout << "\n\tEND:\ttest_inv05()\n";
+}
+
+
 
 int main()
 {
@@ -550,22 +779,28 @@ int main()
 	test04();
 	test05();
 	test06();
+//	test06point5();	Terminates, as it should!
 	test07();
 	test08();
 	test09();
 
 	test_op01();
 	test_op02();
-//	test_op03();	Aborts, as it should!
+//	test_op03();	Terminates, as it should!
 	test_op04();
 	test_op05();
 	test_op06();
 	test_op07();
-//	test_op08();	Aborts, as it should!
+//	test_op08();	Terminates, as it should!
 	test_op09();
+	test_op10();
+	test_op11();
 
 	test_inv01();
 	test_inv02();
+//	test_inv03();	Terminates, as it should!
+	test_inv04();
+	test_inv05();
 
 	cout << "}\n";
 }
