@@ -82,6 +82,21 @@ class matriks
 			return r;
 		}
 
+		// Inverse Methods
+		
+		bool isSquare()
+		{ return (hasElements() and ( M == N ) ); }
+
+		int determinant()
+		{
+			assertNicely(
+				((N==2) and (M==2)),
+				"Matrikies can only calculate determinants if 2x2."
+				);
+			return (Mtrx[0][0] * Mtrx[1][1]) - (Mtrx[0][1] * Mtrx[1][0]);
+		}
+		
+
 };
 
 ////////

@@ -8,221 +8,203 @@ using namespace std;
 ///
 void test01()
 {
-	cout << "\n\tBEGIN:\ttest01()\t";
+	cout << "\n\n\tBEGIN:\ttest01()\t";
 	cout << "\tTesting default matrix creation;\n";
-	cout << "\tSUCCESS DEFINED AS:\n";
-	cout << "\t*\tTest does not terminate.\n";
-	cout << endl;
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tTest does not terminate.\n\n";
 
 	matriks<int> MX;
 	cout << "matriks<int> MX;\n";
 
-	cout << endl;
-	cout << "\tEND:\ttest01()\n";
+	cout << "\n\tEND:\ttest01()\n";
 }
 
 void test02()
 {
-	cout << "\n\tBEGIN:\ttest02()\t";
+	cout << "\n\n\tBEGIN:\ttest02()\t";
 	cout << "\tTesting .size();\n";
-	cout << "\tSUCCESS DEFINED AS:\n";
-	cout << "\t*\tTest does not terminate.\n";
-	cout << endl;
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tTest does not terminate.\n\n";
 
 	matriks<int> MX;
 	cout << "matriks<int> MX;\n";
 	cout << "MX is " << MX.size()[0] << " elements tall.\n";
 	cout << "MX is " << MX.size()[1] << " elements wide.\n";
-
-	cout << endl;
-	cout << endl;
-	cout << "\tEND:\ttest02()\n";
+	
+	cout << "\n\tEND:\ttest02()\n";
 }
 
 void test03()
 {
-	cout << "\n\tBEGIN:\ttest03()\t";
+	cout << "\n\n\tBEGIN:\ttest03()\t";
 	cout << "\tTesting .hasElements();\n";
-	cout << "\tSUCCESS DEFINED AS:\n";
+	cout << "\tSuccess is defined as:\n";
 	cout << "\t*\tMX has no elements.\n";
-	cout << "\t*\tMX1 has elements.\n";
-	cout << endl;
+	cout << "\t*\tMX1 has elements.\n\n";
 
 	matriks<int> MX;
-	cout << "matriks<int> MX;" << endl;
+	cout << "matriks<int> MX;\n";
 	if (MX.hasElements())
-	{ cout << "MX has elements!" << endl; }
+	{ cout << "MX has elements!\n"; }
 	else
-	{ cout << "MX has no elements!" << endl; }
+	{ cout << "MX has no elements!\n"; }
 	matriks<int> MX1 = 1;
-	cout << "matriks<int> MX1 = 1;" << endl;
+	cout << "matriks<int> MX1 = 1;\n";
 	if (MX1.hasElements())
-	{ cout << "MX1 has elements!" << endl; }
+	{ cout << "MX1 has elements!\n"; }
 	else
-	{ cout << "MX1 has no elements!" << endl; }
-
-	cout << endl;
-	cout << "\tEND:\ttest03()\n";
+	{ cout << "MX1 has no elements!\n"; }
+	
+	cout << "\n\tEND:\ttest03()\n";
 }
 
 void test04()
 {
-	cout << "\n\tBEGIN:\ttest04()\t";
+	cout << "\n\n\tBEGIN:\ttest04()\t";
 	cout << "\tTesting matriks creation with 1 element;\n";
-	cout << "\tSUCCESS DEFINED AS:\n";
+	cout << "\tSuccess is defined as:\n";
 	cout << "\t*\tMatriks is one element tall.\n";
-	cout << "\t*\tMatriks is one element wide.\n";
-	cout << endl;
+	cout << "\t*\tMatriks is one element wide.\n\n";
 
 	matriks<int> MX = 7;
-	cout << "matriks<int> MX = 7;" << endl;
+	cout << "matriks<int> MX = 7;\n";
 
-	cout << "MX is " << MX.size()[0] << " elements tall." << endl;
-	cout << "MX is " << MX.size()[1] << " elements wide." << endl;
+	cout << "MX is " << MX.size()[0] << " elements tall.\n";
+	cout << "MX is " << MX.size()[1] << " elements wide.\n";
 
 	if (MX.hasElements())
-	{ cout << "MX has elements!" << endl; }
+	{ cout << "MX has elements!\n"; }
 	else
-	{ cout << "MX has no elements!" << endl; }
-
-	cout << endl;
-	cout << "\tEND:\ttest04()\n";
+	{ cout << "MX has no elements!\n"; }
+	
+	cout << "\n\tEND:\ttest04()\n";
 }
 
 void test05()
 {
-	cout << "\n\tBEGIN:\ttest05()\t";
+	cout << "\n\n\tBEGIN:\ttest05()\t";
 	cout << "\tTesting matriks creation with 1 vector;\n";
-	cout << "\tSUCCESS DEFINED AS:\n";
+	cout << "\tSuccess is defined as:\n";
 	cout << "\t*\tMatriks is four elements tall.\n";
-	cout << "\t*\tMatriks is one element wide.\n";
-	cout << endl;
+	cout << "\t*\tMatriks is one element wide.\n\n";
 
 	vector<int> v = {1, 2, 3, 4};
-	cout << "vector<int> v = {1, 2, 3, 4};" << endl;
+	cout << "vector<int> v = {1, 2, 3, 4};\n";
 	matriks<int> MX = v;
-	cout << "matriks<int> MX = v;" << endl;
+	cout << "matriks<int> MX = v;\n";
 
-	cout << "MX is " << MX.size()[0] << " elements tall." << endl;
-	cout << "MX is " << MX.size()[1] << " elements wide." << endl;
+	cout << "MX is " << MX.size()[0] << " elements tall.\n";
+	cout << "MX is " << MX.size()[1] << " elements wide.\n";
 
 	if (MX.hasElements())
-	{ cout << "MX has elements!" << endl; }
+	{ cout << "MX has elements!\n"; }
 	else
-	{ cout << "MX has no elements!" << endl; }
-
-	cout << endl;
-	cout << "\tEND:\ttest05()\n";
+	{ cout << "MX has no elements!\n"; }
+	
+	cout << "\n\tEND:\ttest05()\n";
 }
 
 void test06()
 {
-	cout << "\n\tBEGIN:\ttest06()\t";
+	cout << "\n\n\tBEGIN:\ttest06()\t";
 	cout << "\tTesting 3x4 matriks creation with composed vectors;\n";
-	cout << "\tSUCCESS DEFINED AS:\n";
+	cout << "\tSuccess is defined as:\n";
 	cout << "\t*\tMatriks is three elements tall.\n";
-	cout << "\t*\tMatriks is four elements wide.\n";
-	cout << endl;
+	cout << "\t*\tMatriks is four elements wide.\n\n";
 
 	vector<short> Abby = {1,2,3};
 	vector<short> Bobby = {4,5,6};
 	vector<short> Crabby = {7,8,9};
 	vector<short> Debby = {10,11,12};
-	cout << "vector<short> Abby = {1,2,3};" << endl;
-	cout << "vector<short> Bobby = {4,5,6};" << endl;
-	cout << "vector<short> Crabby = {7,8,9};" << endl;
-	cout << "vector<short> Debby = {10,11,12};" << endl;
+	cout << "vector<short> Abby = {1,2,3};\n";
+	cout << "vector<short> Bobby = {4,5,6};\n";
+	cout << "vector<short> Crabby = {7,8,9};\n";
+	cout << "vector<short> Debby = {10,11,12};\n";
 	vector<vector<short>> Victor = {Abby, Bobby, Crabby, Debby};
-	cout << "vector<vector<short>> Victor = {Abby, Bobby, Crabby, Debby};" << endl;
+	cout << "vector<vector<short>> Victor = {Abby, Bobby, Crabby, Debby};\n";
 
 	matriks<short> MX = Victor;
-	cout << "matriks<int> MX = Victor;" << endl;
+	cout << "matriks<int> MX = Victor;\n";
 
-	cout << "MX is " << MX.size()[0] << " elements tall." << endl;
-	cout << "MX is " << MX.size()[1] << " elements wide." << endl;
+	cout << "MX is " << MX.size()[0] << " elements tall.\n";
+	cout << "MX is " << MX.size()[1] << " elements wide.\n";
 
 	if (MX.hasElements())
-	{ cout << "MX has elements!" << endl; }
+	{ cout << "MX has elements!\n"; }
 	else
-	{ cout << "MX has no elements!" << endl; }
-
-	cout << endl;
-	cout << "\tEND:\ttest06()\n";
+	{ cout << "MX has no elements!\n"; }
+	
+	cout << "\n\tEND:\ttest06()\n";
 }
 
 void test07()
 {
-	cout << "\n\tBEGIN:\ttest07()\t";
+	cout << "\n\n\tBEGIN:\ttest07()\t";
 	cout << "\tTesting cout << matriks;\n";
-	cout << "\tSUCCESS DEFINED AS:\n";
-	cout << "\t*\tMatriks output resembles input.\n";
-	cout << endl;
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tMatriks output resembles input.\n\n";
 
 	vector<short> Abby = {1,2,3};
 	vector<short> Bobby = {4,5,6};
-	cout << "vector<short> Abby = {1,2,3};" << endl;
-	cout << "vector<short> Bobby = {4,5,6};" << endl;
+	cout << "vector<short> Abby = {1,2,3};\n";
+	cout << "vector<short> Bobby = {4,5,6};\n";
 	vector<vector<short>> Victor = {Abby, Bobby};
-	cout << "vector<vector<short>> Victor = {Abby, Bobby};" << endl;
+	cout << "vector<vector<short>> Victor = {Abby, Bobby};\n";
 
 	matriks<short> MX = Victor;
-	cout << "matriks<short> MX = Victor;" << endl;
+	cout << "matriks<short> MX = Victor;\n";
 
-	cout << MX << endl;
-	cout << "MX is " << MX.size()[0] << " elements tall." << endl;
-	cout << "MX is " << MX.size()[1] << " elements wide." << endl;
+	cout << MX << "\n";
+	cout << "MX is " << MX.size()[0] << " elements tall.\n";
+	cout << "MX is " << MX.size()[1] << " elements wide.\n";
 	
-	cout << endl;
-	cout << "\tEND:\ttest07()\n";
+	cout << "\n\tEND:\ttest07()\n";
 }
 
 void test08()
 {
-	cout << "\n\tBEGIN:\ttest08()\t";
+	cout << "\n\n\tBEGIN:\ttest08()\t";
 	cout << "\tTesting .resize();\n";
-	cout << "\tSUCCESS DEFINED AS:\n";
-	cout << "\t*\tMatriks changes to given sizes.\n";
-	cout << endl;
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tMatriks changes to given sizes.\n\n";
 
 	vector<short> Abby = {1,2,3};
 	vector<short> Bobby = {4,5,6};
 	vector<vector<short>> Victor = {Abby, Bobby};
 	matriks<short> MX = Victor;
-	cout << "matriks<short> MX = Victor;" << endl;
+	cout << "matriks<short> MX = Victor;\n";
 
-	cout << MX << endl;
-	cout << "MX is " << MX.size()[0] << " elements tall." << endl;
-	cout << "MX is " << MX.size()[1] << " elements wide." << endl;
+	cout << MX << "\n";
+	cout << "MX is " << MX.size()[0] << " elements tall.\n";
+	cout << "MX is " << MX.size()[1] << " elements wide.\n";
 
 	MX.resize(7,2);
-	cout << "MX.resize(7,2);" << endl;
-	cout << "MX is " << MX.size()[0] << " elements tall." << endl;
-	cout << "MX is " << MX.size()[1] << " elements wide." << endl;
-	cout << MX << endl;
+	cout << "MX.resize(7,2);\n";
+	cout << "MX is " << MX.size()[0] << " elements tall.\n";
+	cout << "MX is " << MX.size()[1] << " elements wide.\n";
+	cout << MX << "\n";
 
 	MX.resize(2,2);
-	cout << "MX.resize(2,2);" << endl;
-	cout << "MX is " << MX.size()[0] << " elements tall." << endl;
-	cout << "MX is " << MX.size()[1] << " elements wide." << endl;
-	cout << MX << endl;
+	cout << "MX.resize(2,2);\n";
+	cout << "MX is " << MX.size()[0] << " elements tall.\n";
+	cout << "MX is " << MX.size()[1] << " elements wide.\n";
+	cout << MX << "\n";
 
 	MX.resize(2,4);
-	cout << "MX.resize(2,4);" << endl;
-	cout << "MX is " << MX.size()[0] << " elements tall." << endl;
-	cout << "MX is " << MX.size()[1] << " elements wide." << endl;
-	cout << MX << endl;
-
-	cout << endl;
-	cout << "\tEND:\ttest08()\n";
+	cout << "MX.resize(2,4);\n";
+	cout << "MX is " << MX.size()[0] << " elements tall.\n";
+	cout << "MX is " << MX.size()[1] << " elements wide.\n";
+	cout << MX << "\n";
+	
+	cout << "\n\tEND:\ttest08()\n";
 }
 
 void test09()
 {
-	cout << "\n\tBEGIN:\ttest09()\t";
+	cout << "\n\n\tBEGIN:\ttest09()\t";
 	cout << "\tTesting .row();\n";
-	cout << "\tSUCCESS DEFINED AS:\n";
-	cout << "\t*\tRow output matches matriks output.\n";
-	cout << endl;
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tRow output matches matriks output.\n\n";
 
 	vector<short> Abby = {1,2,3};
 	vector<short> Bobby = {4,5,6};
@@ -233,13 +215,12 @@ void test09()
 	vector<short> row1 = MX.row(1);
 	vector<short> row2 = MX.row(2);
 
-	cout << MX << endl;
-	cout << "Row 0: [" << row0[0] << ", " << row0[1] << "]" << endl;
-	cout << "Row 1: [" << row1[0] << ", " << row1[1] << "]" << endl;
-	cout << "Row 2: [" << row2[0] << ", " << row2[1] << "]" << endl;
-
-	cout << endl;
-	cout << "\tEND:\ttest09()\n";
+	cout << MX << "\n";
+	cout << "Row 0: [" << row0[0] << ", " << row0[1] << "]\n";
+	cout << "Row 1: [" << row1[0] << ", " << row1[1] << "]\n";
+	cout << "Row 2: [" << row2[0] << ", " << row2[1] << "]\n";
+	
+	cout << "\n\tEND:\ttest09()\n";
 }
 
 ////////
@@ -247,96 +228,90 @@ void test09()
 ///
 void test_op01()
 {
-	cout << "\n\tBEGIN:\ttest_op01()\t";
+	cout << "\n\n\tBEGIN:\ttest_op01()\t";
 	cout << "\tTesting addition of two 3x2 matrikies;\n";
-	cout << "\tSUCCESS DEFINED AS:\n";
-	cout << "\t*\tThe matriks is sucessfully added to itself.\n";
-	cout << endl;
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tThe matriks is sucessfully added to itself.\n\n";
 
 	vector<short> Abby = {1,2,3};
 	vector<short> Bobby = {4,5,6};
-	cout << "vector<short> Abby = {1,2,3};" << endl;
-	cout << "vector<short> Bobby = {4,5,6};" << endl;
+	cout << "vector<short> Abby = {1,2,3};\n";
+	cout << "vector<short> Bobby = {4,5,6};\n";
 	vector<vector<short>> Victor = {Abby, Bobby};
-	cout << "vector<vector<short>> Victor = {Abby, Bobby};" << endl;
+	cout << "vector<vector<short>> Victor = {Abby, Bobby};\n";
 
 	matriks<short> MX = Victor;
-	cout << "matriks<short> MX = Victor;" << endl;
+	cout << "matriks<short> MX = Victor;\n";
 
-	cout << MX << endl;
+	cout << MX << "\n";
 
 	matriks<short> MXX = MX + MX;
-	cout << "MXX = MX + MX;" << endl;
+	cout << "MXX = MX + MX;\n";
 
-	cout << MXX << endl;
-	cout << "MXX is " << MXX.size()[0] << " elements tall." << endl;
-	cout << "MXX is " << MXX.size()[1] << " elements wide." << endl;
-	cout << endl;
-	cout << "\tEND:\ttest_op01()\n";
+	cout << MXX << "\n";
+	cout << "MXX is " << MXX.size()[0] << " elements tall.\n";
+	cout << "MXX is " << MXX.size()[1] << " elements wide.\n";
+	
+	cout << "\n\tEND:\ttest_op01()\n";
 }
 
 void test_op02()
 {
-	cout << "\n\tBEGIN:\ttest_op02()\t";
+	cout << "\n\n\tBEGIN:\ttest_op02()\t";
 	cout << "\tTesting subtraction of identical matrikies;\n";
-	cout << "\tSUCCESS DEFINED AS:\n";
-	cout << "\t*\tMatriks are accurately subtracted.\n";
-	cout << endl;
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tMatriks are accurately subtracted.\n\n";
 
 	vector<short> Abby = {1,2,3};
 	vector<short> Bobby = {4,5,6};
-	cout << "vector<short> Abby = {1,2,3};" << endl;
-	cout << "vector<short> Bobby = {4,5,6};" << endl;
+	cout << "vector<short> Abby = {1,2,3};\n";
+	cout << "vector<short> Bobby = {4,5,6};\n";
 	vector<vector<short>> Victor = {Abby, Bobby};
-	cout << "vector<vector<short>> Victor = {Abby, Bobby};" << endl;
+	cout << "vector<vector<short>> Victor = {Abby, Bobby};\n";
 
 	matriks<short> MX = Victor;
-	cout << "matriks<short> MX = Victor;" << endl;
+	cout << "matriks<short> MX = Victor;\n";
 
-	cout << MX << endl;
+	cout << MX << "\n";
 
 	matriks<short> MXX = MX - MX;
-	cout << "MXX = MX - MX;" << endl;
+	cout << "MXX = MX - MX;\n";
 
-	cout << MXX << endl;
-	cout << "MXX is " << MXX.size()[0] << " elements tall." << endl;
-	cout << "MXX is " << MXX.size()[1] << " elements wide." << endl;
-	cout << endl;
-	cout << "\tEND:\ttest_op02()\n";
+	cout << MXX << "\n";
+	cout << "MXX is " << MXX.size()[0] << " elements tall.\n";
+	cout << "MXX is " << MXX.size()[1] << " elements wide.\n";
+	
+	cout << "\n\tEND:\ttest_op02()\n";
 }
 
 void test_op03()
 {
-	cout << "\n\tBEGIN:\ttest_op03()\t";
+	cout << "\n\n\tBEGIN:\ttest_op03()\t";
 	cout << "\tTesting subtraction of different-sized matrikies;\n";
-	cout << "\tSUCCESS DEFINED AS:\n";
-	cout << "\t*\tTest terminates.\n";
-	cout << endl;
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tTest terminates.\n\n";
 
 	vector<short> Crabby = {7,8,9};
-	cout << "vector<short> Crabby = {7,8,9};" << endl;
+	cout << "vector<short> Crabby = {7,8,9};\n";
 	vector<vector<short>> Kinda_Crabby = {Crabby, Crabby};
 	vector<vector<short>> Super_Crabby = {Crabby, Crabby, Crabby, Crabby};
-	cout << "vector<vector<short>> Kinda_Crabby = {Crabby, Crabby};" << endl;
-	cout << "vector<vector<short>> Super_Crabby = {Crabby, Crabby, Crabby, Crabby};" << endl;
+	cout << "vector<vector<short>> Kinda_Crabby = {Crabby, Crabby};\n";
+	cout << "vector<vector<short>> Super_Crabby = {Crabby, Crabby, Crabby, Crabby};\n";
 
 	matriks<short> Kinda_MX = Kinda_Crabby;
 	matriks<short> Super_MX = Super_Crabby;
 	matriks<short> New = Super_MX - Kinda_MX;
+	cout << New << "\n";
 
-	cout << New << endl;
-
-	cout << endl;
-	cout << "\tEND:\ttest_op03()\n";
+	cout << "\n\tEND:\ttest_op03()\n";
 }
 
 void test_op04()
 {
-	cout << "\n\tBEGIN:\ttest_op04()\t";
+	cout << "\n\n\tBEGIN:\ttest_op04()\t";
 	cout << "\tTesting scalar multiplication;\n";
-	cout << "\tSUCCESS DEFINED AS:\n";
-	cout << "\t*\tMatriks is accurately multiplied.\n";
-	cout << endl;
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tMatriks is accurately multiplied.\n\n";
 
 	vector<int> Abby = {1,2,3};
 	vector<int> Bobby = {4,5,6};
@@ -346,32 +321,30 @@ void test_op04()
 	matriks<int> Mx0 = Victor;
 	matriks<int> Mx1 = Victor;
 	matriks<int> Mx2 = Victor;
-	cout << "matriks<int> Mx0 = Victor;" << endl;
-	cout << "matriks<int> Mx1 = Victor;" << endl;
-	cout << "matriks<int> Mx2 = Victor;" << endl;
+	cout << "matriks<int> Mx0 = Victor;\n";
+	cout << "matriks<int> Mx1 = Victor;\n";
+	cout << "matriks<int> Mx2 = Victor;\n";
 
 	Mx0 = Mx0 * 0;
 	Mx1 = Mx1 * 1;
 	Mx2 = Mx2 * 2;
-	cout << "matriks<int> Mx0 = Mx0 * 0;" << endl;
-	cout << "matriks<int> Mx1 = Mx1 * 1;" << endl;
-	cout << "matriks<int> Mx2 = Mx2 * 2;" << endl;
+	cout << "matriks<int> Mx0 = Mx0 * 0;\n";
+	cout << "matriks<int> Mx1 = Mx1 * 1;\n";
+	cout << "matriks<int> Mx2 = Mx2 * 2;\n";
 
-	cout << Mx0 << endl;
-	cout << Mx1 << endl;
-	cout << Mx2 << endl;
+	cout << Mx0 << "\n";
+	cout << Mx1 << "\n";
+	cout << Mx2 << "\n";
 
-	cout << endl;
-	cout << "\tEND:\ttest_op04()\n";
+	cout << "\n\tEND:\ttest_op04()\n";
 }
 
 void test_op05()
 {
-	cout << "\n\tBEGIN:\ttest_op05()\t";
+	cout << "\n\n\tBEGIN:\ttest_op05()\t";
 	cout << "\tTesting vektor multiplication;\n";
-	cout << "\tSUCCESS DEFINED AS:\n";
-	cout << "\t*\tMatriks is acurately multiplied.\n";
-	cout << endl;
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tMatriks is acurately multiplied.\n\n";
 
 	vector<int> Abby = {1,2,3};
 	vector<int> Bobby = {4,5,6};
@@ -381,42 +354,40 @@ void test_op05()
 	vektor<int> Abbk = Abby;
 	vektor<int> Bobbk = Bobby;
 	vektor<int> Crabbk = Crabby;
-	cout << "vektor<int> Abbk = Abby;" << endl;
-	cout << "vektor<int> Bobbk = Bobby;" << endl;
-	cout << "vektor<int> Crabbk = Crabby;" << endl;
+	cout << "vektor<int> Abbk = Abby;\n";
+	cout << "vektor<int> Bobbk = Bobby;\n";
+	cout << "vektor<int> Crabbk = Crabby;\n";
 
 	matriks<int> Mx0 = Victor;
 	matriks<int> Mx1 = Victor;
 	matriks<int> Mx2 = Victor;
-	cout << "matriks<int> Mx0 = Victor;" << endl;
-	cout << "matriks<int> Mx1 = Victor;" << endl;
-	cout << "matriks<int> Mx2 = Victor;" << endl;
+	cout << "matriks<int> Mx0 = Victor;\n";
+	cout << "matriks<int> Mx1 = Victor;\n";
+	cout << "matriks<int> Mx2 = Victor;\n";
 
 	double Result0 = Mx0 * Abbk;
 	double Result1 = Mx1 * Bobbk;
 	double Result2 = Mx2 * Crabbk;
-	cout << "matriks<int> Result0 = Mx0 * Abbk;" << endl;
-	cout << "matriks<int> Result1 = Mx1 * Bobbk;" << endl;
-	cout << "matriks<int> Result2 = Mx2 * Crabbk;" << endl;
+	cout << "matriks<int> Result0 = Mx0 * Abbk;\n";
+	cout << "matriks<int> Result1 = Mx1 * Bobbk;\n";
+	cout << "matriks<int> Result2 = Mx2 * Crabbk;\n";
 
-	cout << "1*1 + 2*2 + 3*3 + 4*1 + 5*2 + 6*3 + 7*1 + 8*2 + 9*3 ==  96 =? " << Result0 << endl;
-	if(!(96  == Result0)) { cout << "RESULT0 IS WRONG" << endl; }
-	cout << "1*4 + 2*5 + 3*6 + 4*4 + 5*5 + 6*6 + 7*4 + 8*5 + 9*6 == 231 =? " << Result1 << endl;
-	if(!(231 == Result1)) { cout << "RESULT1 IS WRONG" << endl; }
-	cout << "1*7 + 2*8 + 3*9 + 4*7 + 5*8 + 6*9 + 7*7 + 8*8 + 9*9 == 366 =? " << Result2 << endl;
-	if(!(366 == Result2)) { cout << "RESULT2 IS WRONG" << endl; }
+	cout << "1*1 + 2*2 + 3*3 + 4*1 + 5*2 + 6*3 + 7*1 + 8*2 + 9*3 ==  96 =? " << Result0 << "\n";
+	if(!(96  == Result0)) { cout << "RESULT0 IS WRONG\n"; }
+	cout << "1*4 + 2*5 + 3*6 + 4*4 + 5*5 + 6*6 + 7*4 + 8*5 + 9*6 == 231 =? " << Result1 << "\n";
+	if(!(231 == Result1)) { cout << "RESULT1 IS WRONG\n"; }
+	cout << "1*7 + 2*8 + 3*9 + 4*7 + 5*8 + 6*9 + 7*7 + 8*8 + 9*9 == 366 =? " << Result2 << "\n";
+	if(!(366 == Result2)) { cout << "RESULT2 IS WRONG\n"; }
 
-	cout << endl;
-	cout << "\tEND:\ttest_op05()\n";
+	cout << "\n\tEND:\ttest_op05()\n";
 }
 
 void test_op06()
 {
-	cout << "\n\tBEGIN:\ttest_op06()\t";
+	cout << "\n\n\tBEGIN:\ttest_op06()\t";
 	cout << "\tTesting vector multiplication;\n";
-	cout << "\tSUCCESS DEFINED AS:\n";
-	cout << "\t*\tMatriks is accurately multiplied.\n";
-	cout << endl;
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tMatriks is accurately multiplied.\n\n";
 
 	vector<int> Abby = {1,2,3};
 	vector<int> Bobby = {4,5,6};
@@ -426,32 +397,30 @@ void test_op06()
 	matriks<int> Mx0 = Victor;
 	matriks<int> Mx1 = Victor;
 	matriks<int> Mx2 = Victor;
-	cout << "matriks<int> Mx0 = Victor;" << endl;
-	cout << "matriks<int> Mx1 = Victor;" << endl;
-	cout << "matriks<int> Mx2 = Victor;" << endl;
+	cout << "matriks<int> Mx0 = Victor;\n";
+	cout << "matriks<int> Mx1 = Victor;\n";
+	cout << "matriks<int> Mx2 = Victor;\n";
 
 	double	Result0 = Mx0 * Abby;
 	double	Result1 = Mx1 * Bobby;
 	double	Result2 = Mx2 * Crabby;
-	cout << "matriks<int> Result0 = Mx0 * Abby;" << endl;
-	cout << "matriks<int> Result1 = Mx1 * Bobby;" << endl;
-	cout << "matriks<int> Result2 = Mx2 * Crabby;" << endl;
+	cout << "matriks<int> Result0 = Mx0 * Abby;\n";
+	cout << "matriks<int> Result1 = Mx1 * Bobby;\n";
+	cout << "matriks<int> Result2 = Mx2 * Crabby;\n";
 
-	cout << Result0 << endl;
-	cout << Result1 << endl;
-	cout << Result2 << endl;
+	cout << Result0 << "\n";
+	cout << Result1 << "\n";
+	cout << Result2 << "\n";
 
-	cout << endl;
-	cout << "\tEND:\ttest_op06()\n";
+	cout << "\n\tEND:\ttest_op06()\n";
 }
 
 void test_op07()
 {
-	cout << "\n\tBEGIN:\ttest_op07()\t";
+	cout << "\n\n\tBEGIN:\ttest_op07()\t";
 	cout << "\tTesting matrix multiplication;\n";
-	cout << "\tSUCCESS DEFINED AS:\n";
-	cout << "\t*\tMatriks are accurately multiplied.\n";
-	cout << endl;
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tMatriks are accurately multiplied.\n\n";
 
 	vector<int> Abby = {2,1};
 	vector<int> Bobby = {3,-5,};
@@ -465,23 +434,21 @@ void test_op07()
 	matriks<int> Mario = Victor;
 	matriks<int> Mark = Maria*Mario;
 
-	cout << Maria << endl;
+	cout << Maria << "\n";
 	cout << "*\n";
-	cout << Mario << endl;
+	cout << Mario << "\n";
 	cout << "=\n";
-	cout << Mark << endl;
+	cout << Mark << "\n";
 	
-	cout << endl;
-	cout << "\tEND:\ttest_op07()\n";
+	cout << "\n\tEND:\ttest_op07()\n";
 }
 
 void test_op08()
 {
-	cout << "\n\tBEGIN:\ttest_op08()\t";
+	cout << "\n\n\tBEGIN:\ttest_op08()\t";
 	cout << "\tTesting invalid matrix multiplications;\n";
-	cout << "\tSUCCESS DEFINED AS:\n";
-	cout << "\t*\tTest terminates.\n";
-	cout << endl;
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tTest terminates.\n\n";
 
 	vector<int> Abby = {2,1};
 	vector<int> Bobby = {3,-5,};
@@ -497,62 +464,108 @@ void test_op08()
 	matriks<int> MarkI = Mario*Maria;	// Sizes are wrong
 	matriks<int> MarkII = Mario*Mario;	// Sizes are wrong
 	
-	cout << endl;
-	cout << "\tEND:\ttest_op08()\n";
+	cout << "\n\tEND:\ttest_op08()\n";
 }
 
 void test_op09()
 {
-	cout << "\n\tBEGIN:\ttest_op09()\t";
+	cout << "\n\n\tBEGIN:\ttest_op09()\t";
 	cout << "\tTesting [] operator;\n";
-	cout << "\tSUCCESS DEFINED AS:\n";
-	cout << "\t*\tAccurate values are fetched, input and output.\n";
-	cout << endl;
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tAccurate values are fetched, input and output.\n\n";
 
 	matriks<int> Mark;
 	Mark.resize(3,3);
-	cout << "matriks<int> Mark;" << endl;
-	cout << "Mark.resize(3,3);" << endl;
-	cout << Mark << endl;
+	cout << "matriks<int> Mark;\n";
+	cout << "Mark.resize(3,3);\n";
+	cout << Mark << "\n";
 
 	Mark[1][2] = 3;
-	cout << "Mark[1][2] = 3" << endl;
+	cout << "Mark[1][2] = 3\n";
 	Mark[1][0] = 7;
-	cout << "Mark[1][0] = 7" << endl;
-	cout << Mark << endl;
+	cout << "Mark[1][0] = 7\n";
+	cout << Mark << "\n";
 
 	vector<int> Vic = Mark[1];
-	cout << "vector<int> Vic = Mark[1];" << endl;
-	cout << "( " << Vic[0] << " " << Vic[1] << " " << Vic[2] << " )" << endl;
+	cout << "vector<int> Vic = Mark[1];\n";
+	cout << "( " << Vic[0] << " " << Vic[1] << " " << Vic[2] << " )\n";
+	
+	cout << "\n\tEND:\ttest_op09()\n";
+}
 
-	cout << endl;
-	cout << "\tEND:\ttest_op09()\n";
+void test_inv01()
+{
+	cout << "\n\n\tBEGIN:\ttest_inv01()\t";
+	cout << "\tTesting .isSquare();\n";
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tIdentifying empty matrikies as not square.\n";
+	cout << "\t*\tIdentifying 4x4 matrikies as square.\n";
+	cout << "\t*\tIdentifying 2x4 matrikies as not square.\n";
+	cout << "\t*\tIdentifying 4x2 matrikies as not square.\n\n";
+
+	matriks<int> Mario;
+	cout << "Let's give it up for Mario: ";
+	cout << Mario;
+	if(Mario.isSquare()) { cout << ", who is square!\n"; }
+	else { cout << ", who is NOT square!\n"; }
+
+	Mario.resize(4,4);
+	cout << "Let's give it up for Mario: ";
+	cout << Mario;
+	if(Mario.isSquare()) { cout << ", who is square!\n"; }
+	else { cout << ", who is NOT square!\n"; }
+
+	Mario.resize(2,4);
+	cout << "Let's give it up for Mario:";
+	cout << Mario;
+	if(Mario.isSquare()) { cout << ", who is square!\n"; }
+	else { cout << ", who is NOT square!\n"; }
+
+	Mario.resize(4,2);
+	cout << "Let's give it up for Mario:";
+	cout << Mario;
+	if(Mario.isSquare()) { cout << ", who is square!\n"; }
+	else { cout << ", who is NOT square!\n"; }
+	
+	cout << "\n\tEND:\ttest_inv01()\n";
+}
+
+void test_inv02()
+{
+	cout << "\n\n\tBEGIN:\ttest_inv02()\t";
+	cout << "\tTesting determinant();\n";
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tAccurate values are fetched, input and output.\n\n";
+	
+	cout << "\n\tEND:\ttest_inv02()\n";
 }
 
 int main()
 {
 	cout << "main()\n{";
 	
-	cout << "\n" << endl;	test01();
-	cout << "\n" << endl;	test02();
-	cout << "\n" << endl;	test03();
-	cout << "\n" << endl;	test04();
-	cout << "\n" << endl;	test05();
-	cout << "\n" << endl;	test06();
-	cout << "\n" << endl;	test07();
-	cout << "\n" << endl;	test08();
-	cout << "\n" << endl;	test09();
+	test01();
+	test02();
+	test03();
+	test04();
+	test05();
+	test06();
+	test07();
+	test08();
+	test09();
 
-	cout << "\n" << endl;	test_op01();
-	cout << "\n" << endl;	test_op02();
-//	cout << "\n" << endl;	test_op03();	Aborts, as it should!
-	cout << "\n" << endl;	test_op04();
-	cout << "\n" << endl;	test_op05();
-	cout << "\n" << endl;	test_op06();
-	cout << "\n" << endl;	test_op07();
-//	cout << "\n" << endl;	test_op08();	Aborts, as it should!
-	cout << "\n" << endl;	test_op09();
-	cout << "\n" << endl;
+	test_op01();
+	test_op02();
+//	test_op03();	Aborts, as it should!
+	test_op04();
+	test_op05();
+	test_op06();
+	test_op07();
+//	test_op08();	Aborts, as it should!
+	test_op09();
 
-	cout << "}" << endl;
+	test_inv01();
+	test_inv02();
+
+	cout << "}\n";
 }
