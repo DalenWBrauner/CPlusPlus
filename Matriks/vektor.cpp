@@ -27,6 +27,10 @@ class vektor
 
 		bool isValid()
 		{ return (x.size() == 0); }
+
+		template<typename regardless>
+		void push_back(regardless argument)
+		{ x.push_back(argument); }
 		
 
 	friend std::ostream& operator<<(std::ostream& s, vektor<T> &v) {

@@ -72,9 +72,9 @@ class matriks
 			}
 		}
 
-		vector<K> row(unsigned int index)
+		vektor<K> row(unsigned int index)
 		{
-			vector<K> r;
+			vektor<K> r;
 			for (auto n=0 ; n<N ; n++)
 			{
 				r.push_back(Mtrx[n][index]);
@@ -224,30 +224,25 @@ template<typename K>
 matriks<K> matriks<K>::operator*(matriks<K> &other)
 /* Matrix Multiplication*/
 {
-	cout << "MATRIX MULTIPLICATION" << endl;
 	// First assert 
 	assertNicely(
 		(N == other.M),
 		"A Matrix 'A' must have the same number of rows as a Matrix 'B' has columns before A*B."
 	);
 
-	cout << N << endl;
-	cout << other.M << endl;
-
 	matriks<K> Output;
 	Output.resize(M,other.N);
 
-
-	/*multiply each vector in other by each row in mtrx
+	// multiply each row in 'self' by each vector in 'other'
 	for (auto n=0 ; n<other.N ; ++n)
 	{
 		for (auto m=0 ; m<M ; ++m)
 		{
-			vector<K> A = other.Mtrx[n];
-			vector<K> B = this->row(m);
+			vektor<K> A = other.Mtrx[n];
+			vektor<K> B = this->row(m);
 			Output.Mtrx[n][m] += A * B;
 		}
-	}*/
+	}
 
 	return Output;
 }
