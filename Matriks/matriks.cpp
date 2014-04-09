@@ -133,6 +133,7 @@ class matriks
 		{ return (hasElements() and ( M == N ) ); }
 
 		int determinant()
+		/* Unfinished */
 		{
 			assertNicely(
 				((N==2) and (M==2)),
@@ -169,14 +170,10 @@ class matriks
 		}
 
 		bool isInverseOf(matriks<K> other)
-		/* Unfinished */
 		{
-
-			if (!hasElements())			{ return false; }
-			if (!other.hasElements())	{ return false; }
-//			if (!determinant())			{ return false; }
-//			if (!other.determinant())	{ return false; }
-//			if (N != other.N)			{ return false; }
+			if (!isSquare())			{ return false; }
+			if (!other.isSquare())		{ return false; }
+			if (N != other.N)			{ return false; }
 
 			matriks<K> me = this->Mtrx;
 			matriks<K> I;
