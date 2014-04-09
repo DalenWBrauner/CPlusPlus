@@ -94,6 +94,39 @@ class matriks
 			matriks<K> output = t;
 			return output;
 		}
+		// Row-Operation Methods
+		void rowop_add(unsigned int row_scaled, unsigned int row_modified, K scalar)
+		{
+			assertNicely( (row_modified <= M), "row_modified does not exist.");
+			assertNicely( (row_scaled <= M), "row_scaled does not exist.");
+			for (auto i=0 ; i<N ; i++)
+			{
+				Mtrx[i][row_modified] += (Mtrx[i][row_scaled] * scalar);
+			}
+		}
+
+		void rowop_swap(unsigned int row_1, unsigned int row_2)
+		{
+			assertNicely( (row_1 < M), "row_1 does not exist.");
+			assertNicely( (row_2 < M), "row_2 does not exist.");
+			{
+				for (auto i=0 ; i<N ; i++)
+				{
+					K temp = Mtrx[i][row_1];
+					Mtrx[i][row_1] = Mtrx[i][row_2];
+					Mtrx[i][row_2] = temp;
+				}
+			}
+		}
+
+		void rowop_scale(unsigned int row, K constant)
+		{
+			assertNicely( (row <= M), "row does not exist.");
+			for (auto i=0 ; i<N ; i++)
+			{
+				Mtrx[i][row] *= constant;
+			}
+		}
 
 		// Inverse Methods
 		bool isSquare()
