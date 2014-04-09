@@ -128,6 +128,81 @@ class matriks
 			}
 		}
 
+		matriks<float> reducedEchelon(float zero_threshold = 0.000001)
+		/* Returns the reduced echelon form of the matrix.
+		   Any absolute value less than the 'zero_threshold' is considered zero. */
+//		Feel free to use the commented-out cout statements for debugging!
+		{
+			matriks<float> rEch = Mtrx;
+
+			unsigned int r=0, v=0;
+			while ( (v<N) and (r<M) )
+			{
+//				cout << rEch << "\n";
+//				cout << v << ", " << r << "\n";
+//				cout << "Is the value 1?\t";
+				if (rEch[v][r] == 1)
+				{
+//					cout << "TRUE. 0\n";
+//					cout << "Use rowAdd to reduce ALL OTHER values in the vector to 0.\n";
+					for (auto i=0 ; i<M ; i++)
+					{
+						if (i != r)
+						{
+							rEch.rowop_add(r, i, -rEch[v][i]);
+//							cout << "I think I'm adding " << r  << " to " << i << " * " << -rEch[v][i] << "\n";
+						}
+					}
+//					cout << "Repeat for next row/vector.\n";
+					v++;
+					r++;
+				}
+				else
+				{
+//					cout << "FALSE. 1\n";
+//					cout << "Is it 0?.\t";
+					//if (rEch[v][r] == 0)
+					// Gotta do this madness, otherwise decimal errors get rowScaled to 1.
+					float absolute_me = rEch[v][r];
+					float abs (absolute_me);
+					if (absolute_me < zero_threshold)
+					{
+//						cout << "TRUE. 2\n";
+//						cout << "Are any BELOW values in the v nonzero?\t";
+						unsigned long Q;
+						for (Q=r+1; Q<M ; Q++)
+						{
+							//if (rEch[v][Q] != 0)
+							// Gotta do this madness, otherwise decimal errors get rowScaled to 1.
+							float absolute_me2 = rEch[v][Q];
+							float abs (absolute_me2);
+							if (absolute_me2 > zero_threshold)
+							{
+//								cout << "TRUE. 3\n";
+//								cout << "Swap, rowScale to 1.\n";
+								rEch.rowop_swap(r, Q);
+								rEch.rowop_scale(r, 1.0/rEch[v][r]);
+								Q = M+8;	// Only possible if we've found a nonzero.
+							}
+						}
+						if (Q != M+9)	// i.e. only possible if we've NOT found a nonzero,
+						{
+//							cout << "FALSE. 4\n";
+//							cout << "Repeat for next vector.\n";
+							v++;
+						}
+					}
+					else
+					{
+//						cout << "FALSE. 5\n";
+//						cout << "rowScale it to 1.\n";
+						rEch.rowop_scale(r, 1.0/rEch[v][r]);
+					}
+				}
+			}
+			return rEch;
+		}
+
 		// Inverse Methods
 		bool isSquare()
 		{ return (hasElements() and ( M == N ) ); }
@@ -136,8 +211,8 @@ class matriks
 		/* Unfinished */
 		{
 			assertNicely(
-				((N==2) and (M==2)),
-				"Matrikies can only calculate determinants if 2x2."
+				isSquare(),
+				"Matrikies can only calculate determinants if square."
 				);
 			return (Mtrx[0][0] * Mtrx[1][1]) - (Mtrx[0][1] * Mtrx[1][0]);
 		}

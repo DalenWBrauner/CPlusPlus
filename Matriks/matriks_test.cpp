@@ -707,6 +707,140 @@ void test_row03()
 	cout << "\n\tEND:\ttest_row03()\n\n";
 }
 
+void test_row04()
+{
+	cout << "\n\tBEGIN:\ttest_row04()\t";
+	cout << "\tTesting various rowops;\n";
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tThe matriks is properly row-reduced to reduced echelon form.\n\n";
+
+	matriks<float> Maria;
+	Maria.resize(3,6);
+	vector<float> v0 = {0, 3, 3};
+	vector<float> v1 = {3, -7, -9};
+	vector<float> v2 = {-6, 8, 12};
+	vector<float> v3 = {6, -5, -9};
+	vector<float> v4 = {4, 8, 6};
+	vector<float> v5 = {-5, 9, 15};
+	Maria[0] = v0;
+	Maria[1] = v1;
+	Maria[2] = v2;
+	Maria[3] = v3;
+	Maria[4] = v4;
+	Maria[5] = v5;
+	cout << Maria << "\n";
+
+	Maria.rowop_scale(2,1/3.0);
+	Maria.rowop_swap(0,2);
+	Maria.rowop_add(0,1,-3);
+	Maria.rowop_scale(1,0.5);
+	Maria.rowop_add(1,2,-3);
+	Maria.rowop_add(1,0,3);
+	Maria.rowop_add(2,1,-1);
+	Maria.rowop_add(2,0,-5);
+	cout << "Some MYSTERIOUS row operations later...";
+	cout << Maria << "\n";
+
+	cout << "\n\tEND:\ttest_row04()\n\n";
+}
+
+void test_row04point5()
+{
+	cout << "\n\tBEGIN:\ttest_row04.5()\t";
+	cout << "\tTesting manual rowops;\n";
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tHold up, I need to try something...\n\n";
+
+	matriks<float> Mario;
+	Mario.resize(3,6);
+	vector<float> v0 = {0, 3, 3};
+	vector<float> v1 = {3, -7, -9};
+	vector<float> v2 = {-6, 8, 12};
+	vector<float> v3 = {6, -5, -9};
+	vector<float> v4 = {4, 8, 6};
+	vector<float> v5 = {-5, 9, 15};
+	Mario[0] = v0;
+	Mario[1] = v1;
+	Mario[2] = v2;
+	Mario[3] = v3;
+	Mario[4] = v4;
+	Mario[5] = v5;
+	cout << Mario << "\n";
+
+//	cout << "swap 0 & 1...\n";
+	Mario.rowop_swap(0,1);
+//	cout << Mario << "\n";
+
+//	cout << "scale 0 by 1/3...\n";
+	Mario.rowop_scale(0,1/3.0);
+//	cout << Mario << "\n";
+
+//	cout << "add 0 to 1 by -Mario[0][1]...\n";
+//	cout << "add 0 to 2 by -Mario[0][2]...\n";
+	Mario.rowop_add(0,1, -Mario[0][1] );
+	Mario.rowop_add(0,2, -Mario[0][2] );
+//	cout << Mario << "\n";
+
+//	cout << "scale 1 by 1/3...\n";
+	Mario.rowop_scale(1,1/3.0);
+//	cout << Mario << "\n";
+
+//	cout << "add 1 to 0 by -Mario[1][0]...\n";
+//	cout << "add 1 to 2 by -Mario[1][2]...\n";
+	Mario.rowop_add(1,0, -Mario[1][0] );
+	Mario.rowop_add(1,2, -Mario[1][2] );
+//	cout << Mario << "\n";
+
+//	cout << "scale 2 by 3/2...\n";
+	Mario.rowop_scale(2,3/2.0);
+//	cout << Mario << "\n";
+
+//	cout << -Mario[4][0] << "\n";
+//	cout << -Mario[4][1] << "\n";
+//	cout << "add 2 to 0 by -Mario[4][0]...\n";
+//	cout << "add 2 to 1 by -Mario[4][1]...\n";
+	Mario.rowop_add(2,0,-Mario[4][0]);
+	Mario.rowop_add(2,1,-Mario[4][1]);
+
+	cout << Mario << "\n";
+	cout << "Ugh. I know this looks ugly, but I swear it's correct.\n";
+	cout << "In fact, it's no different from the result of test_row04, save some decimal issues.\n";
+
+	cout << "\n\tEND:\ttest_row04.5()\n\n";
+}
+
+void test_row05()
+{
+	cout << "\n\tBEGIN:\ttest_row05()\t";
+	cout << "\tTesting reducedEchelon();\n";
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tThe matriks is properly row-reduced to reduced echelon form.\n\n";
+
+	matriks<float> Maria;
+	Maria.resize(3,6);
+	vector<float> v0 = {0, 3, 3};
+	vector<float> v1 = {3, -7, -9};
+	vector<float> v2 = {-6, 8, 12};
+	vector<float> v3 = {6, -5, -9};
+	vector<float> v4 = {4, 8, 6};
+	vector<float> v5 = {-5, 9, 15};
+	Maria[0] = v0;
+	Maria[1] = v1;
+	Maria[2] = v2;
+	Maria[3] = v3;
+	Maria[4] = v4;
+	Maria[5] = v5;
+	cout << "Maria";
+	cout << Maria << "\n";
+
+	matriks<float> Mary = Maria.reducedEchelon();
+	cout << "Mary";
+	cout << Mary << "\n";
+
+	cout << "\n\tEND:\ttest_row05()\n\n";
+}
+
+
 ////////
 // Matrix Inversion Tests
 ///
@@ -925,7 +1059,7 @@ void test_inv06()
 int main()
 {
 	cout << "main()\n{";
-	
+/*	
 	test01();
 	test02();
 	test03();
@@ -937,11 +1071,11 @@ int main()
 	test08();
 	test09();
 	test10();
-
+*/
 	cout << "Matrix Tests\n";
 	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
 	cout << "Matrix Operation Tests\n";
-
+/*
 	test_op01();
 	test_op02();
 //	test_op03();	Terminates, as it should!
@@ -953,7 +1087,7 @@ int main()
 	test_op09();
 	test_op10();
 	test_op11();
-
+*/
 	cout << "Matrix Operation Tests\n";
 	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
 	cout << "Matrix Row-Operation Tests\n";
@@ -961,17 +1095,20 @@ int main()
 	test_row01();
 	test_row02();
 	test_row03();
+	test_row04();
+	test_row04point5();		// Don't discriminate against the ugly!
+	test_row05();
 
 	cout << "Matrix Row-Operation Tests\n";
 	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
 	cout << "Matrix Inversion Tests\n";
-
+/*
 	test_inv01();
 	test_inv02();
 //	test_inv03();	Terminates, as it should!
 	test_inv04();
 	test_inv05();
 	test_inv06();
-
+*/
 	cout << "}\n";
 }
