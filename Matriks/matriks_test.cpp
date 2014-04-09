@@ -794,6 +794,42 @@ void test_inv05()
 	cout << "\n\tEND:\ttest_inv05()\n";
 }
 
+void test_inv06()
+{
+	cout << "\n\n\tBEGIN:\ttest_inv05()\t";
+	cout << "\tTesting isInverseOf();\n";
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tAbility to test for inverses.\n";
+	cout << "\t*\tThis is totally unfinished.\n\n";
+
+	matriks<float> original;
+	original.resize(3,3);
+	original[0][0] = 0;
+	original[0][1] = 1;
+	original[0][2] = 4;
+	original[1][0] = 1;
+	original[1][1] = 0;
+	original[1][2] = -3;
+	original[2][0] = 2;
+	original[2][1] = 3;
+	original[2][2] = 8;
+
+	matriks<float> inverse;
+	inverse.resize(3,3);
+	inverse[0][0] = -9.0/2.0;
+	inverse[0][1] = -2.0;
+	inverse[0][2] = 3.0/2.0;
+	inverse[1][0] = 7;
+	inverse[1][1] = 4;
+	inverse[1][2] = -2;
+	inverse[2][0] = -3.0/2.0;
+	inverse[2][1] = -1.0;
+	inverse[2][2] = 1.0/2.0;
+
+	if (inverse.isInverseOf(original)) { cout << "YAY IT WORKED!\n"; }
+	else	{ cout << "Awww...\n"; }
+	cout << "\n\tEND:\ttest_inv06()\n";
+}
 
 
 int main()
@@ -829,6 +865,7 @@ int main()
 //	test_inv03();	Terminates, as it should!
 	test_inv04();
 	test_inv05();
+	test_inv06();
 
 	cout << "}\n";
 }

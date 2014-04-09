@@ -138,13 +138,17 @@ class matriks
 		bool isInverseOf(matriks<K> other)
 		/* Unfinished */
 		{
-			if (!determinant())			{ return false; }
-			if (!other.determinant())	{ return false; }
-			if (N != other.N)			{ return false; }
 
+			if (!hasElements())			{ return false; }
+			if (!other.hasElements())	{ return false; }
+//			if (!determinant())			{ return false; }
+//			if (!other.determinant())	{ return false; }
+//			if (N != other.N)			{ return false; }
+
+			matriks<K> me = this->Mtrx;
 			matriks<K> I;
 			I.becomeIdentity(N);
-			return (this * other == I);
+			return (other * me == I);
 		}
 };
 		
