@@ -840,6 +840,49 @@ void test_row05()
 	cout << "\n\tEND:\ttest_row05()\n\n";
 }
 
+void test_row05continued()
+{
+	cout << "\n\tBEGIN:\ttest_row05continued()\t";
+	cout << "\tTesting reducedEchelon();\n";
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tThe matriks is properly row-reduced to reduced echelon form.\n\n";
+
+	matriks<float> Test_Problem_A;
+	Test_Problem_A.resize(3,4);
+	vector<float> A0 = {1, 2, 3};
+	vector<float> A1 = {2, 4, 6};
+	vector<float> A2 = {4, 6, 9};
+	vector<float> A3 = {8, 8, 12};
+	Test_Problem_A[0] = A0;
+	Test_Problem_A[1] = A1;
+	Test_Problem_A[2] = A2;
+	Test_Problem_A[3] = A3;
+	cout << "Test_Problem_A";
+	cout << Test_Problem_A << "\n";
+	matriks<float> Program_Response_A = Test_Problem_A.reducedEchelon();
+	cout << "Program_Response_A";
+	cout << Program_Response_A << "\n";
+
+	matriks<float> Test_Problem_B;
+	Test_Problem_B.resize(3,4);
+	vector<float> B0 = {1, 2, 4};
+	vector<float> B1 = {2, 4, 5};
+	vector<float> B2 = {4, 5, 4};
+	vector<float> B3 = {5, 4, 2};
+	Test_Problem_B[0] = B0;
+	Test_Problem_B[1] = B1;
+	Test_Problem_B[2] = B2;
+	Test_Problem_B[3] = B3;
+	cout << "Test_Problem_B";
+	cout << Test_Problem_B << "\n";
+	matriks<float> Program_Response_B = Test_Problem_B.reducedEchelon();
+	cout << "Program_Response_B";
+	cout << Program_Response_B << "\n";
+
+
+	cout << "\n\tEND:\ttest_row05()\n\n";
+}
+
 
 ////////
 // Matrix Inversion Tests
@@ -1098,6 +1141,7 @@ int main()
 	test_row04();
 	test_row04point5();		// Don't discriminate against the ugly!
 	test_row05();
+	test_row05continued();
 
 	cout << "Matrix Row-Operation Tests\n";
 	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";

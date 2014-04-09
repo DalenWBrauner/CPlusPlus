@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include <vector>
 #include "vektor.cpp"
 #include "../TooNice.cpp"
@@ -163,20 +164,16 @@ class matriks
 //					cout << "Is it 0?.\t";
 					//if (rEch[v][r] == 0)
 					// Gotta do this madness, otherwise decimal errors get rowScaled to 1.
-					float absolute_me = rEch[v][r];
-					float abs (absolute_me);
-					if (absolute_me < zero_threshold)
+					if ( abs( rEch[v][r] ) < zero_threshold)
 					{
 //						cout << "TRUE. 2\n";
-//						cout << "Are any BELOW values in the v nonzero?\t";
+//						cout << "Are any BELOW values in the vector nonzero?\t";
 						unsigned long Q;
 						for (Q=r+1; Q<M ; Q++)
 						{
 							//if (rEch[v][Q] != 0)
 							// Gotta do this madness, otherwise decimal errors get rowScaled to 1.
-							float absolute_me2 = rEch[v][Q];
-							float abs (absolute_me2);
-							if (absolute_me2 > zero_threshold)
+							if ( abs( rEch[v][r] ) > zero_threshold)
 							{
 //								cout << "TRUE. 3\n";
 //								cout << "Swap, rowScale to 1.\n";
@@ -212,7 +209,7 @@ class matriks
 		{
 			assertNicely(
 				isSquare(),
-				"Matrikies can only calculate determinants if square."
+				"Matrikies currently can only calculate determinants if square."
 				);
 			return (Mtrx[0][0] * Mtrx[1][1]) - (Mtrx[0][1] * Mtrx[1][0]);
 		}
