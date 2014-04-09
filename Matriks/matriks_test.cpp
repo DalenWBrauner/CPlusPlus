@@ -244,6 +244,24 @@ void test09()
 	cout << "\n\tEND:\ttest09()\n";
 }
 
+void test10()
+{
+	cout << "\n\n\tBEGIN:\ttest10()\t";
+	cout << "\tTesting .transpose();\n";
+	cout << "\tSuccess is defined as:\n";
+	cout << "\t*\tThe supposed transpose is in fact transposed.\n\n";
+
+	vector<short> Abby = {1,2,3};
+	vector<short> Bobby = {4,5,6};
+	vector<vector<short>> Victor = {Abby, Bobby};
+	matriks<short> Mario = Victor;
+	matriks<short> Maria = Mario.transpose();
+	
+	cout << Mario << "\n";	
+	cout << Maria << "\n";
+	cout << "\n\tEND:\ttest10()\n";
+}
+
 ////////
 // Matrix Operation Tests
 ///
@@ -572,12 +590,21 @@ void test_op11()
 	cout << "\n\n\tBEGIN:\ttest_op11()\t";
 	cout << "\tTesting == operator for matrikies against non-matrikies;\n";
 	cout << "\tSuccess is defined as:\n";
-	cout << "\t*\tMatrikies are accurately compared.\n\n";
+	cout << "\t*\tMatrikies are accurately compared.\n";
+	cout << "\t*\t(Nine 1s are output in a 3x3 form seperated by commas.)\n\n";
 
-	matriks<int> Maria = 7;
+	matriks<int> Mario = 7;
+	if (Mario == 7) { cout << "1,"; }
 
-	cout << (Maria == 7) << "\n";
-/*
+	matriks<int> Maria;
+	Maria.resize(1,1);
+	Maria[0][0] = 7;
+	if (Maria == 7) { cout << "1,"; }
+
+	vector<short> Jasmine = {99,111,73};
+	matriks<short> Jasper = Jasmine;
+	if (Jasper == Jasmine) { cout << "1\n"; }
+
 	vector<short> Maddie = {1,2,3};
 	matriks<short> Maggie = Maddie;
 	cout << (Maddie == Maddie) << ",";
@@ -589,7 +616,7 @@ void test_op11()
 	cout << (Marple == Marple) << ",";
 	cout << (Maaarrrrrrple == Maaarrrrrrple) << ",";
 	cout << (Maaarrrrrrple == Marple) << "\n";
-	*/
+
 	cout << "\n\tEND:\ttest_op11()\n";
 }
 
@@ -783,6 +810,7 @@ int main()
 	test07();
 	test08();
 	test09();
+	test10();
 
 	test_op01();
 	test_op02();

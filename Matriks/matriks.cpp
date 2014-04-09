@@ -83,6 +83,18 @@ class matriks
 			return r;
 		}
 
+		matriks<K> transpose()
+		{
+			vector<vector<K>> t;
+			t.resize(M);
+			for (auto i=0 ; i<M ; ++i)
+			{
+				t[i] = this->row(i);
+			}
+			matriks<K> output = t;
+			return output;
+		}
+
 		// Inverse Methods
 		bool isSquare()
 		{ return (hasElements() and ( M == N ) ); }
@@ -170,7 +182,7 @@ template<typename K>
 matriks<K>::matriks(const vector<vector<K>> &v)
 /* Create MxN Matrix */
 {
-	Mtrx = v;		// For some reason, executing this line AFTER the next two causes a segfault
+	Mtrx = v;
 	N = Mtrx.size();
 	M = Mtrx[0].size();
 	for (auto i=1 ; i<N ; i++)
@@ -196,7 +208,7 @@ bool matriks<K>::operator==(K other)
 /* Compares 'other' as a 1x1 Matrix */
 {
 	matriks<K> dummy = other;
-	return matriks<K>::operator==(other);
+	return matriks<K>::operator==(dummy);
 }
 
 template<typename K>
@@ -204,7 +216,7 @@ bool matriks<K>::operator==(vector<K> other)
 /* Compares 'other' as an Mx1 Matrix */
 {
 	matriks<K> dummy = other;
-	return matriks<K>::operator==(other);
+	return matriks<K>::operator==(dummy);
 }
 
 template<typename K>
@@ -212,7 +224,7 @@ bool matriks<K>::operator==(vector<vector<K>> other)
 /* Compares 'other' as an MxN Matrix */
 {
 	matriks<K> dummy = other;
-	return matriks<K>::operator==(other);
+	return matriks<K>::operator==(dummy);
 }
 
 template<typename K>
