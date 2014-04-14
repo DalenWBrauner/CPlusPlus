@@ -847,32 +847,18 @@ void test_row05continued()
 	cout << "\tSuccess is defined as:\n";
 	cout << "\t*\tThe matriks is properly row-reduced to reduced echelon form.\n\n";
 
-	matriks<float> Test_Problem_A;
-	Test_Problem_A.resize(3,4);
-	vector<float> A0 = {1, 2, 3};
-	vector<float> A1 = {2, 4, 6};
-	vector<float> A2 = {4, 6, 9};
-	vector<float> A3 = {8, 8, 12};
-	Test_Problem_A[0] = A0;
-	Test_Problem_A[1] = A1;
-	Test_Problem_A[2] = A2;
-	Test_Problem_A[3] = A3;
+	vector<vector<float>> A = {{1, 2, 3}, {2, 4, 6}, {4, 6, 9}, {8, 8, 12}};
+	matriks<float> Test_Problem_A = A;
+
+	vector<vector<float>> B = {{1, 2, 4}, {2, 4, 5}, {4, 5, 4}, {5, 4, 2}};
+	matriks<float> Test_Problem_B = B;
+
 	cout << "Test_Problem_A";
 	cout << Test_Problem_A << "\n";
 	matriks<float> Program_Response_A = Test_Problem_A.reducedEchelon();
 	cout << "Program_Response_A";
-	cout << Program_Response_A << "\n";
+	cout << Program_Response_A << "\n\n";
 
-	matriks<float> Test_Problem_B;
-	Test_Problem_B.resize(3,4);
-	vector<float> B0 = {1, 2, 4};
-	vector<float> B1 = {2, 4, 5};
-	vector<float> B2 = {4, 5, 4};
-	vector<float> B3 = {5, 4, 2};
-	Test_Problem_B[0] = B0;
-	Test_Problem_B[1] = B1;
-	Test_Problem_B[2] = B2;
-	Test_Problem_B[3] = B3;
 	cout << "Test_Problem_B";
 	cout << Test_Problem_B << "\n";
 	matriks<float> Program_Response_B = Test_Problem_B.reducedEchelon();
@@ -1101,7 +1087,6 @@ void test_inv06()
 
 int main()
 {
-	cout << "main()\n{";
 /*	
 	test01();
 	test02();
@@ -1114,11 +1099,11 @@ int main()
 	test08();
 	test09();
 	test10();
-*/
+
 	cout << "Matrix Tests\n";
 	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
 	cout << "Matrix Operation Tests\n";
-/*
+
 	test_op01();
 	test_op02();
 //	test_op03();	Terminates, as it should!
@@ -1130,7 +1115,7 @@ int main()
 	test_op09();
 	test_op10();
 	test_op11();
-*/
+
 	cout << "Matrix Operation Tests\n";
 	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
 	cout << "Matrix Row-Operation Tests\n";
@@ -1140,13 +1125,13 @@ int main()
 	test_row03();
 	test_row04();
 	test_row04point5();		// Don't discriminate against the ugly!
-	test_row05();
+*/	test_row05();
 	test_row05continued();
-
+/*
 	cout << "Matrix Row-Operation Tests\n";
 	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
 	cout << "Matrix Inversion Tests\n";
-/*
+
 	test_inv01();
 	test_inv02();
 //	test_inv03();	Terminates, as it should!
@@ -1154,5 +1139,4 @@ int main()
 	test_inv05();
 	test_inv06();
 */
-	cout << "}\n";
 }

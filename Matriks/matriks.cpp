@@ -173,7 +173,7 @@ class matriks
 						{
 							//if (rEch[v][Q] != 0)
 							// Gotta do this madness, otherwise decimal errors get rowScaled to 1.
-							if ( abs( rEch[v][r] ) > zero_threshold)
+							if ( abs( rEch[v][Q] ) > zero_threshold)
 							{
 //								cout << "TRUE. 3\n";
 //								cout << "Swap, rowScale to 1.\n";
@@ -181,6 +181,7 @@ class matriks
 								rEch.rowop_scale(r, 1.0/rEch[v][r]);
 								Q = M+8;	// Only possible if we've found a nonzero.
 							}
+//							else { cout << "NOPE. -1\t"; }
 						}
 						if (Q != M+9)	// i.e. only possible if we've NOT found a nonzero,
 						{
