@@ -129,45 +129,49 @@ class matriks
 			}
 		}
 
-		matriks<float> reducedEchelon(float zero_threshold = 0.000001)
+		matriks<float> reducedEchelon(float zero_threshold = 0.000001, bool calc_inverse = false)
 		/* Returns the reduced echelon form of the matrix.
 		   Any absolute value less than the 'zero_threshold' is considered zero. */
 //		Feel free to use the commented-out cout statements for debugging!
 		{
 			matriks<float> rEch = Mtrx;
+			matriks<float> invrs;
+			invrs.becomeIdentity(N);
 
 			unsigned int r=0, v=0;
 			while ( (v<N) and (r<M) )
 			{
-//				cout << rEch << "\n";
-//				cout << v << ", " << r << "\n";
-//				cout << "Is the value 1?\t";
+				if (calc_inverse) { cout << invrs << "\n"; }
+				cout << rEch << "\n";
+				cout << v << ", " << r << "\n";
+				cout << "Is the value 1?\t";
 				if (rEch[v][r] == 1)
 				{
-//					cout << "TRUE. 0\n";
-//					cout << "Use rowAdd to reduce ALL OTHER values in the vector to 0.\n";
+					cout << "TRUE. 0\n";
+					cout << "Use rowAdd to reduce ALL OTHER values in the vector to 0.\n";
 					for (auto i=0 ; i<M ; i++)
 					{
 						if (i != r)
 						{
+							cout << "Adding row " << r << " to row " << i << " (* " << rEch[v][i] << ")\n";
+							if (calc_inverse) { invrs.rowop_add(r, i, -rEch[v][i]); }
 							rEch.rowop_add(r, i, -rEch[v][i]);
-//							cout << "I think I'm adding " << r  << " to " << i << " * " << -rEch[v][i] << "\n";
 						}
 					}
-//					cout << "Repeat for next row/vector.\n";
+					cout << "Repeat for next row/vector.\n";
 					v++;
 					r++;
 				}
 				else
 				{
-//					cout << "FALSE. 1\n";
-//					cout << "Is it 0?.\t";
+					cout << "FALSE. 1\n";
+					cout << "Is it 0?.\t";
 					//if (rEch[v][r] == 0)
 					// Gotta do this madness, otherwise decimal errors get rowScaled to 1.
 					if ( abs( rEch[v][r] ) < zero_threshold)
 					{
-//						cout << "TRUE. 2\n";
-//						cout << "Are any BELOW values in the vector nonzero?\t";
+						cout << "TRUE. 2\n";
+						cout << "Are any BELOW values in the vector nonzero?\t";
 						unsigned long Q;
 						for (Q=r+1; Q<M ; Q++)
 						{
@@ -175,29 +179,33 @@ class matriks
 							// Gotta do this madness, otherwise decimal errors get rowScaled to 1.
 							if ( abs( rEch[v][Q] ) > zero_threshold)
 							{
-//								cout << "TRUE. 3\n";
-//								cout << "Swap, rowScale to 1.\n";
+								cout << "TRUE. 3\n";
+								cout << "Swap, rowScale to 1.\n";
+								if (calc_inverse) { invrs.rowop_swap(r, Q); }
 								rEch.rowop_swap(r, Q);
+								if (calc_inverse) { invrs.rowop_scale(r, 1.0/rEch[v][r]); }
 								rEch.rowop_scale(r, 1.0/rEch[v][r]);
 								Q = M+8;	// Only possible if we've found a nonzero.
 							}
-//							else { cout << "NOPE. -1\t"; }
+							else { cout << "NOPE. -1\t"; }
 						}
 						if (Q != M+9)	// i.e. only possible if we've NOT found a nonzero,
 						{
-//							cout << "FALSE. 4\n";
-//							cout << "Repeat for next vector.\n";
+							cout << "FALSE. 4\n";
+							cout << "Repeat for next vector.\n";
 							v++;
 						}
 					}
 					else
 					{
-//						cout << "FALSE. 5\n";
-//						cout << "rowScale it to 1.\n";
+						cout << "FALSE. 5\n";
+						cout << "rowScale it to 1.\n";
+						if (calc_inverse) { invrs.rowop_scale(r, 1.0/rEch[v][r]); }
 						rEch.rowop_scale(r, 1.0/rEch[v][r]);
 					}
 				}
 			}
+			if (calc_inverse)	{ return invrs; }
 			return rEch;
 		}
 
@@ -252,6 +260,12 @@ class matriks
 			matriks<K> I;
 			I.becomeIdentity(N);
 			return (other * me == I);
+		}
+
+		matriks<K> inverse()
+		{
+			matriks<K> Original = Mtrx;
+			return Original.reducedEchelon(0.000001, true);
 		}
 };
 		
