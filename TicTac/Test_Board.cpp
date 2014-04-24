@@ -91,7 +91,7 @@ void Test03()
 
 int main()
 {
-	cout << "~~~~~\tTEST01()\n";	Test01();
-	cout << "~~~~~\tTEST02()\n";	Test02();
-	cout << "~~~~~\tTEST03()\n";	Test03();
+	cout << "\n~~~~~\tTEST01()\t~~~~~\n";	Test01();
+	cout << "\n~~~~~\tTEST02()\t~~~~~\n";	Test02();
+	cout << "\n~~~~~\tTEST03()\t~~~~~\n";	Test03();
 }

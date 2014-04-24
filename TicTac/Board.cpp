@@ -25,7 +25,11 @@ class ToeBoard
 		for (auto x=0; x<3; x++) {
 			for (auto y=0; y<3; y++) {
 				if (tb.EMPTY[x][y])	{s << " ";}
-				else				{s << tb.XOXO[x][y];}
+				else
+				{
+					if (tb.XOXO[x][y])	{cout << "X";}
+					else				{cout << "O";}
+				}
 				if (y != 2)	{s << "|";}
 			}
 			if (x != 2)	{ cout << "\n-+-+-\n"; }
