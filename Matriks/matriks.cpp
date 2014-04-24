@@ -319,11 +319,6 @@ matriks<K>::matriks(const vector<vector<K>> &v)
 // Standard Operation Methods
 ///
 
-//		bool operator==(K &other);					// Compare as 1x1 Matrix
-//		bool operator==(vector<K> &other);			// Compare as Mx1 Matrix
-//		bool operator==(vector<vector<K>> &other);	// Compare as MxN Matrix
-//		bool operator==(matriks<K> &other);			
-
 template<typename K>
 bool matriks<K>::operator==(K other)
 /* Compares 'other' as a 1x1 Matrix */
