@@ -38,12 +38,12 @@ class ToeBoard
 		return(s);
 	}
 
+	// Debug methods
 	void checkYourself()
 	/* Couts private variables */
 	{
 		// debug
 		cout << "debug: " << debug << ";\n";
-	
 		// XOXO
 		cout << "XOXO:\n";
 		for (auto x=0; x<3; x++) {
@@ -54,7 +54,6 @@ class ToeBoard
 			if (x != 2)	{ cout << "\n-+-+-\n"; }
 		}
 		cout << "\n";
-	
 		// EMPTY
 		cout << "EMPTY:\n";
 		for (auto x=0; x<3; x++) {
@@ -65,11 +64,28 @@ class ToeBoard
 			if (x != 2)	{ cout << "\n-+-+-\n"; }
 		}
 		cout << "\n";
-	
 		// HOW_EMPTY
 		cout << "HOW_EMPTY: " << HOW_EMPTY << ";\n";
 	}
 
+	void english_Turn()
+	{
+		cout << "TURN " << whichTurn();
+		if (whoseTurn()) {cout << "; X's MOVE.\n";}
+		else			 {cout << "; O's MOVE.\n";}
+	}
+
+	void english_gameOver()
+	{
+		short n = gameOver();
+		if		(n==-1){ cout << "GAME NOT YET OVER.\n";}
+		else if	(n== 0){ cout << "GAME OVER; O WINS.\n";}
+		else if (n== 1){ cout << "GAME OVER; X WINS.\n";}
+		else if (n== 2){ cout << "GAME OVER; NO WINNER.\n";}
+		else {cout << "Uh... Have a look for yourself: " << n << "\n";}
+	}
+
+	// Info methods
 	short whichTurn()
 	/* Returns how many turns have passed */
 	{ return (9 - HOW_EMPTY); }
@@ -92,8 +108,77 @@ class ToeBoard
 		if (Xs > Os)	{return(0);}
 		else			{return(1);}
 	}
+
+	bool isEmpty(short x, short y)
+	{ return(EMPTY[y][x]); }
+
+	short gameOver()
+	/* returns:
+	-1 if the game is not over
+	0 if Os won
+	1 if Xs won
+	2 if the game is a tie
+	*/
+	{
+		// Checks 3 spaces; should all of them be empty, the game cannot have been won.
+		// Check the center isn't empty
+		if (!EMPTY[1][1])
+		{
+			// Check the redundant diagonal
+			if (!EMPTY[0][0] && !EMPTY[2][2] &&
+				(XOXO[0][0]==XOXO[1][1]) && (XOXO[2][2]==XOXO[1][1]))
+				{ return(XOXO[1][1]);}
+			// Check the other diagonal
+			if (!EMPTY[0][2] && !EMPTY[2][0] &&
+				(XOXO[0][2]==XOXO[1][1]) && (XOXO[2][0]==XOXO[1][1]))
+				{ return(XOXO[1][1]);}
+			// Check the center row
+			if (!EMPTY[0][1] && !EMPTY[2][1] &&
+				(XOXO[0][1]==XOXO[1][1]) && (XOXO[2][1]==XOXO[1][1]))
+				{ return(XOXO[1][1]);}
+			// Check the center column
+			if (!EMPTY[1][0] && !EMPTY[1][2] &&
+				(XOXO[1][0]==XOXO[1][1]) && (XOXO[1][2]==XOXO[1][1]))
+				{ return(XOXO[1][1]);}
+		}
+		// Check the top-left corner isn't empty
+		if (!EMPTY[0][0])
+		{
+			// Checking the top row
+			if (!EMPTY[0][1] && !EMPTY[0][2] &&
+				(XOXO[0][1]==XOXO[0][0]) && (XOXO[0][2]==XOXO[0][0]))
+				{ return(XOXO[0][0]);}
+			// Checking the left column
+			if (!EMPTY[1][0] && !EMPTY[2][0] &&
+				(XOXO[1][0]==XOXO[0][0]) && (XOXO[2][0]==XOXO[0][0]))
+				{ return(XOXO[0][0]);}
+		}
+		// Check the bottom-right corner isn't empty
+		if (!EMPTY[2][2])
+		{
+			// Checking the bottom row
+			if (!EMPTY[2][1] && !EMPTY[2][0] &&
+				(XOXO[2][1]==XOXO[2][2]) && (XOXO[2][0]==XOXO[2][2]))
+				{ return(XOXO[2][2]);}
+			// Checking the right column
+			if (!EMPTY[1][2] && !EMPTY[0][2] &&
+				(XOXO[1][2]==XOXO[2][2]) && (XOXO[0][2]==XOXO[2][2]))
+				{ return(XOXO[2][2]);}
+		}
+		// If there is no victory, then check for a tie.
+		if (HOW_EMPTY == 0) {return  2;}
+		// No victory and no tie means the game is not over.
+		else				{return -1;}
+	}
 	
-			
+	
+	// Interactive methods
+	void takeTurn(short x, short y, bool xoxo)
+	{
+		XOXO[y][x] = xoxo;
+		EMPTY[y][x] = 0;
+		HOW_EMPTY--;
+	}
 };
 
 /* Create empty board */
@@ -147,7 +232,6 @@ ToeBoard::ToeBoard(bool dbg, boolGrid xoxo, boolGrid empty)
 			if(EMPTY[x][y]) {HOW_EMPTY++;}
 		}
 	}
-
 	if (dbg)
 	{
 		cout << "Creating board w/ debug...\n";
