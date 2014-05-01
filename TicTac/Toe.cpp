@@ -19,7 +19,7 @@ void play(bool debug)
 			while (response < 1 || response > 9)
 			{
 				cout << "What was that? ";
-				response = cin.get();
+				cin >> response;
 			}
 			switch(response) {
 				case 1:		a=0; b=2; break;
