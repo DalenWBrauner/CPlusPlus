@@ -19,7 +19,7 @@ void play(bool debug)
 			while (response < 1 || response > 9)
 			{
 				cout << "What was that? ";
-				cin >> response;
+				response = cin.get();
 			}
 			switch(response) {
 				case 1:		a=0; b=2; break;
@@ -41,6 +41,7 @@ void play(bool debug)
 		}
 	}
 	ttt.english_gameOver();
+	cout << ttt;
 }
 
 int main()
@@ -51,5 +52,6 @@ int main()
 		play(0);
 		cout << "Enter 1 to play again. ";
 		cin >> j;
+		cout << "\n";
 	}
 }
