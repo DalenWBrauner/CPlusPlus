@@ -201,11 +201,59 @@ void Test02()
 	cout << "Tests:\t\t" << Tests << "\nSuccesses:\t" << Successes << "\n";
 }
 
+void Test03()
+// We test that the AI can spot winning moves
+{
+	int Tests = 0, Successes = 0;
+
+	AI ToeBot;
+	ToeBoard t0;
+
+	vector<short> NoWins = {3,3};
+	vector<short> v00 = {0,0};
+
+	Tests += 1;
+	if (ToeBot.anyWinningMoves(t0,0) == NoWins) {Successes += 1;}
+	else { cout << "Failed Test03.000\n"; }
+	Tests += 1;
+	if (ToeBot.anyWinningMoves(t0,1) == NoWins) {Successes += 1;}
+	else { cout << "Failed Test03.001\n"; }
+
+	t0.takeTurn(1,1,1);
+	
+	Tests += 1;
+	if (ToeBot.anyWinningMoves(t0,0) == NoWins) {Successes += 1;}
+	else { cout << "Failed Test03.002\n"; }
+	Tests += 1;
+	if (ToeBot.anyWinningMoves(t0,1) == NoWins) {Successes += 1;}
+	else { cout << "Failed Test03.003\n"; }
+
+	t0.takeTurn(2,2,1);
+	
+	Tests += 1;
+	if (ToeBot.anyWinningMoves(t0,0) == NoWins) {Successes += 1;}
+	else { cout << "Failed Test03.004\n"; }
+
+	Tests += 1;
+	if (ToeBot.anyWinningMoves(t0,1) == v00) {Successes += 1;}
+	else { cout << "Failed Test03.005\n"; }
+
+	cout << t0;
+	cout << "{" << ToeBot.anyWinningMoves(t0,1)[0] << "," << ToeBot.anyWinningMoves(t0,1)[1] << "}\n";
+	cout << ToeBot.tryTurn(t0,0,0) << "\n";
+
+	t0.takeTurn(0,0,1);
+	t0.english_gameOver();
+	
+
+	cout << "Tests:\t\t" << Tests << "\nSuccesses:\t" << Successes << "\n";
+}
+
 int main()
 {
 	cout << "\n~~~~~\tTEST01()\t~~~~~\n";	Test01();
 	cout << "\n~~~~~\tTEST02()\t~~~~~\n";	Test02();
-//	cout << "\n~~~~~\tTEST03()\t~~~~~\n";	Test03();
+	cout << "\n~~~~~\tTEST03()\t~~~~~\n";	Test03();
 //	cout << "\n~~~~~\tTEST04()\t~~~~~\n";	Test04();
 //	cout << "\n~~~~~\tTEST05()\t~~~~~\n";	Test05();
 //	cout << "\n~~~~~\tTEST06()\t~~~~~\n";	Test06();
