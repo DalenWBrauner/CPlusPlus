@@ -1,57 +1,114 @@
 #include <iostream>
 #include <vector>
+#include <string>
 #include "Board.cpp"
+#include "../TooNice.cpp"
 using namespace std;
 
-void play(bool debug)
+void human_turn(bool debug, ToeBoard &ttt)
+/* This code asks a human what move they'd like to make,
+and checks that their request is a valid move before making it." */
 {
-	ToeBoard ttt;
-	while (ttt.gameOver() < 0)
+	// Sets the human up with some 'incorrect' values
+	string response = "Wrong";
+	short a = -1, b = -1;
+
+	// While these values are 'incorrect'
+	while (a < 0 || b < 0)
 	{
-		cout << ttt;
-		ttt.english_Turn();
-		
-		short response = 99;
-		short a = -1, b = -1;
-		while (a < 0 || b < 0)
+		// Gets the human's response
+		getline(cin, response);
+
+		// If it was a valid response, assign it properly
+		if		(response == "1") { a=0; b=2; }
+		else if	(response == "2") { a=1; b=2; }
+		else if	(response == "3") { a=2; b=2; }
+		else if	(response == "4") { a=0; b=1; }
+		else if	(response == "5") { a=1; b=1; }
+		else if	(response == "6") { a=2; b=1; }
+		else if	(response == "7") { a=0; b=0; }
+		else if	(response == "8") { a=1; b=0; }
+		else if	(response == "9") { a=2; b=0; }
+		// If it wasn't, we'll have to ask again.
+		else	{ response = "Still wrong"; }
+
+
+		// So if it was wrong, ask again and skip the next bit.
+		if (response == "Still wrong") {cout << "What was that? ";}
+
+		// If the response was valid and the space is empty, take the turn!
+		else if (ttt.isEmpty(a,b))	{ ttt.takeTurn(a,b, ttt.whoseTurn() ); }
+
+		// If the response was valid but the space isn't empty, ask again!
+		else
 		{
-			cin >> response;
-			while (response < 1 || response > 9)
-			{
-				cout << "What was that? ";
-				cin >> response;
-			}
-			switch(response) {
-				case 1:		a=0; b=2; break;
-				case 2:		a=1; b=2; break;
-				case 3:		a=2; b=2; break;
-				case 4:		a=0; b=1; break;
-				case 5:		a=1; b=1; break;
-				case 6:		a=2; b=1; break;
-				case 7:		a=0; b=0; break;
-				case 8:		a=1; b=0; break;
-				case 9:		a=2; b=0; break;
-			}
-			if (ttt.isEmpty(a,b)) { ttt.takeTurn( a,b, ttt.whoseTurn()); }
-			else
-			{
-				a = -1; b = -1;
-				cout << "Sorry, that space isn't empty!\n";
-			}
+			a = -1; b = -1;
+			cout << "Sorry, that space isn't empty!\n";
 		}
 	}
+}
+
+void AI_turn(bool debug, ToeBoard &ttt)
+{
+	cout << "Uh QUICK PRETEND YOU'RE AN AI\n";
+	human_turn(debug, ttt);
+}
+
+void one_player(bool debug)
+/* Human v.s. AI gameplay */
+{
+	ToeBoard ttt;
+	bool itsTheHumansTurn = 1;
+	// While the game has yet to finish
+	while (ttt.gameOver() < 0)
+	{
+		// Display the board
+		cout << ttt;
+		ttt.english_Turn();
+
+		// Grab whose turn it is
+		itsTheHumansTurn = ttt.whoseTurn();
+
+		// And let them play!
+		if (itsTheHumansTurn)	{ human_turn(debug, ttt); }
+		else					{ AI_turn(debug, ttt); }
+	}
+
+	// Game over!
+	ttt.english_gameOver();
+	cout << ttt;
+}
+
+void two_player(bool debug)
+/* Human v.s. Human gameplay */
+{
+	ToeBoard ttt;
+	// While the game has yet to finish
+	while (ttt.gameOver() < 0)
+	{
+		// Display the board
+		cout << ttt;
+		ttt.english_Turn();
+
+		// And let them play!
+		human_turn(debug, ttt);
+	}
+
+	// Game over!
 	ttt.english_gameOver();
 	cout << ttt;
 }
 
 int main()
+/* Asks the user if && how they'd like to play. */
 {
-	bool j = 1;
-	while (j)
+	bool playing = 1;
+	bool players;
+	while (playing)
 	{
-		play(0);
-		cout << "Enter 1 to play again. ";
-		cin >> j;
-		cout << "\n";
+		players = askBoolNicely("How many additional players are there? ");
+		if (players)	{ two_player(0); }
+		else			{ one_player(0); }
+		playing = askBoolNicely("Enter 1 to play again, 0 to quit. ");
 	}
 }

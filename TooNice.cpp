@@ -7,6 +7,7 @@ Nice to meet you! My name is Dalen W. Brauner, and I hope you find these useful!
 */
 
 #include <assert.h>
+#include <string>
 #include <iostream>
 using namespace std;
 
@@ -18,4 +19,27 @@ void assertNicely(bool assertion, WhateverYouPlease message) {
 		cout << message << endl;
 		assert(false);
 	}
-};
+}
+
+bool askBoolNicely(string Question)
+/* Pesters the user until they respond with 1 or 0. */
+{
+	string response = "One of infinitely many wrong answers";
+	cout << Question;
+	getline( cin, response );
+	while ((response != "0") && (response != "1"))
+	{
+		response = "Still a wrong answer";
+		cout << "Terribly sorry, but I need you to respond with either 1 or 0. ";
+		getline( cin, response );
+	}
+	if		(response == "0") { return 0; }
+	else if	(response == "1") { return 1; }
+	else
+	{
+		cout << "I.. I have no idea how this happened... I'm so sorry.\nThe user said:\n";
+		cout << response;
+		cout << "\n(I hope that helped.)";
+	}
+	return 0;
+}
