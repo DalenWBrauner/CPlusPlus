@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "Board.cpp"
+#include "AI.cpp"
 #include "../TooNice.cpp"
 using namespace std;
 
@@ -48,16 +48,16 @@ and checks that their request is a valid move before making it." */
 	}
 }
 
-void AI_turn(bool debug, ToeBoard &ttt)
+void AI_turn(bool debug, ToeBoard &ttt, AI &ToeBot)
 {
-	cout << "Uh QUICK PRETEND YOU'RE AN AI\n";
-	human_turn(debug, ttt);
+	ToeBot.takeTurn(ttt);
 }
 
 void one_player(bool debug)
 /* Human v.s. AI gameplay */
 {
 	ToeBoard ttt;
+	AI ToeBot;
 	bool itsTheHumansTurn = 1;
 	// While the game has yet to finish
 	while (ttt.gameOver() < 0)
@@ -71,7 +71,7 @@ void one_player(bool debug)
 
 		// And let them play!
 		if (itsTheHumansTurn)	{ human_turn(debug, ttt); }
-		else					{ AI_turn(debug, ttt); }
+		else					{ AI_turn(debug, ttt, ToeBot); }
 	}
 
 	// Game over!
