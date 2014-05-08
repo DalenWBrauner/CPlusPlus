@@ -209,7 +209,7 @@ void Test03()
 	AI ToeBot;
 	ToeBoard t0;
 
-	vector<short> NoWins = {3,3};
+	vector<short> NoWins = {-1,-1};
 	vector<short> v00 = {0,0};
 
 	Tests += 1;
@@ -234,17 +234,18 @@ void Test03()
 	if (ToeBot.anyWinningMoves(t0,0) == NoWins) {Successes += 1;}
 	else { cout << "Failed Test03.004\n"; }
 
+	// This LOOKS like a victory, but really, the code CHECKS whose turn it is.
+	// X has gone twice and O has never gone!
 	Tests += 1;
-	if (ToeBot.anyWinningMoves(t0,1) == v00) {Successes += 1;}
+	if (ToeBot.anyWinningMoves(t0,1) == NoWins) {Successes += 1;}
 	else { cout << "Failed Test03.005\n"; }
 
-	cout << t0;
-	cout << "{" << ToeBot.anyWinningMoves(t0,1)[0] << "," << ToeBot.anyWinningMoves(t0,1)[1] << "}\n";
-	cout << ToeBot.tryTurn(t0,0,0) << "\n";
+	t0.takeTurn(1,2,0);
+	t0.takeTurn(2,1,0);
 
-	t0.takeTurn(0,0,1);
-	t0.english_gameOver();
-	
+	Tests += 1;
+	if (ToeBot.anyWinningMoves(t0,1) == v00) {Successes += 1;}
+	else { cout << "Failed Test03.006\n"; }
 
 	cout << "Tests:\t\t" << Tests << "\nSuccesses:\t" << Successes << "\n";
 }

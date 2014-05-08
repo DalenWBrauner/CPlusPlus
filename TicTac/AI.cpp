@@ -42,7 +42,7 @@ class AI
 			}
 		}
 		// If we've tried everything and haven't returned a victory yet
-		vector<short> FAILURE = {3, 3};
+		vector<short> FAILURE = {-1, -1};
 		return(FAILURE);
 	}
 /*
