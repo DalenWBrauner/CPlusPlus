@@ -8,9 +8,10 @@ class ToeBoard
 {
 	private:
 		bool debug;			// Whether or not we are debugging
-		boolGrid XOXO;		// Contains which spaces are 'X'=1 or 'O'=0
+		boolGrid XOXO;		// Contains which spaces are "X"=1 or "O"=0
 		boolGrid EMPTY;		// Contains which spaces are empty
 		short HOW_EMPTY;	// Contains how many spaces are empty
+		bool WHOSE_TURN;	// Contains whether it's X's turn (1) or O's turn (0).
 
 	public:
 		// Creation method
@@ -66,13 +67,15 @@ class ToeBoard
 		cout << "\n";
 		// HOW_EMPTY
 		cout << "HOW_EMPTY: " << HOW_EMPTY << ";\n";
+		// WHOSE_TURN
+		cout << "WHOSE_TURN: " << WHOSE_TURN << ";\n";
 	}
 
 	void english_Turn()
 	{
 		cout << "TURN " << whichTurn();
-		if (whoseTurn()) {cout << "; X's MOVE.\n";}
-		else			 {cout << "; O's MOVE.\n";}
+		if (WHOSE_TURN)	{cout << "; X's MOVE.\n";}
+		else			{cout << "; O's MOVE.\n";}
 	}
 
 	void english_gameOver()
@@ -89,8 +92,12 @@ class ToeBoard
 	short whichTurn()
 	/* Returns how many turns have passed */
 	{ return (9 - HOW_EMPTY); }
-	
+
 	bool whoseTurn()
+	/* Returns 1 if X's turn, 0 if O's turn */
+	{ return(WHOSE_TURN); }
+	
+	bool detectTurn()
 	/* Returns 1 if X's turn, 0 if O's turn */
 	{
 		short Xs = 0;
@@ -175,9 +182,10 @@ class ToeBoard
 	// Interactive methods
 	void takeTurn(short x, short y)
 	{
-		XOXO[y][x] = whoseTurn();
+		XOXO[y][x] = WHOSE_TURN;
 		EMPTY[y][x] = 0;
 		HOW_EMPTY--;
+		WHOSE_TURN = !WHOSE_TURN;
 	}
 };
 
@@ -188,6 +196,7 @@ ToeBoard::ToeBoard()
 	XOXO		= {{1,1,1}, {1,1,1}, {1,1,1}};
 	EMPTY		= {{1,1,1}, {1,1,1}, {1,1,1}};
 	HOW_EMPTY	= 9;
+	WHOSE_TURN	= 1;
 }
 
 
@@ -198,6 +207,7 @@ ToeBoard::ToeBoard(bool dbg)
 	XOXO		= {{1,1,1}, {1,1,1}, {1,1,1}};
 	EMPTY		= {{1,1,1}, {1,1,1}, {1,1,1}};
 	HOW_EMPTY	= 9;
+	WHOSE_TURN	= 1;
 	if (dbg)
 	{
 		cout << "Creating Empty board w/ debug...\n";
@@ -217,6 +227,7 @@ ToeBoard::ToeBoard(boolGrid xoxo, boolGrid empty)
 			if(EMPTY[x][y]) {HOW_EMPTY++;}
 		}
 	}
+	WHOSE_TURN	= detectTurn();
 }
 
 
@@ -232,6 +243,7 @@ ToeBoard::ToeBoard(bool dbg, boolGrid xoxo, boolGrid empty)
 			if(EMPTY[x][y]) {HOW_EMPTY++;}
 		}
 	}
+	WHOSE_TURN = detectTurn();
 	if (dbg)
 	{
 		cout << "Creating board w/ debug...\n";

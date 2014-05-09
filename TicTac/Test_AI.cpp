@@ -119,33 +119,32 @@ void Test02()
 	if (ToeBot.tryTurn(t0,2,2) == -1) {Successes += 1;}
 	else { cout << "Failed Test02.009\n"; }
 
-	t0.takeTurn(0,0,0);
+	t0.takeTurn(0,0);	// X's turn
 
 	Tests += 1;
 	if (ToeBot.tryTurn(t0,0,0) == 7) {Successes += 1;}
 	else { cout << "Failed Test02.010\n"; }
 
-	t0.takeTurn(1,1,0);
+	t0.takeTurn(1,0);	// O's turn
 
 	Tests += 1;
 	if (ToeBot.tryTurn(t0,0,0) == 7) {Successes += 1;}
 	else { cout << "Failed Test02.011\n"; }
 
 	Tests += 1;
-	if (ToeBot.tryTurn(t0,1,1) == 7) {Successes += 1;}
+	if (ToeBot.tryTurn(t0,1,0) == 7) {Successes += 1;}
 	else { cout << "Failed Test02.012\n"; }
 
-	Tests += 1;
-	if (ToeBot.tryTurn(t0,2,2) == -1) {Successes += 1;}
-	else { cout << "Failed Test02.013\n"; }
-
-	t0.takeTurn(1,0,1);
-	t0.takeTurn(0,1,1);
-	t0.takeTurn(0,2,1);
+	t0.takeTurn(1,1);	// X's turn
+	t0.takeTurn(0,1);	// O's turn
 
 	// First attempt at identifying a potential victory
 	Tests += 1;
-	if (ToeBot.tryTurn(t0,2,2) == 0) {Successes += 1;}
+	if (ToeBot.tryTurn(t0,2,2) == 1) {Successes += 1;}
+	else { cout << "Failed Test02.013\n"; }
+
+	Tests += 1;
+	if (ToeBot.tryTurn(t0,0,0) == 7) {Successes += 1;}
 	else { cout << "Failed Test02.014\n"; }
 
 	Tests += 1;
@@ -157,11 +156,11 @@ void Test02()
 	else { cout << "Failed Test02.016\n"; }
 
 	Tests += 1;
-	if (ToeBot.tryTurn(t0,0,2) == 7) {Successes += 1;}
+	if (ToeBot.tryTurn(t0,1,1) == 7) {Successes += 1;}
 	else { cout << "Failed Test02.017\n"; }
 
 	// Time to verify the game is over
-	t0.takeTurn(2,2,0);
+	t0.takeTurn(2,2);	// X's turn
 
 	Tests += 1;
 	if (ToeBot.tryTurn(t0,0,0) == 7) {Successes += 1;}
@@ -221,7 +220,7 @@ void Test03()
 	if (ToeBot.anyWinningMoves(t0,1) == NoWins) {Successes += 1;}
 	else { cout << "Failed Test03.001\n"; }
 
-	t0.takeTurn(1,1,1);
+	t0.takeTurn(1,1);	// X's turn
 	
 	Tests += 1;
 	if (ToeBot.anyWinningMoves(t0,0) == NoWins) {Successes += 1;}
@@ -230,23 +229,30 @@ void Test03()
 	if (ToeBot.anyWinningMoves(t0,1) == NoWins) {Successes += 1;}
 	else { cout << "Failed Test03.003\n"; }
 
-	t0.takeTurn(2,2,1);
+	t0.takeTurn(0,2);	// O's turn
+	t0.takeTurn(2,2);	// X's turn
+
+	// There is now a winning move for X at {0,0}. BUT!
+	// It is not X's turn! Therefore, the very next move (O's move) is not a winning move.
 	
 	Tests += 1;
 	if (ToeBot.anyWinningMoves(t0,0) == NoWins) {Successes += 1;}
 	else { cout << "Failed Test03.004\n"; }
 
-	// This LOOKS like a victory, but really, the code CHECKS whose turn it is.
-	// X has gone twice and O has never gone!
 	Tests += 1;
 	if (ToeBot.anyWinningMoves(t0,1) == NoWins) {Successes += 1;}
 	else { cout << "Failed Test03.005\n"; }
 
-	t0.takeTurn(1,2,0);
-	t0.takeTurn(2,1,0);
+	t0.takeTurn(2,0);	// O's turn
+
+	// There is still a winning move for X at {0,0}, and now it is X's turn.
 
 	Tests += 1;
 	if (ToeBot.anyWinningMoves(t0,1) == v00) {Successes += 1;}
+	else { cout << "Failed Test03.005\n"; }
+
+	Tests += 1;
+	if (ToeBot.anyWinningMoves(t0,0) == NoWins) {Successes += 1;}
 	else { cout << "Failed Test03.006\n"; }
 
 	cout << "Tests:\t\t" << Tests << "\nSuccesses:\t" << Successes << "\n";
