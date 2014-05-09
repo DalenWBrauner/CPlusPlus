@@ -83,12 +83,27 @@ class AI
 	void takeTurn(ToeBoard &ttt)
 	// Brute-force tries to pick the next empty place in-sequence
 	{
+		cout << "HAH, NOW IT'S MY TURN!\n";
 		if (ttt.gameOver() == -1)
 		{
-//			if (ttt.anyWinningMoves(ttt, != {3,3} )
-			
-			// Try the center and some corners first
-			if (ttt.isEmpty(1,1))	{ ttt.takeTurn(1,1); }
+			bool whoAmI = ttt.whoseTurn();
+
+			// First, check if you can win!
+			vector<short> cantWin = {-1,-1};
+
+			cout << "FIRST, I'M GOING TO SEE IF I CAN WIN!\n";
+			vector<short> winningMove = anyWinningMoves(ttt, whoAmI);
+			cout << "OHHHHH, INTERESTING....\n";
+
+			if (winningMove != cantWin)
+			{
+				cout << "MWAHAHAA, I WIN!\n";
+				ttt.takeTurn(winningMove[0],winningMove[1]);
+				cout << "HAH! AND THAT MEANS:\nYOU!\nLOSE!\n";
+			}
+
+			// Then try the center and most corners
+			else if (ttt.isEmpty(1,1))	{ ttt.takeTurn(1,1); }
 			else if (ttt.isEmpty(0,0))	{ ttt.takeTurn(0,0); }
 			else if (ttt.isEmpty(2,0))	{ ttt.takeTurn(2,0); }
 			else if (ttt.isEmpty(0,2))	{ ttt.takeTurn(0,2); }
@@ -99,15 +114,15 @@ class AI
 			else if (ttt.isEmpty(1,0))	{ ttt.takeTurn(1,0); }
 			else if (ttt.isEmpty(1,2))	{ ttt.takeTurn(1,2); }
 
-			// Final corner
+			// Then try the final corner
 			else if (ttt.isEmpty(2,2))	{ ttt.takeTurn(2,2); }
 
 			// Uh
 			else
-			{ cout << "I-I'm not sure how this happened, but I don't know what to do!\n"; }
+			{ cout << "W-Wait, I can't go anywhere! I thought the game wasn't over?\n"; }
 		}
 		else
-		{cout << "Wait, the game is already over; I can't make any moves!\n"; }
+		{cout << "The game is already over, I can't make any moves!\n"; }
 	}
 };
 
