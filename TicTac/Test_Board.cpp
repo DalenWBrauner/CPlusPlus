@@ -71,15 +71,15 @@ void Test04()
 /* Checks takeTurn() */
 {
 	ToeBoard ttt;			ttt.english_Turn();
-	ttt.takeTurn(2,0,1);	ttt.english_Turn();
-	ttt.takeTurn(2,1,0);	ttt.english_Turn();
-	ttt.takeTurn(0,2,1);	ttt.english_Turn();
-	ttt.takeTurn(1,1,0);	ttt.english_Turn();
-	ttt.takeTurn(0,1,1);	ttt.english_Turn();
-	ttt.takeTurn(0,0,0);	ttt.english_Turn();
-	ttt.takeTurn(2,2,1);	ttt.english_Turn();
-	ttt.takeTurn(1,2,0);	ttt.english_Turn();
-	ttt.takeTurn(1,0,1);	ttt.english_Turn();
+	ttt.takeTurn(2,0);	ttt.english_Turn();
+	ttt.takeTurn(2,1);	ttt.english_Turn();
+	ttt.takeTurn(0,2);	ttt.english_Turn();
+	ttt.takeTurn(1,1);	ttt.english_Turn();
+	ttt.takeTurn(0,1);	ttt.english_Turn();
+	ttt.takeTurn(0,0);	ttt.english_Turn();
+	ttt.takeTurn(2,2);	ttt.english_Turn();
+	ttt.takeTurn(1,2);	ttt.english_Turn();
+	ttt.takeTurn(1,0);	ttt.english_Turn();
 }
 
 void Test05()
@@ -89,7 +89,7 @@ void Test05()
 	cout << ttt;
 	ttt.english_gameOver(); cout << "\n";
 
-	ttt.takeTurn(1,0,1);
+	ttt.takeTurn(1,0);
 	cout << ttt;
 	ttt.english_gameOver(); cout << "\n";
 
@@ -125,26 +125,27 @@ void Test05()
 	cout << tt7;
 	tt7.english_gameOver(); cout << "\n";
 
-	tt7.takeTurn(0,2,1);
+	tt7.takeTurn(0,2);
 	cout << tt7;
 	tt7.english_gameOver(); cout << "\n";
 
-	tt7.takeTurn(2,1,0);
+	tt7.takeTurn(2,1);
 	cout << tt7;
 	tt7.english_gameOver(); cout << "\n";
 }
+
 
 void Test06()
 /* Checks creating boards from other boards */
 {
 	ToeBoard tttOriginal;
-	tttOriginal.takeTurn(1,1,1);
+	tttOriginal.takeTurn(1,1);
 	cout << tttOriginal;
 
 	ToeBoard ttt2 = tttOriginal;
 	ToeBoard ttt3 = tttOriginal;
-	ttt2.takeTurn(0,0,0);
-	ttt3.takeTurn(2,2,0);
+	ttt2.takeTurn(0,0);
+	ttt3.takeTurn(2,2);
 	cout << ttt2;
 	cout << ttt3;
 }

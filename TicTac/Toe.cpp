@@ -37,7 +37,7 @@ and checks that their request is a valid move before making it." */
 		if (response == "Still wrong") {cout << "What was that? ";}
 
 		// If the response was valid and the space is empty, take the turn!
-		else if (ttt.isEmpty(a,b))	{ ttt.takeTurn(a,b, ttt.whoseTurn() ); }
+		else if (ttt.isEmpty(a,b))	{ ttt.takeTurn(a,b); }
 
 		// If the response was valid but the space isn't empty, ask again!
 		else

@@ -173,9 +173,9 @@ class ToeBoard
 	
 	
 	// Interactive methods
-	void takeTurn(short x, short y, bool xoxo)
+	void takeTurn(short x, short y)
 	{
-		XOXO[y][x] = xoxo;
+		XOXO[y][x] = whoseTurn();
 		EMPTY[y][x] = 0;
 		HOW_EMPTY--;
 	}

@@ -9,16 +9,16 @@ void Test01()
 	AI ToeBot;
 
 	ToeBoard t0, t1, t2, t3;
-	t1.takeTurn(0,0,t1.whoseTurn());
-	t2.takeTurn(1,1,t2.whoseTurn());
-	t3.takeTurn(0,2,t3.whoseTurn());
+	t1.takeTurn(0,0);
+	t2.takeTurn(1,1);
+	t3.takeTurn(0,2);
 	ToeBoard t4 = t1, t5 = t2, t6 = t3;
-	t4.takeTurn(1,1,t4.whoseTurn());
-	t5.takeTurn(0,1,t5.whoseTurn());
-	t5.takeTurn(2,0,t5.whoseTurn());
-	t6.takeTurn(2,1,t6.whoseTurn());
-	t6.takeTurn(1,2,t6.whoseTurn());
-	t6.takeTurn(2,2,t6.whoseTurn());
+	t4.takeTurn(1,1);
+	t5.takeTurn(0,1);
+	t5.takeTurn(2,0);
+	t6.takeTurn(2,1);
+	t6.takeTurn(1,2);
+	t6.takeTurn(2,2);
 
 	cout << "Before AI\n" << t0;
 	ToeBot.takeTurn(t0);
@@ -75,6 +75,7 @@ void Test01()
 }
 
 void Test02()
+// Testing .tryTurn();
 // We test if the AI is able to correctly forsee the immediate outcome of a move
 {
 	int Tests = 0, Successes = 0;
@@ -202,6 +203,7 @@ void Test02()
 }
 
 void Test03()
+// Testing .anyWinningMoves();
 // We test that the AI can spot winning moves
 {
 	int Tests = 0, Successes = 0;

@@ -24,7 +24,7 @@ class AI
 		else if (!ttt.isEmpty(x,y)) {return 7;}
 		else
 		{
-			ttt.takeTurn(x,y,ttt.whoseTurn());
+			ttt.takeTurn(x,y);
 			return ttt.gameOver();
 		}
 	}
@@ -83,25 +83,24 @@ class AI
 	void takeTurn(ToeBoard &ttt)
 	// Brute-force tries to pick the next empty place in-sequence
 	{
-		bool whoAmI = ttt.whoseTurn();
 		if (ttt.gameOver() == -1)
 		{
 //			if (ttt.anyWinningMoves(ttt, != {3,3} )
 			
 			// Try the center and some corners first
-			if (ttt.isEmpty(1,1))	{ ttt.takeTurn(1,1,whoAmI); }
-			else if (ttt.isEmpty(0,0))	{ ttt.takeTurn(0,0,whoAmI); }
-			else if (ttt.isEmpty(2,0))	{ ttt.takeTurn(2,0,whoAmI); }
-			else if (ttt.isEmpty(0,2))	{ ttt.takeTurn(0,2,whoAmI); }
+			if (ttt.isEmpty(1,1))	{ ttt.takeTurn(1,1); }
+			else if (ttt.isEmpty(0,0))	{ ttt.takeTurn(0,0); }
+			else if (ttt.isEmpty(2,0))	{ ttt.takeTurn(2,0); }
+			else if (ttt.isEmpty(0,2))	{ ttt.takeTurn(0,2); }
 
 			// Then try the edges
-			else if (ttt.isEmpty(0,1))	{ ttt.takeTurn(0,1,whoAmI); }
-			else if (ttt.isEmpty(2,1))	{ ttt.takeTurn(2,1,whoAmI); }
-			else if (ttt.isEmpty(1,0))	{ ttt.takeTurn(1,0,whoAmI); }
-			else if (ttt.isEmpty(1,2))	{ ttt.takeTurn(1,2,whoAmI); }
+			else if (ttt.isEmpty(0,1))	{ ttt.takeTurn(0,1); }
+			else if (ttt.isEmpty(2,1))	{ ttt.takeTurn(2,1); }
+			else if (ttt.isEmpty(1,0))	{ ttt.takeTurn(1,0); }
+			else if (ttt.isEmpty(1,2))	{ ttt.takeTurn(1,2); }
 
 			// Final corner
-			else if (ttt.isEmpty(2,2))	{ ttt.takeTurn(2,2,whoAmI); }
+			else if (ttt.isEmpty(2,2))	{ ttt.takeTurn(2,2); }
 
 			// Uh
 			else
