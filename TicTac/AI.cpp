@@ -30,7 +30,7 @@ class AI
 	}
 
 	vector<short> anyWinningMoves(ToeBoard ttt, bool whoAmI)
-	// Returns an {x,y} winning move if it exists, otherwise returns {-1,-1}
+	// Returns the first {x,y} winning move if it exists, otherwise returns {-1,-1}
 	{
 		// Tries every move
 		for (short a=0; a<3; ++a) {
@@ -45,65 +45,169 @@ class AI
 		vector<short> FAILURE = {-1, -1};
 		return(FAILURE);
 	}
-/*
-	vector<vector<short>> goodIdeas(ToeBoard ttt, bool whoAmI)
-	// Returns a list of "good" moves
+
+	vector<short> anyDefensiveMoves(ToeBoard ttt, bool whoAmI)
+	// Returns the first {x,y} defensive move if it exists, otherwise returns {-1,-1}
+	// A 'defensive' move is one that immediately prevents an opponent from winning.
 	{
-//		vector<vector<short>> defensive_moves;
-		vector<vector<short>> remaining_moves;
-		short result;
-
-		// Tries every move
-		for (auto a=0; a<3; ++a) {
-			for (auto b=0; b<3; ++b) {
-				result = tryTurn(ttt, a,b);
-
-				// If the move means you win, IMMEDIATELY do so
-				if (result == whoAmI)
+//		cout << "Okay people, let's take this from the top...\n";
+		// Make an arbitrary move.
+		short arb, itrary;
+		bool breakingOut = 0;
+//		cout << "We're starting our for loop, and";
+		for (short A=0; A<3; ++A)
+		{
+			for (short B=0; B<3; ++B)
+			{
+//				cout << ".";
+				if (ttt.isEmpty(A,B))
 				{
-					vector<vector<short>> WINNING_MOVE = {{a,b}};
-					return (WINNING_MOVE);
+					arb = A; itrary = B;
+					breakingOut = 1;
+//					cout << "we're out.\n";
+					break;
 				}
-				// If the move is at least POSSIBLE
-				else if (result != 7)
-				{ remaining_moves.push_back({a,b}); }
 			}
+			if (breakingOut) {break;}
 		}
-		return remaining_moves;
+//		cout << "Okay good, we made it out.\n";
+		ToeBoard ttt_arbitrary = ttt;
+//		cout << "ToeBoard ttt_arbitrary = ttt;\n";
+		ttt_arbitrary.takeTurn(arb,itrary);
+//		cout << "ttt_arbitrary.takeTurn(arb,itrary);\n";
+		
+		// Check if your opponent now has any winning moves.
+		vector<short> nonExistant = {-1,-1};
+//		cout << "vector<short> nonExistant = {-1,-1};\n";
+		vector<short> theirWinningMoves = anyWinningMoves(ttt_arbitrary, !whoAmI);
+//		cout << "vector<short> theirWinningMoves = anyWinningMoves(ttt_arbitrary, !whoAmI);\n";
 
-//		// If there aren't any winning moves, send off your defensive ones!
-//		if (defensive_moves.size() != 0)
-//		{ return defensive_moves; }
-//		// And if there aren't any defensive moves, send off literally anything else!
-//		else
-//		{ return remaining_moves; }
+		// If they do, block 'em!
+		if (theirWinningMoves != nonExistant)
+		{
+//			cout << "Hey, theirWinningMoves != nonExistant\n";
+			return(theirWinningMoves);
+		}
+
+		// If they don't have any winning moves,
+		//it might be because our last move prevented it.
+		// Pick a new move and check the old one.
+
+		// Find a new move
+		short dif, ferent;
+		breakingOut = 0;
+//		cout << "Okay, so there's no defensive moves the first time.\n";
+//		cout << "So this is arb: " << arb << "\n";
+//		cout << "And this is itrary: " << itrary << "\n";
+//		cout << "And this is itrary+1: " << (itrary+1) << "\n";
+		for (short A=0; A<3; ++A)
+		{
+			for (short B=0; B<3; ++B)
+			{
+//				cout << A << ", " << B << "\n";
+				if (ttt.isEmpty(A,B) && !(A == arb && B == itrary))
+				{
+//					cout << "Found an empty one: " << A << ", " << B << "\n";
+					dif = A; ferent = B;
+//					cout << "Again: " << dif << ", " << ferent << "\n";
+					breakingOut = 1;
+					break;
+				}
+//				else
+//				{ cout << "Not empty: " << A << ", " << B << "\n";}
+			}
+			if (breakingOut) {break;}
+		}
+//		cout << "We've found a second arbitrary move,\n";
+//		cout << "So this is arb: " << arb << "\n";
+//		cout << "And this is itrary: " << itrary << "\n";
+//		cout << "And this is itrary+1: " << (itrary+1) << "\n";
+		// Make that move
+		cout << dif << ", " << ferent << "\n";
+		ttt.takeTurn(dif,ferent);
+//		cout << "We've made a second arbitrary move,\n";
+
+		// Okay, so check: if they move and win, block them!
+		if (tryTurn(ttt, arb,itrary) == !whoAmI)
+		{
+//			cout << "And it resulted in their victory!\n";
+			vector<short> lucky_guess = {arb, itrary};
+			return(lucky_guess);
+		}
+		else
+		{
+//			cout << "And it changed nothing!\n";
+			vector<short> anything_goes = {-1,-1};
+			return(anything_goes);
+		}
 	}
-*/
 
 	void takeTurn(ToeBoard &ttt)
-	// Brute-force tries to pick the next empty place in-sequence
+	// BEEP BOOP TRY TO TAKE BEST TURN
 	{
 		cout << "HAH, NOW IT'S MY TURN!\n";
-		if (ttt.gameOver() == -1)
+
+		// If the game is already over,		
+		if (ttt.gameOver() != -1)
+		{ cout << "HAHAHA- aww, the game is already over...\n"; }
+
+		// If there's only one move left, find it and play it.
+		else if (ttt.whichTurn() == 8)
 		{
+			cout << "Good game!\n";
+			for (short A=0; A<3; ++A) {
+				for (short B=0; B<3; ++B) {
+					if (ttt.isEmpty(A,B))
+					{
+						ttt.takeTurn(A,B);
+						return;
+					}
+				}
+			}
+			cout << "What? Wait, I thought there was just one move left...?\n";
+		}
+
+		// So if there's more than one option, you've got some thinking to do.
+		else if (ttt.gameOver() == -1 && ttt.whichTurn() != 8)
+		{
+			// Figure out who you are,
 			bool whoAmI = ttt.whoseTurn();
 
-			// First, check if you can win!
+			// Check if you can win,
 			vector<short> cantWin = {-1,-1};
 
 			cout << "FIRST, I'M GOING TO SEE IF I CAN WIN!\n";
 			vector<short> winningMove = anyWinningMoves(ttt, whoAmI);
 			cout << "OHHHHH, INTERESTING....\n";
 
+			// And if you can, do it!
 			if (winningMove != cantWin)
 			{
 				cout << "MWAHAHAA, I WIN!\n";
 				ttt.takeTurn(winningMove[0],winningMove[1]);
 				cout << "HAH! AND THAT MEANS:\nYOU!\nLOSE!\n";
+				return;
 			}
 
+			// No luck?
+			cout << "HRM...\n";
+			vector<short> defensiveMove = anyDefensiveMoves(ttt, whoAmI);
+			cout << "HRRMMMMMM...\n";
+
+			// Then check if you can block your opponent from winning!
+			if (defensiveMove != cantWin)
+			{
+				cout << "WELL, IF I CAN'T WIN, I WON'T LET YOU, EITHER!\n";
+				ttt.takeTurn(defensiveMove[0],defensiveMove[1]);
+				cout << "AND YOU THOUGHT YOU COULD FOOL ME!\n";
+				return;
+			}
+			
+			// Nothing to block?
+			cout << "HA! TAKE THAT!\n";
+
 			// Then try the center and most corners
-			else if (ttt.isEmpty(1,1))	{ ttt.takeTurn(1,1); }
+			if (ttt.isEmpty(1,1))	{ ttt.takeTurn(1,1); }
 			else if (ttt.isEmpty(0,0))	{ ttt.takeTurn(0,0); }
 			else if (ttt.isEmpty(2,0))	{ ttt.takeTurn(2,0); }
 			else if (ttt.isEmpty(0,2))	{ ttt.takeTurn(0,2); }
@@ -119,10 +223,10 @@ class AI
 
 			// Uh
 			else
-			{ cout << "W-Wait, I can't go anywhere! I thought the game wasn't over?\n"; }
+			{ cout << "W-Wait, I can't go anywhere! I thought the game wasn't over!\n"; }
 		}
 		else
-		{cout << "The game is already over, I can't make any moves!\n"; }
+		{ cout << "Hrm, I'm not sure how this happened.\n"; }
 	}
 };
 

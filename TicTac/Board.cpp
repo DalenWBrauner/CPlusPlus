@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
-#include "../Trickster.cpp"
 using namespace std;
 typedef vector<vector<bool>> boolGrid;
+typedef vector<vector<short>> shortGrid;
 
 class ToeBoard
 {
@@ -12,14 +12,36 @@ class ToeBoard
 		boolGrid EMPTY;		// Contains which spaces are empty
 		short HOW_EMPTY;	// Contains how many spaces are empty
 		bool WHOSE_TURN;	// Contains whether it's X's turn (1) or O's turn (0).
+		bool detectTurn()	// Returns 1 if X's turn, 0 if O's turn
+		{
+			short Xs = 0;
+			short Os = 0;
+			for (auto x=0; x<3; x++) {
+				for (auto y=0; y<3; y++) {
+					if (!EMPTY[x][y])
+					{
+						if (XOXO[x][y])	{Xs++;}
+						else			{Os++;}
+					}
+				}
+			}
+			// X always goes first
+			if (Xs > Os)	{return(0);}
+			else			{return(1);}
+		}
 
 	public:
-		// Creation method
+		//////////
+		// Creation Methods
+		///
 		ToeBoard();											// Create empty board
 		ToeBoard(bool dbg);									// Create empty board w/ debug setting
 		ToeBoard(boolGrid xoxo, boolGrid empty);			// Create preset board
 		ToeBoard(bool dbg, boolGrid xoxo, boolGrid empty);	// Create preset board w/ debug setting
 
+	//////////
+	// Presentation Methods
+	///
 	friend ostream& operator<<(ostream& s, ToeBoard tb)
 	/* Allows output via '<<' */
 	{
@@ -39,38 +61,6 @@ class ToeBoard
 		return(s);
 	}
 
-	// Debug methods
-	void checkYourself()
-	/* Couts private variables */
-	{
-		// debug
-		cout << "debug: " << debug << ";\n";
-		// XOXO
-		cout << "XOXO:\n";
-		for (auto x=0; x<3; x++) {
-			for (auto y=0; y<3; y++) {
-				cout << XOXO[x][y];
-				if (y != 2)	{cout << "|";}
-			}
-			if (x != 2)	{ cout << "\n-+-+-\n"; }
-		}
-		cout << "\n";
-		// EMPTY
-		cout << "EMPTY:\n";
-		for (auto x=0; x<3; x++) {
-			for (auto y=0; y<3; y++) {
-				cout << EMPTY[x][y];
-				if (y != 2)	{cout << "|";}
-			}
-			if (x != 2)	{ cout << "\n-+-+-\n"; }
-		}
-		cout << "\n";
-		// HOW_EMPTY
-		cout << "HOW_EMPTY: " << HOW_EMPTY << ";\n";
-		// WHOSE_TURN
-		cout << "WHOSE_TURN: " << WHOSE_TURN << ";\n";
-	}
-
 	void english_Turn()
 	{
 		cout << "TURN " << whichTurn();
@@ -86,9 +76,11 @@ class ToeBoard
 		else if (n== 1){ cout << "GAME OVER; X WINS.\n";}
 		else if (n== 2){ cout << "GAME OVER; NO WINNER.\n";}
 		else {cout << "Uh... Have a look for yourself: " << n << "\n";}
-	}
 
+	}
+	//////////
 	// Info methods
+	///
 	short whichTurn()
 	/* Returns how many turns have passed */
 	{ return (9 - HOW_EMPTY); }
@@ -96,25 +88,6 @@ class ToeBoard
 	bool whoseTurn()
 	/* Returns 1 if X's turn, 0 if O's turn */
 	{ return(WHOSE_TURN); }
-	
-	bool detectTurn()
-	/* Returns 1 if X's turn, 0 if O's turn */
-	{
-		short Xs = 0;
-		short Os = 0;
-		for (auto x=0; x<3; x++) {
-			for (auto y=0; y<3; y++) {
-				if (!EMPTY[x][y])
-				{
-					if (XOXO[x][y])	{Xs++;}
-					else			{Os++;}
-				}
-			}
-		}
-		// X always goes first
-		if (Xs > Os)	{return(0);}
-		else			{return(1);}
-	}
 
 	bool isEmpty(short x, short y)
 	{ return(EMPTY[y][x]); }
@@ -178,14 +151,49 @@ class ToeBoard
 		else				{return -1;}
 	}
 	
-	
+	//////////
 	// Interactive methods
+	///
 	void takeTurn(short x, short y)
 	{
 		XOXO[y][x] = WHOSE_TURN;
 		EMPTY[y][x] = 0;
 		HOW_EMPTY--;
 		WHOSE_TURN = !WHOSE_TURN;
+	}
+
+	//////////
+	// Debugging Methods
+	///
+	void checkYourself()
+	/* Couts private variables */
+	{
+		// debug
+		cout << "debug: " << debug << ";\n";
+		// XOXO
+		cout << "XOXO:\n";
+		for (auto x=0; x<3; x++) {
+			for (auto y=0; y<3; y++) {
+				cout << XOXO[x][y];
+				if (y != 2)	{cout << "|";}
+			}
+			if (x != 2)	{ cout << "\n-+-+-\n"; }
+		}
+		cout << "\n";
+		// EMPTY
+		cout << "EMPTY:\n";
+		for (auto x=0; x<3; x++) {
+			for (auto y=0; y<3; y++) {
+				cout << EMPTY[x][y];
+				if (y != 2)	{cout << "|";}
+			}
+			if (x != 2)	{ cout << "\n-+-+-\n"; }
+		}
+		cout << "\n";
+		// HOW_EMPTY
+		cout << "HOW_EMPTY: " << HOW_EMPTY << ";\n";
+		// WHOSE_TURN
+		cout << "WHOSE_TURN: " << WHOSE_TURN << ";\n";
 	}
 };
 
