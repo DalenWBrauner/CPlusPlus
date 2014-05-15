@@ -1,6 +1,5 @@
 #include <iostream>
 #include "AI.cpp"
-//#include "Board.cpp"
 using namespace std;
 
 void Test01()
@@ -258,6 +257,56 @@ void Test03()
 	cout << "Tests:\t\t" << Tests << "\nSuccesses:\t" << Successes << "\n";
 }
 
+void Test04()
+// Testing .takeTurn();
+// We test that the AI can consistently block opponent's winning moves
+{
+	ToeBoard t1({	{1,0,0},
+				{0,1,0},
+				{0,0,0}}, {	{1,0,0},
+							{0,1,0},
+							{1,1,1}} );
+	ToeBoard t2({	{1,0,1},
+				{0,0,0},
+				{0,0,0}}, {	{1,1,1},
+							{0,1,0},
+							{0,0,0}} );
+	ToeBoard t3({	{0,0,0},
+				{1,1,0},
+				{0,0,0}}, {	{0,0,1},
+							{1,1,1},
+							{0,0,0}} );
+	ToeBoard t4({	{1,0,0},
+				{0,0,0},
+				{0,0,1}}, {	{1,0,0},
+							{0,1,1},
+							{0,0,1}} );
+	ToeBoard t5({	{1,0,0},
+				{1,0,0},
+				{0,0,0}}, {	{1,0,1},
+							{1,0,0},
+							{1,0,0}} );
+	ToeBoard t6({	{0,1,0},
+				{0,0,0},
+				{0,1,0}}, {	{0,1,0},
+							{1,1,0},
+							{0,1,0}} );
+	ToeBoard t7({	{0,0,0},
+				{0,0,0},
+				{1,1,0}}, {	{0,0,0},
+							{0,1,0},
+							{1,1,1}} );
+	ToeBoard t8({	{1,0,0},
+				{0,0,0},
+				{0,0,1}}, {	{1,0,0},
+							{0,1,0},
+							{0,1,1}} );
+	ToeBoard t9({	{0,1,0},
+				{0,0,0},
+				{0,1,0}}, {	{0,1,0},
+							{0,1,0},
+							{1,1,0}} );
+}
 int main()
 {
 	cout << "\n~~~~~\tTEST01()\t~~~~~\n";	Test01();
